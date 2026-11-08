@@ -61,7 +61,10 @@ const surfaces = {
   instantphoto:['拍立得照片的影像區',/^Instant photograph image area/],
   snips:['剪刀的金屬刀面',/^Tapered sewing scissor blade/],
   foldrule:['木尺的刻度面',/^Graduated wooden rule slat/],
-  roomtag:['房牌的牌面',/^Worn motel room tag face/]
+  roomtag:['房牌的牌面',/^Worn motel room tag face/],
+  inkbottle:['墨水瓶的紙標',/^Worn paper ink label/],
+  torch:['手電筒的外殼',/^Rounded pocket torch case/],
+  ticketpunch:['驗票鉗的金屬鉗口',/^Rounded ticket punch jaw/]
 };
 
 export function mountInk(article, item, signal) {
@@ -237,6 +240,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

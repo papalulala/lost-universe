@@ -109,7 +109,12 @@
 - [折疊木尺的刻度與鉸接](https://americanhistory.si.edu/collections/object/nmah_1819743)
 - [旅館房牌的外形與吊環](https://www.thehenryford.org/collections/explore/artifact/365287)
 
+- [方形墨水瓶的玻璃瓶身](https://www.londonmuseum.org.uk/collections/v/object-500534/bottle-ink-bottle/)
+- [口袋手電筒的外殼與燈面](https://www.euskalmuseoa.eus/en/obra/lampe-de-poche-tximist/)
+- [驗票鉗的鉗口與握柄](https://victoriancollections.net.au/items/6493f269441d47e609792eaa)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
