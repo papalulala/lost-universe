@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js';
+import { mountInk } from './ink.js?v=doodle';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -45,7 +45,7 @@ const byId = new Map(items.map((item,index) => [item.id,{...item,number:String(i
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=shared-ink').catch(() => null);
+const modelModule = import('./scene.js?v=doodle').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;

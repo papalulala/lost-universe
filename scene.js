@@ -43,10 +43,12 @@ export async function floatModel(view, still, id, index, signal, refined) {
   else orientation.rotation.x = Math.PI/2;
   const meshes = [];
   const tapeInk = id === 'key' ? paper.clone() : null;
-  if (tapeInk) {
-    const recolor = () => tapeInk.color.set(view.dataset.ink ?? '#fffefa');
-    view.addEventListener('inkchange',recolor,{signal});
-    recolor();
+  const inkTexture = tapeInk && view.inkCanvas ? new THREE.CanvasTexture(view.inkCanvas) : null;
+  if (inkTexture) {
+    inkTexture.colorSpace = THREE.SRGBColorSpace;
+    tapeInk.color.set('#ffffff');
+    tapeInk.map = inkTexture;
+    view.addEventListener('inkchange',() => { inkTexture.needsUpdate = true; },{signal});
   }
   model.traverse(object => { if (object.isMesh) meshes.push(object); });
   for (const mesh of meshes) {
@@ -54,7 +56,20 @@ export async function floatModel(view, still, id, index, signal, refined) {
       mesh.material = softInk;
       continue;
     }
-    mesh.material = tapeInk && /cloth tape|tape corner/i.test(mesh.name.replaceAll('_',' ')) ? tapeInk : paper;
+    const tape = tapeInk && /cloth tape|tape corner/i.test(mesh.name.replaceAll('_',' '));
+    mesh.material = tape ? tapeInk : paper;
+    if (tape && inkTexture) {
+      const position = mesh.geometry.attributes.position;
+      const uv = new Float32Array(position.count*2);
+      const point = new THREE.Vector3();
+      for (let i=0;i<position.count;i++) {
+        point.fromBufferAttribute(position,i);
+        model.worldToLocal(mesh.localToWorld(point));
+        uv[i*2] = (point.x+.70)/.55;
+        uv[i*2+1] = (.28-point.z)/.56;
+      }
+      mesh.geometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));
+    }
     const outline = new THREE.Mesh(mesh.geometry,wash);
     // Lay down the outline first, so the two-sided paper covers its interior.
     outline.renderOrder = -1;
@@ -125,6 +140,7 @@ export async function floatModel(view, still, id, index, signal, refined) {
     model.traverse(object => { if (object.geometry) geometry.add(object.geometry); });
     geometry.forEach(value => value.dispose());
     tapeInk?.dispose();
+    inkTexture?.dispose();
     renderer.dispose();
     renderer.forceContextLoss();
   }, {once:true});

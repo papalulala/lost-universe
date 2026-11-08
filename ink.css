@@ -2,8 +2,10 @@
 .ink-panel p{margin:.5em 0}
 .ink-panel summary{cursor:pointer}
 .ink-panel button{font-size:.76rem;padding:4px 6px}
-.ink-swatches,.ink-history{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:.5em 0}
-.ink-swatches button::before,.ink-history button::before{content:'';display:inline-block;width:.72em;height:.72em;margin-right:4px;border:1px solid #636b60;border-radius:50%;background:var(--swatch)}
-.ink-swatches button[aria-pressed=true]{border-color:#43544c}
+.ink-panel canvas{width:min(100%,210px);height:auto;aspect-ratio:1;border:1px solid #8d9691;box-sizing:content-box;max-width:calc(100% - 2px);margin:.65em 0;background:#fffefa;touch-action:none}
+.ink-panel canvas.ready{cursor:crosshair}
+.ink-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 8px}
+.ink-tools label{display:inline-flex;gap:4px;align-items:center}
+.ink-tools input[type=range]{width:80px}
 .ink-panel button:disabled{opacity:.56;cursor:default}
-.ink-save{margin-right:5px}
+.surfaced:has(.ink-panel[open]) .object-info{max-height:65rem}
