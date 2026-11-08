@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=twenty-one';
+import { mountInk } from './ink.js?v=twenty-four';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -13,7 +13,7 @@ const items = [
   {id:'ticket',title:'沒有剪角的車票',tag:'離開後才發現',story:'我從衣袋摸出回程票，擱在椅袋裡的報紙旁。下車只帶走報紙，直到站務員伸出手，我才想起椅袋裡還有一張票。'},
   {id:'comb',title:'少一齒的梳子',tag:'離開後才發現',story:'梳子少了第五齒，梳到耳後時總會卡一下。離開旅館後我在車窗上看見頭髮翹起來，才想起浴室架上的它。'},
   {id:'notebook',title:'夾著書籤的筆記本',tag:'做到一半的東西',story:'我在最後一頁畫了一個還沒合起來的圓。圖書館關門時，把書籤夾回那頁。隔天回去，窗邊已經有人坐了，桌上只有他自己的書。'},
-  {id:'umbrella',title:'繫帶鬆了的傘',tag:'離開後才發現',story:'雨停後我把傘橫擱在站牌下的長椅上。直到下一場雨，我才想起那條怎麼拉都拉不緊的繫帶。'},
+  {id:'umbrella',weather:'rain',title:'繫帶鬆了的傘',tag:'離開後才發現',story:'雨停後我把傘橫擱在站牌下的長椅上。直到下一場雨，我才想起那條怎麼拉都拉不緊的繫帶。'},
   {id:'tape',title:'沒錄完的錄音帶',tag:'做到一半的東西',story:'錄到一半，門外有人叫我吃飯。後來我收起錄音機，忘了那盒卡帶還躺在窗邊，停在一句「等一下」。'},
   {id:'stamp',title:'刻了一半的印章',tag:'做到一半的東西',story:'我的名字刻到第三刀，手一滑，多留了一道斜線。工作室清空後，我才發現帶回來的是刻刀，印章留在木屑裡。'},
   {id:'eraser',title:'紙套翹起的橡皮擦',tag:'衣袋裡的東西',story:'我總用拇指把紙套的角壓平。放學跑回家，手伸進制服口袋，裡面只剩一小片擦下來的紙。'},
@@ -25,7 +25,10 @@ const items = [
   {id:'pencil',title:'削到握不住的短鉛筆',tag:'衣袋裡的東西',story:'鉛筆短到只能用兩根手指捏著，我還是把它放進制服口袋。放學後想在車票背面記一句話，才發現口袋裡只有橡皮擦屑。'},
   {id:'thimble',title:'縫到一半的頂針',tag:'做到一半的東西',story:'縫到大衣的最後一顆鈕扣，針尖在頂針的小凹點裡卡了一下。門外有人喊我，剩下兩針就先擱著。隔天打開針線盒，才發現頂針還留在那張桌上。'},
   {id:'watch',title:'停在六點十八分的手錶',tag:'離開後才發現',story:'錶早就停在六點十八分，我還是每天戴著。那天為了搬行李，把它解下來擱在車站洗手台。上車後我抬起手腕，才看見錶帶留的一圈淡痕。'},
-  {id:'matchbox',title:'還剩三根的火柴盒',tag:'搬家後留下的東西',story:'舊家的爐火點不著時，我總伸手去摸火柴盒。搬家那天，盒裡還有三根。新家第一次煮湯，手伸出去，我才想起它還擱在舊廚房的窗邊。'}
+  {id:'matchbox',title:'還剩三根的火柴盒',tag:'搬家後留下的東西',story:'舊家的爐火點不著時，我總伸手去摸火柴盒。搬家那天，盒裡還有三根。新家第一次煮湯，手伸出去，我才想起它還擱在舊廚房的窗邊。'},
+  {id:'glasses',title:'起霧的眼鏡',tag:'離開後才發現',weather:'fog',story:'一進暖的地方，鏡片就白了。我把眼鏡放在窗邊，等霧退一點。車開了，我想擦掉左邊最後一點霧，伸手卻只摸到眼鏡布。'},
+  {id:'mitten',title:'落單的手套',tag:'衣袋裡的東西',story:'左手手套的拇指旁補過一針，戴上去總能摸出來。等車時我脫了手套找零錢。回家把兩隻手伸進大衣口袋，只有右手摸到一團毛線。'},
+  {id:'bell',title:'有一道刮痕的自行車鈴',tag:'離開後才發現',story:'鈴上那道刮痕，是牽車經過窄門時留下的。送修那天，師傅把鈴拆下來擱在桌角。騎回家的路上，前面有人擋住巷口。我伸拇指去按，只碰到空空的把手。'}
 ];
 
 const trails = {
@@ -37,19 +40,22 @@ const trails = {
   ticket:['到了下一站，才想起上一站','luggage','comb'],
   comb:['車窗倒影裡少了什麼？','mirror','ticket'],
   notebook:['替讀到一半的地方做記號','bookmark','postcard'],
-  umbrella:['旅途上，手總有空下來的時候','comb','ticket'],
+  umbrella:['一隻手撐傘，另一隻手找零錢','mitten','ticket'],
   tape:['那句「等一下」，有人聽見嗎？','earbuds','film'],
   stamp:['第三刀之後，還有一筆','notebook','tape'],
   eraser:['口袋裡剩下的一點碎屑','pencil','button'],
-  mirror:['照到耳後那一撮頭髮','comb','umbrella'],
+  mirror:['雨停了，玻璃上還留著什麼？','glasses','umbrella'],
   bookmark:['翻到還沒讀完的那一頁','notebook','tape'],
   envelope:['地址還能從哪裡找回來？','postcard','ticket'],
   luggage:['提把上的勒痕，手腕上的淡痕','watch','ticket'],
-  earbuds:['車窗下，聲音停在哪裡？','tape','film'],
+  earbuds:['手比耳朵更早記得的聲音','bell','tape'],
   pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
   thimble:['留在原地的線與筆跡','button','notebook'],
   watch:['上車後，才發現少了一樣','luggage','ticket'],
-  matchbox:['手伸向舊廚房的窗邊','spoon','key']
+  matchbox:['手伸向舊廚房的窗邊','spoon','key'],
+  glasses:['在鏡子和車窗之間','mirror','comb'],
+  mitten:['藏在拇指旁的一針','thimble','button'],
+  bell:['本來會響的東西，忽然沒了聲音','earbuds','tape']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
@@ -59,6 +65,7 @@ const byId = new Map(items.map(item => [item.id,item]));
 const driftOrder = [...byId.keys()].reverse();
 const objects = document.querySelector('#objects');
 const frame = document.querySelector('#frame');
+let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
 const modelModule = import('./scene.js?v=twenty-one').catch(() => null);
@@ -121,7 +128,7 @@ function mount(item,index) {
   if (item.id === 'key') {
     keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
   } else {
-    action('沿著線索走 · ' + label,() => {
+    action(label,() => {
       render([item.id,...neighbors],item.id);
       entries.get(item.id).button.focus();
     });
@@ -192,7 +199,12 @@ function render(ids, selected, branch = false) {
     else mount(byId.get(id),index);
   }
   reveal(entries.get(selected),Boolean(selected));
-  frame.dataset.weather = entries.has('umbrella') ? 'rain' : 'fog';
+  const sceneKey = [...ids].sort().join(',');
+  if (sceneKey !== weatherScene) {
+    weatherScene = sceneKey;
+    const choices = [...new Set(ids.map(id => byId.get(id).weather).filter(Boolean))];
+    frame.dataset.weather = choices[Math.floor(Math.random()*choices.length)] ?? 'fog';
+  }
 }
 
 document.addEventListener('pointerdown',event => {
@@ -217,6 +229,9 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
+
 
 
 

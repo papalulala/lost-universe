@@ -19,7 +19,10 @@ const surfaces = {
   pencil:['鉛筆的木桿',/^Short hexagonal pencil barrel/],
   thimble:['頂針的外壁',/^Hollow tapered thimble/],
   watch:['手錶的錶面',/^Stopped watch dial/],
-  matchbox:['火柴盒的外套',/^Printed matchbox sleeve/]
+  matchbox:['火柴盒的外套',/^Printed matchbox sleeve/],
+  glasses:['眼鏡的鏡片',/^Round spectacle lens/],
+  mitten:['手套的手掌布面',/^Rounded knitted mitten palm/],
+  bell:['車鈴的圓蓋',/^Rounded bicycle bell dome/]
 };
 
 export function mountInk(article, item, signal) {

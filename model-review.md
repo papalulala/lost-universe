@@ -25,6 +25,9 @@
 | 縫到一半的頂針 | 有中空的薄壁、捲邊與交錯排列的針痕。外壁可畫。 |
 | 停在六點十八分的手錶 | 錶帶有扣孔，錶面有刻度和停在六點十八的兩根指針。錶面可畫。 |
 | 還剩三根的火柴盒 | 紙套露出半拉開的薄抽屜，裡面有三根火柴。外套可畫。 |
+| 起霧的眼鏡 | 圓鏡片配細框、折起的鏡腳和拱形鼻橋。鏡片可畫。出場可觸發白霧。 |
+| 落單的手套 | 圓弧手掌、拇指、補線與羅紋袖口。手掌布面可畫。 |
+| 有一道刮痕的自行車鈴 | 圓蓋有刮痕，下方保留束環與拇指撥片。圓蓋可畫。 |
 
 ## 本輪照片參考
 
@@ -50,6 +53,9 @@
 - [銀製頂針與針痕](https://www.britishmuseum.org/collection/object/H_1921-0217-4)
 - [皮帶手錶館藏](https://www.si.edu/object/wristwatch-lindbergh-king-collection%3Anasm_A20040287024)
 - [抽屜式火柴盒館藏](https://collection.sciencemuseumgroup.org.uk/objects/co159307/matchbox-rectangular-slide-in-chipwood-drawer)
+- [圓鏡片與細鏡腳館藏](https://collection.sciencemuseumgroup.org.uk/objects/co538629/pair-of-round-lens-spectacles-with-wire-arms)
+- [手織毛手套館藏](https://www.londonmuseum.org.uk/collections/v/object-90608/childs-mitten/)
+- [圓蓋車鈴與撥片](https://www.madsencycles.com/products/classic-shiny-brass-bicycle-bell-1)
 
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
 
