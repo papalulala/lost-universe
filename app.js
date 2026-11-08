@@ -56,6 +56,7 @@ const keyChoices = [
   {label:'手還記得它在哪裡',destination:'spoon',companion:'comb',arrival:'到了新家，煮湯時還是伸手去拉原本那一格抽屜。'}
 ];
 const byId = new Map(items.map(item => [item.id,item]));
+const driftOrder = [...byId.keys()].reverse();
 const objects = document.querySelector('#objects');
 const frame = document.querySelector('#frame');
 const entries = new Map();
@@ -207,9 +208,14 @@ function route() {
 addEventListener('hashchange',route);
 route();
 document.querySelector('#drift').onclick = () => {
-  const unseen = items.filter(item => !visited.has(item.id));
-  const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
-  render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
+  const unseen = driftOrder.filter(id => !visited.has(id));
+  const next = unseen.slice(0,3);
+  if (next.length < 3) {
+    visited.clear();
+    for (const id of entries.keys()) visited.add(id);
+    next.push(...driftOrder.filter(id => !visited.has(id) && !next.includes(id)).slice(0,3-next.length));
+  }
+  render(next);
 };
 
 
