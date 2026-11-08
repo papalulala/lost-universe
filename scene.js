@@ -15,8 +15,16 @@ const wash = new THREE.ShaderMaterial({
   fragmentShader:`void main() { gl_FragColor = vec4(0.15,0.16,0.15,1.0); }`
 });
 
-export async function floatModel(view, still, id, index) {
+export async function floatModel(view, still, id, index, signal) {
+  if (signal.aborted) return;
   const {scene:model} = await loader.loadAsync('./'+id+'.glb');
+  const originalMaterials = new Set();
+  model.traverse(object => { if (object.isMesh) originalMaterials.add(object.material); });
+  originalMaterials.forEach(material => material.dispose());
+  if (signal.aborted) {
+    model.traverse(object => object.geometry?.dispose());
+    return;
+  }
   const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   const scene = new THREE.Scene();
@@ -39,7 +47,7 @@ export async function floatModel(view, still, id, index) {
     mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry,32),edge));
   }
   view.append(renderer.domElement);
-  new ResizeObserver(() => {
+  const observer = new ResizeObserver(() => {
     const width = view.clientWidth;
     const height = view.clientHeight;
     if (!width || !height) return;
@@ -48,7 +56,17 @@ export async function floatModel(view, still, id, index) {
     camera.updateProjectionMatrix();
     renderer.setSize(width,height);
     still.hidden = true;
-  }).observe(view);
+  });
+  observer.observe(view);
+  signal.addEventListener('abort', () => {
+    observer.disconnect();
+    renderer.setAnimationLoop(null);
+    const geometry = new Set();
+    model.traverse(object => { if (object.geometry) geometry.add(object.geometry); });
+    geometry.forEach(value => value.dispose());
+    renderer.dispose();
+    renderer.forceContextLoss();
+  }, {once:true});
   renderer.setAnimationLoop(time => {
     const phase = reduced.matches ? index : time/1500 + index*2;
     pivot.rotation.set(.18+.10*Math.cos(phase),.28*Math.sin(phase),[-.28,.15,-.15][index]);
