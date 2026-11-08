@@ -55,7 +55,10 @@ const surfaces = {
   bikepump:['打氣筒的筒身',/^Portable pump barrel/],
   shoelast:['鞋楦的木面',/^Carved wooden shoe last/],
   deskbell:['櫃檯鈴的圓頂',/^Pressed desk bell dome/],
-  compass:['指南針的刻度盤',/^Recessed compass dial/]
+  compass:['指南針的刻度盤',/^Recessed compass dial/],
+  accesscard:['感應卡的卡面',/^Scuffed contactless card face/],
+  phone:['手機的螢幕',/^Recessed smartphone screen/],
+  instantphoto:['拍立得照片的影像區',/^Instant photograph image area/]
 };
 
 export function mountInk(article, item, signal) {
@@ -231,6 +234,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

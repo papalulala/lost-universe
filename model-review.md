@@ -101,7 +101,12 @@
 - [櫃檯鈴的金屬圓頂與按鈕](https://emuseum.mfah.org/objects/35223/service-bell)
 - [口袋指南針的錶殼與刻度盤](https://www.rmg.co.uk/collections/objects/rmgc-object-42650)
 
+- [感應卡的卡面與比例](https://tfl.gov.uk/fares/ways-to-pay/where-to-buy-tickets-and-oyster)
+- [手機的螢幕與機身](https://naturalhistory.si.edu/visit/accessibility/audio-and-visual-description/cellphone-unseen-connections-visual-description-tour)
+- [拍立得相紙的白框與影像區](https://americanhistory.si.edu/collections/object/nmah_689070)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
