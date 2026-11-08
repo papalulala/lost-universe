@@ -1,3 +1,5 @@
+import { openEcho } from './echo.js';
+
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
     story:'搬家那天，我用藍膠帶把這把鑰匙和新家的分開。三年來，我一直把兩把掛在一起。\n\n上週經過那棟樓，大門已經換成刷卡的了。回家才發現，鑰匙圈上只剩新家的那把。',
@@ -70,7 +72,7 @@ function mount(item,index) {
     <section class="object-info" id="story-${item.id}" inert>
       <h2></h2><p></p>
       <details><summary>背面的話</summary><p></p><small>示範留言</small></details>
-      <a class="story-link">這件失物的連結</a>
+      <button type="button" class="story-link">留一行回聲</button>
       <button type="button" class="follow"></button>
     </section>`;
   const button = article.querySelector('button');
@@ -90,7 +92,7 @@ function mount(item,index) {
     render([item.id,...neighbors],item.id);
     entries.get(item.id).button.focus();
   };
-  article.querySelector('a').href = '#' + item.id;
+  article.querySelector('.story-link').onclick = () => openEcho(item);
   entries.set(item.id,entry);
   objects.append(article);
   article.addEventListener('pointerenter',event => {

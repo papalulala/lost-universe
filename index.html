@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="echo-endpoint" content="https://lost-universe-echo.papalulala.workers.dev/">
 <meta name="description" content="三件失物在灰白的霧裡漂流。靠近一點，就能讀到它們的故事。">
 <title>失物宇宙｜漂流檔案</title>
 <link rel="stylesheet" href="./style.css">
@@ -13,7 +14,8 @@
 <link rel="preload" href="./title-brush.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="./error-brush.ttf" as="font" type="font/ttf" crossorigin>
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
-<script type="module" src="./app.js?v=twelve"></script>
+<link rel="stylesheet" href="./echo.css">
+<script type="module" src="./app.js?v=echo"></script>
 <script type="module" src="./opening.js"></script>
 </head>
 <body>
@@ -33,6 +35,17 @@
     <h2 id="catalog-title">漂流索引</h2>
     <label>名稱、編號或線索 <input type="search"></label>
     <output></output><ul></ul>
+  </dialog>
+  <dialog id="echo" aria-labelledby="echo-title">
+    <form method="dialog"><button aria-label="關閉回聲簿">關閉</button></form>
+    <h2 id="echo-title">回聲簿</h2>
+    <p role="status"></p>
+    <ul aria-label="訪客的回聲"></ul>
+    <form class="echo-form" hidden>
+      <label>這件失物，讓你想起了什麼？<textarea maxlength="280" rows="4" required></textarea></label>
+      <small>免登入。送出後，這句話會公開顯示。</small>
+      <button type="submit">留下回聲</button>
+    </form>
   </dialog>
 </main>
 </body>
