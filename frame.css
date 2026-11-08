@@ -1,0 +1,30 @@
+#frame{position:relative;display:block;width:min(1180px,calc(100% - 48px));margin:12px auto 28px;min-height:0;border:1px solid #8d969177;background:radial-gradient(ellipse at 56% 36%,#fafaf7 2%,#eceeea 66%,#e4e8e4)}
+.frame-label,.frame-hint{margin:0;padding:14px 22px;color:#555e59;font-size:.82rem;letter-spacing:.1em}
+.frame-hint{text-align:center;padding-bottom:22px}
+#objects{min-height:clamp(455px,57vw,590px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;padding:8px clamp(8px,3vw,42px) 0}
+.floating{position:relative;min-width:0;z-index:0;margin-top:58px}
+.floating:nth-child(2){margin-top:0}
+.floating:nth-child(3){margin-top:92px}
+.floating.surfaced{z-index:1}
+.object-button{position:relative;display:block;width:100%;aspect-ratio:1.5;border:0;background:none;padding:0;cursor:pointer}
+.object-button:focus-visible{outline-offset:-8px}
+.model,.model-still{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.model-still{object-fit:contain;filter:grayscale(1) brightness(1.3) contrast(.85)}
+.object-id{position:absolute;bottom:4px;left:50%;translate:-50%;color:#67716b;font:11px ui-monospace,monospace;letter-spacing:.16em}
+.object-info{position:absolute;left:4%;right:4%;top:calc(100% - 3px);padding:14px 16px;color:#373e39;background:#fafbf6f5;border-top:1px solid #87968c;box-shadow:0 12px 32px #64736814;visibility:hidden;opacity:0;transform:translateY(22px) scaleY(.95);filter:blur(9px);clip-path:ellipse(78% 65% at 50% -65%);pointer-events:none;transition:opacity .57s,transform .57s,filter .57s,clip-path .57s,visibility 0s .57s}
+.surfaced .object-info{visibility:visible;opacity:1;transform:none;filter:none;clip-path:ellipse(100% 100% at 50% 50%);pointer-events:auto;transition-delay:0s;transition-duration:.35s}
+.object-info h2{margin:0 0 6px;font-size:1.24rem}
+.object-info p{margin:0 0 9px;font-size:.91rem;line-height:1.6}
+.object-info details,.story-link{font-size:.8rem}
+.object-info summary,.story-link{color:#495952;cursor:pointer}
+.object-info details p{margin:5px 0 0}
+.story-link{display:inline-block;margin-top:6px}
+body:not(.opening-active) #objects{animation:arrival 1.4s ease both}
+@media(max-width:720px){
+  #frame{width:calc(100% - 24px);margin-top:4px}
+  #objects{grid-template-columns:1fr;min-height:0;padding-inline:12px}
+  .floating,.floating:nth-child(n){margin:0}
+  .object-button{width:min(100%,280px);margin:auto;aspect-ratio:1.7}
+  .object-info{position:relative;left:auto;right:auto;top:auto;max-height:0;overflow:hidden;padding-block:0;border-top-width:0;transition-property:opacity,transform,filter,clip-path,visibility,max-height,padding}
+  .surfaced .object-info{max-height:28rem;padding-block:14px;border-top-width:1px}
+}

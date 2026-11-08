@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="在星圖上靠近一件失物，讀完它的故事，再沿著線索漂向下一件。">
+<meta name="description" content="三件失物在灰白的霧裡漂流。靠近一點，就能讀到它們的故事。">
 <title>失物宇宙｜漂流檔案</title>
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./mist.css">
+<link rel="stylesheet" href="./frame.css">
 <link rel="preload" href="./title-brush.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="./error-brush.ttf" as="font" type="font/ttf" crossorigin>
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
@@ -20,29 +21,11 @@
   <div class="opening-title" aria-hidden="true"><span>失</span><span class="turn"><span class="correct">物</span><span class="shard s1">誤</span><span class="shard s2">誤</span><span class="shard s3">誤</span><span class="shard s4">誤</span></span><span>宇宙</span></div>
   <button class="skip">跳過開場</button>
 </div>
-<main>
-<section class="stage" aria-label="失物模型">
-<div id="view" aria-hidden="true"></div><img id="still" alt="" hidden>
-<div class="orbit" aria-hidden="true"></div>
-<div class="stage-top"><span>✧ &nbsp; DRIFTING OBJECT</span><span id="serial">LU–001</span></div>
-<div class="stage-bottom"><span id="hint">正在接收物件影像</span><span>＋</span></div>
-</section>
-<section class="story" aria-labelledby="title">
-<div class="eyebrow" id="tag"></div>
-<h1 id="title" tabindex="-1">失物宇宙</h1>
-<p id="intro">有些東西遺失後，還在某個地方漂流。</p>
-<button id="approach" class="primary">靠近看看 <span aria-hidden="true">↗</span></button>
-<div id="detail" hidden>
-<p id="story"></p>
-<button id="flip" aria-expanded="false">翻到背面 <span aria-hidden="true">↻</span></button>
-<div id="note" hidden><small>前一位訪客留下的話 · 示範</small><p id="reply"></p></div>
-<div class="paths"><button id="trail"></button><button id="drift">漂去遠方 ↗</button></div>
-<button id="share">複製這件失物的連結</button><span id="status" role="status"></span>
-</div>
-</section>
+<main id="frame" aria-label="失物宇宙">
+  <p class="frame-label">第一輯 · 漂流中的三件失物</p>
+  <div id="objects"></div>
+  <p class="frame-hint">靠近一件失物，讀它的故事。</p>
 </main>
-<nav aria-label="失物索引" id="index"></nav>
-<footer><span>失物宇宙 · 第一輯</span><span>三件虛構失物與示範留言</span></footer>
 </body>
 </html>
 
