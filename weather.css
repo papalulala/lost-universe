@@ -1,0 +1,24 @@
+.weather{position:fixed;z-index:0;inset:0;overflow:hidden;pointer-events:none}
+.weather-fog,.weather-rain{position:absolute;inset:0;pointer-events:none;transition:opacity 1.5s ease}
+.weather-fog{inset:-12%;background:radial-gradient(ellipse at 16% 57%,#ffffffad,transparent 58%),radial-gradient(ellipse at 84% 24%,#ffffffa8,transparent 53%);animation:weather-fog 19s ease-in-out infinite alternate;opacity:.92}
+.weather-rain{opacity:0;background-color:#aabdbb1a}
+.weather-rain::before,.weather-rain::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='253' height='193' viewBox='0 0 253 193'%3E%3Cpath d='M21 5l-3 17m72 18-3 21m55-45-2 12m74-15-3 18M43 103l-3 22m92-27-3 19m62-43-3 17m54 32-3 22M14 151l-3 18m65-15-2 12m68 6-2 12m47-33-3 21' fill='none' stroke='%23647778' stroke-width='1' stroke-opacity='.52' stroke-linecap='round'/%3E%3C/svg%3E")}
+.weather-rain::before{background-size:253px 193px}
+.weather-rain::after{background-size:190px 145px;opacity:.5}
+[data-weather=rain] .weather-rain{opacity:.8}
+[data-weather=rain] .weather-rain::before{animation:rain-near .85s linear infinite}
+[data-weather=rain] .weather-rain::after{animation:rain-far 1.3s linear infinite}
+[data-weather=rain] .weather-fog{opacity:.31}
+#objects,#frame .frame-controls{position:relative;z-index:1}
+#frame:has(.ink-panel[open],#echo[open]) .weather-rain{opacity:.2}
+#frame:has(.ink-panel[open],#echo[open]) .weather-rain::before,
+#frame:has(.ink-panel[open],#echo[open]) .weather-rain::after,
+#frame:has(.ink-panel[open],#echo[open]) .weather-fog{animation-play-state:paused}
+@keyframes rain-near{from{background-position:0 0}to{background-position:0 193px}}
+@keyframes rain-far{from{background-position:0 0}to{background-position:0 145px}}
+@keyframes weather-fog{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
+@media(prefers-reduced-motion:reduce){
+  .weather-fog,.weather-rain{transition:none}
+  [data-weather=rain] .weather-rain{opacity:.38}
+}
+

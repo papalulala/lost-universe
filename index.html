@@ -16,7 +16,8 @@
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
-<script type="module" src="./app.js?v=twenty-one"></script>
+<link rel="stylesheet" href="./weather.css">
+<script type="module" src="./app.js?v=weather"></script>
 <script type="module" src="./opening.js?v=mist-letter"></script>
 </head>
 <body>
@@ -25,7 +26,8 @@
   <div class="opening-title" aria-hidden="true"><span>失</span><span class="turn"><span class="correct">物</span><span class="wrong">誤</span></span><span>宇宙</span></div>
   <button class="skip">跳過開場</button>
 </div>
-<main id="frame" aria-label="失物宇宙">
+<main id="frame" aria-label="失物宇宙" data-weather="fog">
+  <div class="weather" aria-hidden="true"><div class="weather-fog"></div><div class="weather-rain"></div></div>
   <header class="frame-title">
     <a class="brand" href="./">失物宇宙</a>
     <p class="title-intro">點開一件失物，讀它的故事。<br>循著線索，看看下一件會漂到哪裡。</p>

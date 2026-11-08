@@ -57,6 +57,7 @@ const keyChoices = [
 ];
 const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
+const frame = document.querySelector('#frame');
 const entries = new Map();
 const visited = new Set();
 const modelModule = import('./scene.js?v=twenty-one').catch(() => null);
@@ -190,6 +191,7 @@ function render(ids, selected, branch = false) {
     else mount(byId.get(id),index);
   }
   reveal(entries.get(selected),Boolean(selected));
+  frame.dataset.weather = entries.has('umbrella') ? 'rain' : 'fog';
 }
 
 document.addEventListener('pointerdown',event => {
