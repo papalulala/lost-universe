@@ -1,5 +1,23 @@
 #frame{isolation:isolate;display:flex;flex-direction:column;width:100%;max-width:none;min-height:100vh;min-height:100dvh;margin:0;border:0;background:none}
-#frame::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 56% 36%,#fafaf7 2%,#eceeea 66%,#e4e8e4)}
+#frame::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:#e4e8e4 radial-gradient(ellipse at 56% 36%,#fafaf785 2%,transparent 86%)}
+#frame::before{animation:daylight-base 90s linear infinite}
+.daylight{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 78% 18%,#fff8dd 0%,#fff8dd85 28%,transparent 72%);animation:daylight-glow 90s linear infinite}
+@keyframes daylight-base{
+  0%,100%{background-color:#c9d1d5}
+  16.667%,50%{background-color:#e4e8e4}
+  72.222%,90%{background-color:#9ca9b5}
+}
+@keyframes daylight-glow{
+  0%,100%{opacity:.12}
+  16.667%{opacity:.22}
+  50%{opacity:.28}
+  62%{opacity:.83}
+  72.222%,90%{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  #frame::before,.daylight{animation:none}
+  .daylight{opacity:0}
+}
 #frame .frame-title{position:relative;z-index:2;width:100%;max-width:none;margin:0;border:0;padding:clamp(14px,3vw,32px) clamp(16px,5vw,64px) 3px;pointer-events:none}
 .frame-title .brand{pointer-events:auto}
 #frame .frame-title{justify-content:flex-start;gap:clamp(20px,4vw,56px)}
@@ -19,4 +37,6 @@
   #objects{grid-template-columns:1fr;padding-inline:12px}
   .object-button{width:min(100%,280px,34dvh);aspect-ratio:1.7}
 }
+
+
 
