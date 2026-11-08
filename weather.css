@@ -7,18 +7,19 @@
 .weather-rain::after{background-size:190px 145px;opacity:.5}
 .weather.weather-front{z-index:2}
 .weather-front .weather-fog{opacity:0}
-[data-weather=fog] .weather-front .weather-fog{opacity:.66}
-[data-weather=fog] .weather-front .weather-fog::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 78%,#ffffffc0,transparent 64%)}
+[data-weather=fog] .weather-front .weather-fog{opacity:.94}
+[data-weather=fog] .weather-front .weather-fog::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 78%,#fffffff2 12%,#ffffffa8 37%,transparent 72%)}
 [data-weather=clearing] .weather-rain{animation:rain-clears 4.6s ease-out both}
 [data-weather=clearing] .weather-rain::before{animation:rain-near .85s linear 6}
 [data-weather=clearing] .weather-rain::after{animation:rain-far 1.3s linear 4}
-.weather-light{background:radial-gradient(ellipse at 89% 8%,#fffdf1 0%,#fffdf0a3 29%,transparent 67%)}
+.weather-light{background:radial-gradient(ellipse at 89% 8%,#fff9df 0%,#fff8e5e6 32%,transparent 76%)}
 [data-weather=clearing] .weather-light{animation:light-returns 6s ease-out both}
 .weather-wind{background:radial-gradient(ellipse 32% 8% at 45% 33%,#fff9,transparent 100%),radial-gradient(ellipse 34% 9% at 52% 63%,#fffc,transparent 100%),radial-gradient(ellipse 25% 5% at 66% 77%,#b1bfbc48,transparent 100%)}
-[data-weather=wind] .weather-wind{animation:sea-breeze 8s ease-in-out infinite}
-.weather-snow::before,.weather-snow::after{content:'';position:absolute;inset:-70px;background-image:radial-gradient(circle at 20% 19%,#fff 0 1.4px,#677f7b66 2px,transparent 3px),radial-gradient(circle at 72% 41%,#fff 0 1.8px,#677f7b66 2.6px,transparent 3.5px),radial-gradient(circle at 38% 83%,#fff 0 1px,#677f7b66 1.7px,transparent 2.7px)}
-.weather-snow::before{background-size:293px 223px}
-.weather-snow::after{background-size:193px 157px;opacity:.64}
+.weather-wind::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 28% 1.5% at 24% 38%,#78949270,transparent 100%),radial-gradient(ellipse 34% 2% at 49% 53%,#ffffffed,transparent 100%),radial-gradient(ellipse 21% 1.7% at 72% 68%,#77918e67,transparent 100%)}
+[data-weather=wind] .weather-wind{animation:sea-breeze 5s ease-in-out infinite}
+.weather-snow::before,.weather-snow::after{content:'';position:absolute;inset:-70px;background-image:radial-gradient(circle at 20% 19%,#fff 0 2px,#4c686f9c 2.8px,transparent 3.8px),radial-gradient(circle at 72% 41%,#fff 0 2.4px,#4c686f9c 3.1px,transparent 4px),radial-gradient(circle at 38% 83%,#fff 0 1px,#4c686f9c 1.7px,transparent 2.7px)}
+.weather-snow::before{background-size:249px 223px}
+.weather-snow::after{background-size:173px 157px;opacity:.64}
 [data-weather=snow] .weather-snow{opacity:.93}
 [data-weather=snow] .weather-snow::before{animation:snow-near 16s linear infinite}
 [data-weather=snow] .weather-snow::after{animation:snow-far 21s linear infinite}
@@ -31,8 +32,8 @@
 @keyframes rain-near{from{background-position:0 0}to{background-position:0 193px}}
 @keyframes rain-far{from{background-position:0 0}to{background-position:0 145px}}
 @keyframes rain-clears{0%{opacity:0}18%,42%{opacity:.76}100%{opacity:0}}
-@keyframes light-returns{0%,32%{opacity:0}100%{opacity:.85}}
-@keyframes sea-breeze{0%{transform:translateX(-38%) skewY(-5deg);opacity:0}35%{opacity:.88}78%,100%{transform:translateX(44%) skewY(-5deg);opacity:0}}
+@keyframes light-returns{0%,32%{opacity:0}100%{opacity:1}}
+@keyframes sea-breeze{0%{transform:translateX(-30%) skewY(-5deg);opacity:.35}30%,62%{opacity:1}100%{transform:translateX(35%) skewY(-5deg);opacity:.35}}
 @keyframes snow-near{from{background-position:0 0}to{background-position:35px 223px}}
 @keyframes snow-far{from{background-position:0 0}to{background-position:-27px 157px}}
 @keyframes weather-fog{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
@@ -41,4 +42,5 @@
   [data-weather=clearing] .weather-light{opacity:.8}
   [data-weather=wind] .weather-wind{opacity:.68}
 }
+
 
