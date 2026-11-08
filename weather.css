@@ -1,24 +1,40 @@
 .weather{position:fixed;z-index:0;inset:0;overflow:hidden;pointer-events:none}
-.weather-fog,.weather-rain{position:absolute;inset:0;pointer-events:none;transition:opacity 1.5s ease}
-.weather-fog{inset:-12%;background:radial-gradient(ellipse at 16% 57%,#ffffffad,transparent 58%),radial-gradient(ellipse at 84% 24%,#ffffffa8,transparent 53%);animation:weather-fog 19s ease-in-out infinite alternate;opacity:.92}
+.weather>div{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
+.weather .weather-fog{inset:-12%;background:radial-gradient(ellipse at 16% 57%,#ffffffad,transparent 58%),radial-gradient(ellipse at 84% 24%,#ffffffa8,transparent 53%);animation:weather-fog 19s ease-in-out infinite alternate;opacity:.32}
 .weather-rain{opacity:0;background-color:#aabdbb1a}
 .weather-rain::before,.weather-rain::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='253' height='193' viewBox='0 0 253 193'%3E%3Cpath d='M21 5l-3 17m72 18-3 21m55-45-2 12m74-15-3 18M43 103l-3 22m92-27-3 19m62-43-3 17m54 32-3 22M14 151l-3 18m65-15-2 12m68 6-2 12m47-33-3 21' fill='none' stroke='%23647778' stroke-width='1' stroke-opacity='.52' stroke-linecap='round'/%3E%3C/svg%3E")}
 .weather-rain::before{background-size:253px 193px}
 .weather-rain::after{background-size:190px 145px;opacity:.5}
-[data-weather=rain] .weather-rain{opacity:.8}
-[data-weather=rain] .weather-rain::before{animation:rain-near .85s linear infinite}
-[data-weather=rain] .weather-rain::after{animation:rain-far 1.3s linear infinite}
-[data-weather=rain] .weather-fog{opacity:.31}
+[data-weather=fog] .weather .weather-fog{opacity:.96}
+[data-weather=fog] .weather-fog::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 78%,#ffffffc0,transparent 64%)}
+[data-weather=clearing] .weather-rain{animation:rain-clears 4.6s ease-out both}
+[data-weather=clearing] .weather-rain::before{animation:rain-near .85s linear 6}
+[data-weather=clearing] .weather-rain::after{animation:rain-far 1.3s linear 4}
+.weather-light{background:radial-gradient(ellipse at 89% 8%,#fffdf1 0%,#fffdf0a3 29%,transparent 67%)}
+[data-weather=clearing] .weather-light{animation:light-returns 6s ease-out both}
+.weather-wind{background:radial-gradient(ellipse 32% 8% at 45% 33%,#fff9,transparent 100%),radial-gradient(ellipse 34% 9% at 52% 63%,#fff9,transparent 100%),radial-gradient(ellipse 25% 5% at 66% 77%,#b1bfbc48,transparent 100%)}
+[data-weather=wind] .weather-wind{animation:sea-breeze 8s ease-in-out infinite}
+.weather-snow::before,.weather-snow::after{content:'';position:absolute;inset:-70px;background-image:radial-gradient(circle at 20% 19%,#fff 0 1.4px,#879b9830 2px,transparent 3px),radial-gradient(circle at 72% 41%,#fff 0 1.8px,#879b9830 2.6px,transparent 3.5px),radial-gradient(circle at 38% 83%,#fff 0 1px,#879b9830 1.7px,transparent 2.7px)}
+.weather-snow::before{background-size:293px 223px}
+.weather-snow::after{background-size:193px 157px;opacity:.64}
+[data-weather=snow] .weather-snow{opacity:.93}
+[data-weather=snow] .weather-snow::before{animation:snow-near 16s linear infinite}
+[data-weather=snow] .weather-snow::after{animation:snow-far 21s linear infinite}
 #objects,#frame .frame-controls{position:relative;z-index:1}
-#frame:has(.ink-panel[open],#echo[open]) .weather-rain{opacity:.2}
-#frame:has(.ink-panel[open],#echo[open]) .weather-rain::before,
-#frame:has(.ink-panel[open],#echo[open]) .weather-rain::after,
-#frame:has(.ink-panel[open],#echo[open]) .weather-fog{animation-play-state:paused}
+#frame:has(.ink-panel[open],#echo[open]) .weather{opacity:.45}
+#frame:has(.ink-panel[open],#echo[open]) .weather div,
+#frame:has(.ink-panel[open],#echo[open]) .weather div::before,
+#frame:has(.ink-panel[open],#echo[open]) .weather div::after{animation-play-state:paused}
 @keyframes rain-near{from{background-position:0 0}to{background-position:0 193px}}
 @keyframes rain-far{from{background-position:0 0}to{background-position:0 145px}}
+@keyframes rain-clears{0%{opacity:0}18%,42%{opacity:.76}100%{opacity:0}}
+@keyframes light-returns{0%,32%{opacity:0}100%{opacity:.85}}
+@keyframes sea-breeze{0%{transform:translateX(-38%) skewY(-5deg);opacity:0}35%{opacity:.88}78%,100%{transform:translateX(44%) skewY(-5deg);opacity:0}}
+@keyframes snow-near{from{background-position:0 0}to{background-position:35px 223px}}
+@keyframes snow-far{from{background-position:0 0}to{background-position:-27px 157px}}
 @keyframes weather-fog{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
 @media(prefers-reduced-motion:reduce){
-  .weather-fog,.weather-rain{transition:none}
-  [data-weather=rain] .weather-rain{opacity:.38}
+  .weather div,.weather div::before,.weather div::after{animation:none!important;transition:none}
+  [data-weather=clearing] .weather-light{opacity:.8}
+  [data-weather=wind] .weather-wind{opacity:.68}
 }
-
