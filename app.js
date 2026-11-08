@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=twenty-four';
+import { mountInk } from './ink.js?v=twenty-seven';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -28,7 +28,10 @@ const items = [
   {id:'matchbox',title:'還剩三根的火柴盒',tag:'搬家後留下的東西',story:'舊家的爐火點不著時，我總伸手去摸火柴盒。搬家那天，盒裡還有三根。新家第一次煮湯，手伸出去，我才想起它還擱在舊廚房的窗邊。'},
   {id:'glasses',title:'起霧的眼鏡',tag:'離開後才發現',weather:'fog',story:'一進暖的地方，鏡片就白了。我把眼鏡放在窗邊，等霧退一點。車開了，我想擦掉左邊最後一點霧，伸手卻只摸到眼鏡布。'},
   {id:'mitten',title:'落單的手套',tag:'衣袋裡的東西',story:'左手手套的拇指旁補過一針，戴上去總能摸出來。等車時我脫了手套找零錢。回家把兩隻手伸進大衣口袋，只有右手摸到一團毛線。'},
-  {id:'bell',title:'有一道刮痕的自行車鈴',tag:'離開後才發現',story:'鈴上那道刮痕，是牽車經過窄門時留下的。送修那天，師傅把鈴拆下來擱在桌角。騎回家的路上，前面有人擋住巷口。我伸拇指去按，只碰到空空的把手。'}
+  {id:'bell',title:'有一道刮痕的自行車鈴',tag:'離開後才發現',story:'鈴上那道刮痕，是牽車經過窄門時留下的。送修那天，師傅把鈴拆下來擱在桌角。騎回家的路上，前面有人擋住巷口。我伸拇指去按，只碰到空空的把手。'},
+  {id:'spool',title:'鬆了一截的線軸',tag:'做到一半的東西',story:'木線軸滾到桌腳，拖出長長一截線。我把它塞進縫到一半的袖子裡。後來袖子拿去改短，拆下來的布拿回了家，線軸還留在裁縫店。'},
+  {id:'whistle',title:'吹過最後一聲的哨子',tag:'離開後才發現',story:'收隊時我吹了兩聲，第二聲被風拖得很長。我把哨子從繩圈解下，擱在長椅上，轉身去收球。隔天穿上外套，拉鍊上只掛著那截空繩。'},
+  {id:'coin',title:'磨薄的硬幣',tag:'衣袋裡的東西',story:'那枚硬幣的邊緣磨得很滑，我閉著眼也摸得出來。月台上的販賣機把它退回來兩次。我把它擱在出幣口旁，車來了，就忘了把它拿起來。'}
 ];
 
 const trails = {
@@ -37,7 +40,7 @@ const trails = {
   film:['如果能再多留一格','postcard','tape'],
   spoon:['舊廚房還留著什麼？','matchbox','film'],
   button:['穿過那四個孔的針','thimble','notebook'],
-  ticket:['到了下一站，才想起上一站','luggage','comb'],
+  ticket:['車門關上前，還有什麼沒拿？','coin','luggage'],
   comb:['車窗倒影裡少了什麼？','mirror','ticket'],
   notebook:['替讀到一半的地方做記號','bookmark','postcard'],
   umbrella:['一隻手撐傘，另一隻手找零錢','mitten','ticket'],
@@ -50,25 +53,26 @@ const trails = {
   luggage:['提把上的勒痕，手腕上的淡痕','watch','ticket'],
   earbuds:['手比耳朵更早記得的聲音','bell','tape'],
   pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
-  thimble:['留在原地的線與筆跡','button','notebook'],
+  thimble:['順著那截沒收好的線','spool','button'],
   watch:['上車後，才發現少了一樣','luggage','ticket'],
   matchbox:['手伸向舊廚房的窗邊','spoon','key'],
   glasses:['在鏡子和車窗之間','mirror','comb'],
   mitten:['藏在拇指旁的一針','thimble','button'],
-  bell:['本來會響的東西，忽然沒了聲音','earbuds','tape']
+  bell:['另一種叫人停下來的聲音','whistle','earbuds'],
+  spool:['那截線的另一頭','thimble','button'],
+  whistle:['聲音一停，手還會去找','bell','earbuds'],
+  coin:['車一來，有什麼沒跟上？','ticket','luggage']
 };
 const keyChoices = [
-  {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
-  {label:'手還記得它在哪裡',destination:'spoon',companion:'comb',arrival:'到了新家，煮湯時還是伸手去拉原本那一格抽屜。'}
+  {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
 ];
 const byId = new Map(items.map(item => [item.id,item]));
-const driftOrder = [...byId.keys()].reverse();
 const objects = document.querySelector('#objects');
 const frame = document.querySelector('#frame');
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=twenty-one').catch(() => null);
+const modelModule = import('./scene.js?v=twenty-seven').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -220,15 +224,23 @@ function route() {
 addEventListener('hashchange',route);
 route();
 document.querySelector('#drift').onclick = () => {
-  const unseen = driftOrder.filter(id => !visited.has(id));
-  const next = unseen.slice(0,3);
+  const pool = [...byId.keys()].filter(id => !visited.has(id));
+  const next = [];
+  function draw(from) {
+    while (from.length && next.length < 3) {
+      next.push(from.splice(Math.floor(Math.random()*from.length),1)[0]);
+    }
+  }
+  draw(pool);
   if (next.length < 3) {
     visited.clear();
     for (const id of entries.keys()) visited.add(id);
-    next.push(...driftOrder.filter(id => !visited.has(id) && !next.includes(id)).slice(0,3-next.length));
+    draw([...byId.keys()].filter(id => !visited.has(id) && !next.includes(id)));
   }
   render(next);
 };
+
+
 
 
 

@@ -57,5 +57,10 @@
 - [手織毛手套館藏](https://www.londonmuseum.org.uk/collections/v/object-90608/childs-mitten/)
 - [圓蓋車鈴與撥片](https://www.madsencycles.com/products/classic-shiny-brass-bicycle-bell-1)
 
+- [木線軸與中空的軸心](https://collections.museumsvictoria.com.au/items/1333083)
+- [金屬哨子的吹嘴與扣環](https://victoriancollections.net.au/items/6493f269441d47e609791962)
+- [舊硬幣的浮雕與邊緣](https://www.clevelandart.org/art/1918.694)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 

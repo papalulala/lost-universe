@@ -22,7 +22,10 @@ const surfaces = {
   matchbox:['火柴盒的外套',/^Printed matchbox sleeve/],
   glasses:['眼鏡的鏡片',/^Round spectacle lens/],
   mitten:['手套的手掌布面',/^Rounded knitted mitten palm/],
-  bell:['車鈴的圓蓋',/^Rounded bicycle bell dome/]
+  bell:['車鈴的圓蓋',/^Rounded bicycle bell dome/],
+  spool:['線軸上的棉線',/^Wound cotton thread/],
+  whistle:['哨子的外殼',/^Rounded whistle body/],
+  coin:['硬幣的幣面',/^Worn coin face/]
 };
 
 export function mountInk(article, item, signal) {
