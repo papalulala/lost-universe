@@ -25,6 +25,6 @@ if (!location.hash && !reduced.matches) {
     title.style.setProperty('--fly-y', target.top + target.height/2 - (source.top + source.height/2) + 'px');
     title.style.setProperty('--fly-scale', target.width/source.width);
     overlay.classList.add('play');
-    timer = setTimeout(finish, 4150);
+    timer = setTimeout(finish, 5150);
   });
 }
