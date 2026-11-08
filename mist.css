@@ -29,7 +29,6 @@ button{border-color:#73837f63}
 
 .turn::after{content:'';position:absolute;inset:-18%;pointer-events:none;opacity:0;background:radial-gradient(ellipse,#fff 15%,#fffffff0 34%,#ffffff90 57%,transparent 74%);filter:blur(.07em)}
 .mist{position:absolute;inset:-28%;opacity:0;background:radial-gradient(ellipse at 43% 54%,#fff 8%,#ffffffee 30%,#ffffff75 53%,#ffffff00 74%),radial-gradient(ellipse at 72% 59%,#fff 7%,#ffffff00 62%);filter:blur(25px)}
-.skip{position:absolute;right:20px;bottom:20px;font-size:.86rem;background:#f1f2ef}
 .play{animation:curtain .75s 4.35s ease both}
 .play .opening-title{animation:ink .46s ease both,fly 1.05s 3.2s cubic-bezier(.45,0,.2,1) both}
 .play .wrong{animation:submerge 1.16s .82s ease-in-out both}
@@ -62,8 +61,8 @@ body:not(.opening-active) #view,body:not(.opening-active) #still{animation:arriv
 .opening-note h2:focus{outline:none}
 .opening-note p{font-size:clamp(16px,2.4vw,19px);line-height:1.75;margin:0 0 1em}
 .opening-enter{margin-top:.25rem;background:#dbe3df;color:#253e3e}
-.opening.reading .skip{position:static;align-self:center;margin-top:16px}
 .opening-note h2{font-weight:400}
 .opening-note h2 img{display:block;width:min(100%,19rem);height:auto}
 
 .opening-note p img{display:block;width:min(100%,25rem);height:auto}
+

@@ -64,7 +64,10 @@ const surfaces = {
   roomtag:['房牌的牌面',/^Worn motel room tag face/],
   inkbottle:['墨水瓶的紙標',/^Worn paper ink label/],
   torch:['手電筒的外殼',/^Rounded pocket torch case/],
-  ticketpunch:['驗票鉗的金屬鉗口',/^Rounded ticket punch jaw/]
+  ticketpunch:['驗票鉗的金屬鉗口',/^Rounded ticket punch jaw/],
+  spinningtop:['陀螺的木身',/^Turned wooden spinning top/],
+  foldingfan:['摺扇的紙面',/^Pleated folding fan paper/],
+  vestacase:['火柴匣的金屬外殼',/^Rounded metal match safe case/]
 };
 
 export function mountInk(article, item, signal) {
@@ -240,6 +243,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

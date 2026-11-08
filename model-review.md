@@ -113,7 +113,12 @@
 - [口袋手電筒的外殼與燈面](https://www.euskalmuseoa.eus/en/obra/lampe-de-poche-tximist/)
 - [驗票鉗的鉗口與握柄](https://victoriancollections.net.au/items/6493f269441d47e609792eaa)
 
+- [木陀螺的車削輪廓](https://collections.museumsvictoria.com.au/items/254164)
+- [摺扇的紙面、扇骨與鉚釘](https://www.gardnermuseum.org/experience/collection/11543)
+- [火柴匣的金屬外殼與鉸蓋](https://collection.sciencemuseumgroup.org.uk/objects/co538803/vesta-case-match-holder)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

@@ -6,7 +6,6 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 if (!location.hash) {
   const content = document.querySelectorAll('header, main, nav, footer');
   const note = overlay.querySelector('.opening-note');
-  const skip = overlay.querySelector('.skip');
   let timer;
   function finish() {
     clearTimeout(timer);
@@ -18,7 +17,6 @@ if (!location.hash) {
   content.forEach(section => { section.inert = true; });
   document.body.classList.add('opening-active');
   overlay.hidden = false;
-  skip.onclick = finish;
   overlay.classList.add('reading');
   note.hidden = false;
   note.querySelector('h2').focus({preventScroll:true});
@@ -26,7 +24,6 @@ if (!location.hash) {
     if (reduced.matches) { finish(); return; }
     note.hidden = true;
     overlay.classList.remove('reading');
-    skip.focus({preventScroll:true});
     reduced.addEventListener('change', finish, {once:true});
     requestAnimationFrame(() => {
       if (overlay.hidden) return;
@@ -40,3 +37,4 @@ if (!location.hash) {
     });
   };
 }
+
