@@ -89,7 +89,12 @@
 - [木響板的貝殼狀輪廓與棉繩](https://mcclungmuseum.utk.edu/object-of-the-month/pair-of-castanets/)
 - [開罐匙的環形握柄與捲鐵皮用的細縫](https://mucem.org/notice/c/35899/)
 
+- [木衣刷的刷背與刷毛](https://www.rmg.co.uk/collections/objects/rmgc-object-2259)
+- [髮夾的弧面與扣件](https://www.americanhistory.si.edu/ne/collections/object/nmah_1832147)
+- [螺旋式瓷保險絲的瓷件與金屬接頭](https://collection.ingenium.ca/en/id/1992.2718.001/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

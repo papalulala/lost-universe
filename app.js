@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=forty-eight';
+import { mountInk } from './ink.js?v=fifty-one';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -52,7 +52,10 @@ const items = [
   {id:'teatin',title:'蓋子總闔不緊的茶罐',tag:'搬家後留下的東西',story:'倒完最後一撮茶葉，我又按了按罐蓋。它還是翹起一小截，像以前每一次那樣。搬家後打開紙箱，裡面有兩個杯子，沒有那只空罐。'},
   {id:'padlock',title:'鎖梁還翹著的掛鎖',tag:'搬家後留下的東西',story:'搬走最後一箱書時，我把掛鎖打開，擱在鐵門旁的窗台。回頭拉門，手裡只有鑰匙。下一次經過，門已換了，窗台還在。'},
   {id:'castanets',title:'鬆了一個結的響板',tag:'做到一半的東西',story:'練到第三遍時，拇指上的繩結鬆了。我把響板放在舞蹈教室的窗台，想等休息時再綁。下課後我摸到包裡的譜，才想起少了那兩片木頭。'},
-  {id:'cankey',title:'捲完最後一圈的開罐匙',tag:'離開後才發現',story:'午餐前我把鐵皮舌片穿進匙上的細縫，一圈一圈把罐頭捲開。收拾時，空罐先進了回收桶。下次我捏住舌片，才想起開罐匙還擱在上次那張桌上。'}
+  {id:'cankey',title:'捲完最後一圈的開罐匙',tag:'離開後才發現',story:'午餐前我把鐵皮舌片穿進匙上的細縫，一圈一圈把罐頭捲開。收拾時，空罐先進了回收桶。下次我捏住舌片，才想起開罐匙還擱在上次那張桌上。'},
+  {id:'clothesbrush',title:'少了兩撮毛的衣刷',tag:'離開後才發現',story:'下雪那天進門前，我在樓梯口刷掉大衣上的雪。刷到肩頭，缺了兩撮毛的地方總會漏過一小片。我把衣刷擱在窗台上。隔天穿大衣出門，肩頭融雪留下的水痕已經乾了，手往窗台一摸，只摸到冰涼的石頭。'},
+  {id:'hairclip',title:'扣上時會輕響的髮夾',tag:'離開後才發現',story:'洗臉前我把髮夾從耳邊取下來，順手扣上。那一聲很輕，我以為自己已經把它收進袋裡。下樓照玻璃門時，頭髮垂了下來，才想起洗手台的邊緣。'},
+  {id:'plugfuse',title:'留在停電那晚的瓷保險絲',tag:'搬家後留下的東西',story:'那晚樓梯間的燈全滅了。電工把換下來的瓷保險絲交給我，我擱在電表下的小木板上，想留著給房東看。後來搬走前經過那裡，燈亮著，木板上卻只有一圈灰。'}
 ];
 
 const trails = {
@@ -62,7 +65,7 @@ const trails = {
   spoon:['舊廚房還留著什麼？','teatin','teaball'],
   button:['穿過那四個孔的針','thimble','notebook'],
   ticket:['車門關上前，還有什麼沒拿？','coin','luggage'],
-  comb:['車窗倒影裡少了什麼？','mirror','ticket'],
+  comb:['耳後還留著什麼？','hairclip','mirror'],
   notebook:['替讀到一半的地方做記號','bookmark','postcard'],
   umbrella:['一隻手撐傘，另一隻手找零錢','mitten','ticket'],
   tape:['那句「等一下」，有人聽見嗎？','earbuds','film'],
@@ -76,9 +79,9 @@ const trails = {
   pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
   thimble:['順著那截沒收好的線','darner','spool'],
   watch:['上車後，才發現少了一樣','luggage','ticket'],
-  matchbox:['手伸向舊廚房的窗邊','spoon','key'],
+  matchbox:['燈還沒亮起來時','plugfuse','spoon'],
   glasses:['得湊近才看得清','magnifier','mirror'],
-  mitten:['藏在拇指旁的一針','thimble','button'],
+  mitten:['進門前的大衣','clothesbrush','button'],
   bell:['修車攤上還留了什麼？','pedal','whistle'],
   spool:['那截沒捲回去的線','yoyo','shuttle'],
   whistle:['聲音一停，手還會去找','harmonica','bell'],
@@ -103,7 +106,10 @@ const trails = {
   teatin:['倒完最後一撮茶之後','teaball','spoon'],
   padlock:['門還在的時候','key','doorstop'],
   castanets:['停在一半的節拍','harmonica','tape'],
-  cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin']
+  cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin'],
+  clothesbrush:['大衣上還沾著什麼？','mitten','button'],
+  hairclip:['耳邊少了什麼？','comb','earbuds'],
+  plugfuse:['燈熄掉後，手摸到哪裡？','matchbox','key']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -111,10 +117,12 @@ const keyChoices = [
 const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const frame = document.querySelector('#frame');
+const weatherLabel = document.querySelector('#weather-label');
+const weatherNames = {calm:'薄霧',fog:'起霧',wind:'海風',snow:'微雪',clearing:'雨後放晴'};
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=forty-eight').catch(() => null);
+const modelModule = import('./scene.js?v=fifty-one').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -249,7 +257,9 @@ function render(ids, selected, branch = false) {
   if (sceneKey !== weatherScene) {
     weatherScene = sceneKey;
     const choices = [...new Set(ids.map(id => byId.get(id).weather).filter(Boolean))];
-    frame.dataset.weather = choices[Math.floor(Math.random()*choices.length)] ?? 'calm';
+    const weather = choices[Math.floor(Math.random()*choices.length)] ?? 'calm';
+    frame.dataset.weather = weather;
+    if (weatherLabel.textContent !== weatherNames[weather]) weatherLabel.textContent = weatherNames[weather];
   }
 }
 
@@ -281,6 +291,9 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
+
 
 
 

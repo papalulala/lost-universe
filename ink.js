@@ -46,7 +46,10 @@ const surfaces = {
   teatin:['茶罐的金屬外壁',/^Rounded tea tin body/],
   padlock:['掛鎖的金屬鎖身',/^Worn brass padlock body/],
   castanets:['響板的木殼',/^Carved wooden castanet shell/],
-  cankey:['開罐匙的金屬柄',/^Slotted can opener stem/]
+  cankey:['開罐匙的金屬柄',/^Slotted can opener stem/],
+  clothesbrush:['衣刷的木背',/^Curved wooden clothes brush back/],
+  hairclip:['髮夾的弧形夾面',/^Curved hair clip face/],
+  plugfuse:['保險絲的瓷頭',/^Glazed porcelain fuse crown/]
 };
 
 export function mountInk(article, item, signal) {
@@ -222,6 +225,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 
