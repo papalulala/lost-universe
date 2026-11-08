@@ -49,7 +49,10 @@ const surfaces = {
   cankey:['開罐匙的金屬柄',/^Slotted can opener stem/],
   clothesbrush:['衣刷的木背',/^Curved wooden clothes brush back/],
   hairclip:['髮夾的弧形夾面',/^Curved hair clip face/],
-  plugfuse:['保險絲的瓷頭',/^Glazed porcelain fuse crown/]
+  plugfuse:['保險絲的瓷頭',/^Glazed porcelain fuse crown/],
+  slingshot:['彈弓的木柄',/^Natural forked slingshot handle/],
+  travelcup:['摺疊杯的金屬外圈',/^Telescoping travel cup ring/],
+  bikepump:['打氣筒的筒身',/^Portable pump barrel/]
 };
 
 export function mountInk(article, item, signal) {
@@ -225,6 +228,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 
