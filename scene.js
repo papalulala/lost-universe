@@ -63,6 +63,51 @@ export async function floatModel(view, still, id, index, signal, refined) {
     still.hidden = true;
   });
   observer.observe(view);
+  const button = view.closest('button');
+  let drag;
+  let suppressClick = false;
+  let yaw = 0;
+  let pitch = 0;
+  const events = {signal};
+  button.classList.add('rotatable');
+  button.addEventListener('pointerdown',event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    suppressClick = false;
+    drag = {id:event.pointerId,x:event.clientX,y:event.clientY,moved:false};
+  },events);
+  button.addEventListener('pointermove',event => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX-drag.x;
+    const dy = event.clientY-drag.y;
+    if (!drag.moved) {
+      if (Math.hypot(dx,dy)<7) return;
+      drag.moved = true;
+      suppressClick = true;
+      button.setPointerCapture(event.pointerId);
+      button.classList.add('rotating');
+    }
+    yaw += dx*.012;
+    pitch += dy*.012;
+    drag.x = event.clientX;
+    drag.y = event.clientY;
+  },events);
+  function endDrag(event) {
+    if (event.pointerId !== drag?.id) return;
+    drag = undefined;
+    button.classList.remove('rotating');
+  }
+  for (const type of ['pointerup','pointercancel','lostpointercapture','pointerleave']) {
+    button.addEventListener(type,event => {
+      if (type === 'pointerleave' && drag?.moved) return;
+      endDrag(event);
+    },events);
+  }
+  button.addEventListener('click',event => {
+    if (event.detail === 0 || !suppressClick) return;
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    suppressClick = false;
+  },{signal,capture:true});
   signal.addEventListener('abort', () => {
     observer.disconnect();
     renderer.setAnimationLoop(null);
@@ -74,7 +119,7 @@ export async function floatModel(view, still, id, index, signal, refined) {
   }, {once:true});
   renderer.setAnimationLoop(time => {
     const phase = reduced.matches ? index : time/1500 + index*2;
-    pivot.rotation.set(.18+.10*Math.cos(phase),.28*Math.sin(phase),[-.28,.15,-.15][index]);
+    pivot.rotation.set(pitch+.18+.10*Math.cos(phase),yaw+.28*Math.sin(phase),[-.28,.15,-.15][index]);
     pivot.position.y = .13*Math.sin(phase);
     renderer.render(scene,camera);
   });
