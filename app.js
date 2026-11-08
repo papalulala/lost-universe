@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=twenty-seven';
+import { mountInk } from './ink.js?v=thirty';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -31,7 +31,10 @@ const items = [
   {id:'bell',title:'有一道刮痕的自行車鈴',tag:'離開後才發現',story:'鈴上那道刮痕，是牽車經過窄門時留下的。送修那天，師傅把鈴拆下來擱在桌角。騎回家的路上，前面有人擋住巷口。我伸拇指去按，只碰到空空的把手。'},
   {id:'spool',title:'鬆了一截的線軸',tag:'做到一半的東西',story:'木線軸滾到桌腳，拖出長長一截線。我把它塞進縫到一半的袖子裡。後來袖子拿去改短，拆下來的布拿回了家，線軸還留在裁縫店。'},
   {id:'whistle',title:'吹過最後一聲的哨子',tag:'離開後才發現',story:'收隊時我吹了兩聲，第二聲被風拖得很長。我把哨子從繩圈解下，擱在長椅上，轉身去收球。隔天穿上外套，拉鍊上只掛著那截空繩。'},
-  {id:'coin',title:'磨薄的硬幣',tag:'衣袋裡的東西',story:'那枚硬幣的邊緣磨得很滑，我閉著眼也摸得出來。月台上的販賣機把它退回來兩次。我把它擱在出幣口旁，車來了，就忘了把它拿起來。'}
+  {id:'coin',title:'磨薄的硬幣',tag:'衣袋裡的東西',story:'那枚硬幣的邊緣磨得很滑，我閉著眼也摸得出來。月台上的販賣機把它退回來兩次。我把它擱在出幣口旁，車來了，就忘了把它拿起來。'},
+  {id:'clothespin',title:'咬著一根棉線的衣夾',tag:'做到一半的東西',story:'收床單時，我把一枚木衣夾擱在陽台欄杆上。它還咬著從床單角落扯下來的一截線。夜裡我想起那枚衣夾，出去一看，欄杆上只剩一塊淺淺的印子。'},
+  {id:'pencap',title:'落在借書桌上的筆蓋',tag:'離開後才發現',story:'我把還書日期抄在借閱單上，鋼筆順手塞回胸袋。走到樓下，手往口袋一摸，指尖染了一點墨。筆蓋大概還在桌上，跟那張借閱單一起。'},
+  {id:'safetypin',title:'替裙襬撐了一晚的別針',tag:'做到一半的東西',story:'出門前裙襬開了線，我從抽屜摸出一枚別針，從內側扣上。回家時裙襬又垂下來了。我扶著牆，一階一階往回找。掌心最後沾上的，只有剝落的漆。'}
 ];
 
 const trails = {
@@ -59,9 +62,12 @@ const trails = {
   glasses:['在鏡子和車窗之間','mirror','comb'],
   mitten:['藏在拇指旁的一針','thimble','button'],
   bell:['另一種叫人停下來的聲音','whistle','earbuds'],
-  spool:['那截線的另一頭','thimble','button'],
+  spool:['那截線的另一頭','clothespin','thimble'],
   whistle:['聲音一停，手還會去找','bell','earbuds'],
-  coin:['車一來，有什麼沒跟上？','ticket','luggage']
+  coin:['車一來，有什麼沒跟上？','ticket','luggage'],
+  clothespin:['被扯鬆的那一截線','spool','thimble'],
+  pencap:['合上書前，拿什麼記住這一頁？','bookmark','notebook'],
+  safetypin:['裙襬後來用什麼縫上？','thimble','spool']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -72,7 +78,7 @@ const frame = document.querySelector('#frame');
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=twenty-seven').catch(() => null);
+const modelModule = import('./scene.js?v=thirty').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -239,6 +245,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 

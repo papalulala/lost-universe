@@ -61,6 +61,11 @@
 - [金屬哨子的吹嘴與扣環](https://victoriancollections.net.au/items/6493f269441d47e609791962)
 - [舊硬幣的浮雕與邊緣](https://www.clevelandart.org/art/1918.694)
 
+- [木衣夾的雙木片與彈簧](https://collection.powerhouse.com.au/object/80791)
+- [鋼筆筆蓋與筆夾](https://collections.oldstatehouse.com/objects/3577/pen-black-fountain)
+- [鋼製別針的線圈與扣頭](https://collection.sciencemuseumgroup.org.uk/objects/co120905/bunch-of-steel-safety-pins-europe-1880-1920)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 

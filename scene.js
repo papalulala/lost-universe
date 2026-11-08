@@ -41,7 +41,7 @@ export async function floatModel(view, still, id, index, signal) {
   const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
   const clearance = radius + .19; // Allow for the ink outline and vertical drift.
   model.position.sub(bounds.getCenter(new THREE.Vector3()));
-  const upright = id === 'film' || id === 'thimble' || id === 'spool';
+  const upright = id === 'film' || id === 'thimble' || id === 'spool' || id === 'pencap';
   if (upright) orientation.rotation.y = Math.PI;
   else orientation.rotation.x = Math.PI/2;
   const meshes = [];
@@ -180,4 +180,5 @@ export async function floatModel(view, still, id, index, signal) {
     renderer.render(scene,camera);
   });
 }
+
 

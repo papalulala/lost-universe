@@ -25,7 +25,10 @@ const surfaces = {
   bell:['車鈴的圓蓋',/^Rounded bicycle bell dome/],
   spool:['線軸上的棉線',/^Wound cotton thread/],
   whistle:['哨子的外殼',/^Rounded whistle body/],
-  coin:['硬幣的幣面',/^Worn coin face/]
+  coin:['硬幣的幣面',/^Worn coin face/],
+  clothespin:['衣夾的上半片木面',/^Upper wooden jaw/],
+  pencap:['筆蓋的外壁',/^Fountain pen cap barrel/],
+  safetypin:['別針的扣頭',/^Folded safety pin clasp/]
 };
 
 export function mountInk(article, item, signal) {
@@ -201,3 +204,4 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
