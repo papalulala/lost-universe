@@ -230,10 +230,7 @@ function mount(item,index) {
   if (item.id === 'key') {
     keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
   } else {
-    action(label,() => {
-      render([item.id,...neighbors],item.id);
-      entries.get(item.id).button.focus();
-    });
+    action(label,() => followTrail(item.id,neighbors[0]));
     if (keyChoices.some(choice => choice.destination === item.id)) {
       action('回到鑰匙旁',() => {
         render(returnToKey ?? ['key','postcard','film'],'key');
@@ -243,7 +240,7 @@ function mount(item,index) {
   }
   article.querySelector('.story-link').onclick = () => openEcho(item);
   entries.set(item.id,entry);
-  objects.append(article);
+  objects.insertBefore(article,objects.children[index] ?? null);
   article.addEventListener('pointerenter',event => {
     if (event.pointerType === 'mouse' && !pinned) article.classList.add('near');
   });
@@ -264,19 +261,27 @@ function mount(item,index) {
   modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal)).catch(() => {});
 }
 
-function chooseKeyTrail(choice) {
+function followTrail(source, destination, branch = false) {
   const ids = Array.from(objects.children,article => article.dataset.item);
-  returnToKey ??= ids;
-  const others = [choice.destination,choice.companion];
-  render(ids.map(id => id === 'key' ? id : others.shift()),undefined,true);
+  if (!ids.includes(destination)) {
+    const nextSlot = (ids.indexOf(source) + 1) % ids.length;
+    ids[nextSlot] = destination;
+  }
+  const entry = entries.get(source);
+  entry.article.classList.remove('near');
+  entry.button.focus({preventScroll:true});
+  render(ids,undefined,branch);
+}
+
+function chooseKeyTrail(choice) {
+  returnToKey ??= Array.from(objects.children,article => article.dataset.item);
+  followTrail('key',choice.destination,true);
   const entry = entries.get(choice.destination);
   const glimpse = entry.article.querySelector('.glimpse');
   glimpse.textContent = choice.arrival;
   glimpse.removeAttribute('aria-hidden');
   entry.button.setAttribute('aria-describedby',glimpse.id = 'arrival-' + choice.destination);
   entry.article.classList.add('arrived');
-  entry.button.focus({preventScroll:true});
-  entry.article.scrollIntoView({block:'nearest',behavior:'instant'});
 }
 
 function render(ids, selected, branch = false) {
@@ -297,8 +302,8 @@ function render(ids, selected, branch = false) {
   for (const [index,id] of ids.entries()) {
     visited.add(id);
     const existing = entries.get(id);
-    if (existing) objects.append(existing.article);
-    else mount(byId.get(id),index);
+    if (!existing) mount(byId.get(id),index);
+    else if (objects.children[index] !== existing.article) objects.insertBefore(existing.article,objects.children[index] ?? null);
   }
   reveal(entries.get(selected),Boolean(selected));
   const sceneKey = [...ids].sort().join(',');
@@ -339,6 +344,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 
