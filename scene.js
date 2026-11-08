@@ -44,32 +44,55 @@ export async function floatModel(view, still, id, index, signal) {
   if (id === 'film') orientation.rotation.y = Math.PI;
   else orientation.rotation.x = Math.PI/2;
   const meshes = [];
-  const tapeInk = id === 'key' ? paper.clone() : null;
-  const inkTexture = tapeInk && view.inkCanvas ? new THREE.CanvasTexture(view.inkCanvas) : null;
+  model.traverse(object => { if (object.isMesh) meshes.push(object); });
+  const surface = view.inkSurface;
+  const paintMeshes = new Set(meshes.filter(mesh => surface?.matcher.test(mesh.name.replaceAll('_',' '))));
+  const surfaceInk = paintMeshes.size && view.inkCanvas ? paper.clone() : null;
+  const inkTexture = surfaceInk ? new THREE.CanvasTexture(view.inkCanvas) : null;
+  const project = p => id === 'film' ? [-p.x,p.y] : [p.x,-p.z];
+  const point = new THREE.Vector3();
+  const coordinates = mesh => {
+    const position = mesh.geometry.attributes.position;
+    return Array.from({length:position.count},(_,i) => {
+      point.fromBufferAttribute(position,i);
+      return project(model.worldToLocal(mesh.localToWorld(point)));
+    });
+  };
+  const projected = new Map([...paintMeshes].map(mesh => [mesh,coordinates(mesh)]));
+  const region = id === 'key' ? [-.70,-.15,-.28,.28] : surface?.region;
+  let [minX,maxX,minY,maxY] = region ?? [Infinity,-Infinity,Infinity,-Infinity];
+  if (!region) {
+    for (const points of projected.values()) {
+      for (const [x,y] of points) {
+        minX = Math.min(minX,x); maxX = Math.max(maxX,x);
+        minY = Math.min(minY,y); maxY = Math.max(maxY,y);
+      }
+    }
+  }
   if (inkTexture) {
     inkTexture.colorSpace = THREE.SRGBColorSpace;
-    tapeInk.color.set('#ffffff');
-    tapeInk.map = inkTexture;
+    surfaceInk.color.set('#ffffff');
+    surfaceInk.map = inkTexture;
+    if (id === 'comb') surfaceInk.onBeforeCompile = shader => {
+      shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>',`
+        if (all(greaterThanEqual(vMapUv,vec2(0.0))) && all(lessThanEqual(vMapUv,vec2(1.0)))) {
+          #include <map_fragment>
+        }
+      `);
+    };
     view.addEventListener('inkchange',() => { inkTexture.needsUpdate = true; },{signal});
   }
-  model.traverse(object => { if (object.isMesh) meshes.push(object); });
   for (const mesh of meshes) {
     if (mesh.name.startsWith('Ink_contour') || mesh.name.startsWith('Ink contour')) {
       mesh.material = softInk;
       continue;
     }
-    const tape = tapeInk && /cloth tape|tape corner/i.test(mesh.name.replaceAll('_',' '));
-    mesh.material = tape ? tapeInk : paper;
-    if (tape && inkTexture) {
-      const position = mesh.geometry.attributes.position;
-      const uv = new Float32Array(position.count*2);
-      const point = new THREE.Vector3();
-      for (let i=0;i<position.count;i++) {
-        point.fromBufferAttribute(position,i);
-        model.worldToLocal(mesh.localToWorld(point));
-        uv[i*2] = (point.x+.70)/.55;
-        uv[i*2+1] = (.28-point.z)/.56;
-      }
+    const painted = surfaceInk && paintMeshes.has(mesh);
+    mesh.material = painted ? surfaceInk : paper;
+    if (painted) {
+      const uv = new Float32Array(projected.get(mesh).flatMap(([x,y]) => [
+        (x-minX)/(maxX-minX),(y-minY)/(maxY-minY)
+      ]));
       mesh.geometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));
     }
     const outline = new THREE.Mesh(mesh.geometry,wash);
@@ -144,7 +167,7 @@ export async function floatModel(view, still, id, index, signal) {
     const geometry = new Set();
     model.traverse(object => { if (object.geometry) geometry.add(object.geometry); });
     geometry.forEach(value => value.dispose());
-    tapeInk?.dispose();
+    surfaceInk?.dispose();
     inkTexture?.dispose();
     renderer.dispose();
     renderer.forceContextLoss();

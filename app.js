@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=doodle';
+import { mountInk } from './ink.js?v=all-doodles';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -41,7 +41,7 @@ const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=refined-collection').catch(() => null);
+const modelModule = import('./scene.js?v=all-doodles').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -131,7 +131,7 @@ function mount(item,index) {
     }
   });
   const {signal} = modelScope;
-  if (item.id === 'key') mountInk(article,signal);
+  mountInk(article,item,signal);
   modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal)).catch(() => {});
 }
 

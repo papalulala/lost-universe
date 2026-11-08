@@ -1,12 +1,28 @@
-export function mountInk(article, signal) {
+const surfaces = {
+  key:['膠帶',/cloth tape|tape corner/i],
+  postcard:['明信片紙面',/^Warped postcard paper/],
+  film:['底片罐的外殼',/^Crimped metal cartridge/],
+  spoon:['匙碗',/^Pressed concave bowl/],
+  button:['鈕扣盤面',/^Recessed four-hole button/],
+  ticket:['車票紙面',/^Thin card ticket/],
+  comb:['梳背',/^Rounded pocket comb/,[-1.23,1.23,.015,.29]],
+  notebook:['筆記本封面',/^Rounded cloth cover/],
+  umbrella:['束起的傘面',/^Pleated folded umbrella canopy/],
+  tape:['錄音帶盒面',/^Cassette shell/],
+  stamp:['印章的橡皮印面',/^Rubber printing face/],
+  eraser:['橡皮擦的紙套',/^Thin folded paper sleeve|^Lifted sleeve corner/]
+};
+
+export function mountInk(article, item, signal) {
   const endpoint = document.querySelector('meta[name="echo-endpoint"]').content;
-  const url = new URL('drawing/key',endpoint);
+  const url = new URL('drawing/' + item.id,endpoint);
+  const [label,matcher,region] = surfaces[item.id];
   const panel = document.createElement('details');
   panel.className = 'ink-panel';
   panel.innerHTML = `
     <summary>打開塗鴉畫板</summary>
-    <p>在畫板上畫幾筆，圖案會貼到鑰匙的膠帶上。</p>
-    <canvas width="256" height="256" aria-label="膠帶塗鴉畫板"></canvas>
+    <p>在畫板上畫幾筆，圖案會貼到${label}。</p>
+    <canvas width="256" height="256" aria-label="${label}塗鴉畫板"></canvas>
     <div class="ink-tools">
       <label>筆色 <input type="color" value="#486365"></label>
       <label>粗細 <input type="range" min="2" max="28" value="8"></label>
@@ -22,6 +38,7 @@ export function mountInk(article, signal) {
   if (!ctx) return;
   const model = article.querySelector('.model');
   model.inkCanvas = canvas;
+  model.inkSurface = {matcher,region};
   const status = panel.querySelector('[role=status]');
   const color = panel.querySelector('[type=color]');
   const width = panel.querySelector('[type=range]');
