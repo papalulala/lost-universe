@@ -2,6 +2,13 @@
 #frame::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:#e4e8e4 radial-gradient(ellipse at 56% 36%,#fafaf785 2%,transparent 86%)}
 #frame::before{animation:daylight-base 90s linear infinite}
 .daylight{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 78% 18%,#fff8dd 0%,#fff8dd85 28%,transparent 72%);animation:daylight-glow 90s linear infinite}
+.paper-folds{position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('./paper-folds.svg') center/cover no-repeat;opacity:.37;animation:paper-light 90s linear infinite}
+@keyframes paper-light{
+  0%,100%{opacity:.62}
+  16.667%,50%{opacity:.37}
+  62%{opacity:.77}
+  72.222%,90%{opacity:.22}
+}
 @keyframes daylight-base{
   0%,100%{background-color:#c9d1d5}
   16.667%,50%{background-color:#e4e8e4}
@@ -15,7 +22,7 @@
   72.222%,90%{opacity:0}
 }
 @media(prefers-reduced-motion:reduce){
-  #frame::before,.daylight{animation:none}
+  #frame::before,.daylight,.paper-folds{animation:none}
   .daylight{opacity:0}
 }
 #frame .frame-title{position:relative;z-index:2;width:100%;max-width:none;margin:0;border:0;padding:clamp(14px,3vw,32px) clamp(16px,5vw,64px) 3px;pointer-events:none}
@@ -37,6 +44,7 @@
   #objects{grid-template-columns:1fr;padding-inline:12px}
   .object-button{width:min(100%,280px,34dvh);aspect-ratio:1.7}
 }
+
 
 
 
