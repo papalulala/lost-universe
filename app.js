@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js?v=lost-messages';
-import { mountInk } from './ink.js?v=sixty-nine';
+import { mountInk } from './ink.js?v=seventy-two';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -73,7 +73,10 @@ const items = [
   {id:'ticketpunch',title:'最後一下打空的驗票鉗',tag:'做到一半的東西',story:'末班車只剩一個孩子。他把票遞過來，又縮回去：「能不能留著給我弟看？」我本來已經張開鉗口，聽完就把手挪到一旁。鉗子喀噠一聲，票角還好好的。\n\n終點站換班，我把驗票鉗擱在前排椅袋旁。第二天來接班的是另一輛車。我下意識伸手去摸，手心還記得那一下打空的力道。'},
   {id:'spinningtop',title:'繩子只繞了半圈的陀螺',tag:'做到一半的東西',story:'廟埕的石板有條縫，阿公叫我站遠一點。「讓它自己找地方停。」我把繩子重新纏上去，才繞半圈，廟門裡就有人喊他。阿公把陀螺擱到石獅腳邊，牽我進去。\n\n散場後我跑回去，石獅的腳背還是熱的，底下卻空了。我捏著沒纏上去的那一頭繩子，在那條石縫旁站了好一會。'},
   {id:'foldingfan',title:'缺了一小角的摺扇',tag:'離開後才發現',story:'戲散了，母親還坐著替我搧風。扇子每掠過一次，缺角的那一摺就輕輕刮一下她的袖口。我說回家拿紙補，她把扇子插進椅背的縫裡，先幫我繫鞋帶。\n\n走到街口，我伸手替她拿扇子。她攤開手，兩個人都停了一下。身後的戲台已經開始收椅子。'},
-  {id:'vestacase',title:'底部磨亮的火柴匣',tag:'搬家後留下的東西',story:'停電時，父親讓我摸火柴匣的底。「粗的那面朝外。」我擦了兩次才亮，火光照見匣底有一道被磨得發亮的地方。燈一亮，他把匣子擱到窗台上，順手把火吹熄。\n\n多年後回去交鑰匙，我伸手摸那個窗台。漆刷過一層又一層，原來放匣子的地方摸起來一樣平。'}
+  {id:'vestacase',title:'底部磨亮的火柴匣',tag:'搬家後留下的東西',story:'停電時，父親讓我摸火柴匣的底。「粗的那面朝外。」我擦了兩次才亮，火光照見匣底有一道被磨得發亮的地方。燈一亮，他把匣子擱到窗台上，順手把火吹熄。\n\n多年後回去交鑰匙，我伸手摸那個窗台。漆刷過一層又一層，原來放匣子的地方摸起來一樣平。'},
+  {id:'drawerpull',title:'被拇指磨亮的抽屜拉環',tag:'搬家後留下的東西',story:'祖母找藥時不用開燈。她的拇指往下一勾，拉環便碰在銅片上，叩一聲，我就知道她又睡不著。搬走那天，抽屜卡住了，我用力一扯，拉環連著螺絲一起掉進掌心。\n\n我把它放回空抽屜裡，想等清點完再裝。搬家公司把櫃子抬過門檻時，裡頭也叩了一聲。我竟然下意識地問她，要不要喝水。'},
+  {id:'needlecase',title:'蓋子放在一旁的針筒',tag:'做到一半的東西',story:'戲還有兩分鐘開場，孩子的袖口卻裂了。我拔開木針筒的蓋子，挑最短的一根針。她把手伸得直直的，問我：「縫完我還能把手舉高嗎？」我叫她先試一次，縫線跟著袖子一起抬了起來。\n\n幕一拉開，我把針插回去，蓋子擱在旁邊。散場收桌的人把布一掀，我才看見桌面上只有一小截線。'},
+  {id:'photoslide',title:'投在牆上時倒過來的幻燈片',tag:'做到一半的東西',story:'父親把幻燈片插反了。舊家的屋簷倒掛在牆上，我們笑得連投影機的風扇聲都聽不見。他用鉛筆在紙框角上畫了一個小記號，說下回就知道哪面朝上。\n\n收機器時，我把那張挑出來，想留著多看一眼。好多年後，白牆早拆了，我還記得倒過來的屋簷，卻想不起紙框最後放在哪裡。'}
 ];
 
 const trails = {
@@ -112,7 +115,7 @@ const trails = {
   bottlecap:['手一鬆，原本捏著的東西去哪了？','cankey','domino'],
   teaball:['杯子旁少了什麼？','travelcup','spoon'],
   shuttle:['布邊還牽著哪一截線？','spool','clothespin'],
-  doorstop:['門闔上以後','shoehorn','key'],
+  doorstop:['搬走時又聽見的那一聲','drawerpull','shoehorn'],
   harmonica:['最後那一聲，停在哪裡？','deskbell','castanets'],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
@@ -136,8 +139,8 @@ const trails = {
   compass:['走到一半，還想記下什麼？','magnifier','postcard'],
   accesscard:['口袋裡還剩什麼？','key','ticket'],
   phone:['那句話後來有寄出去嗎？','postcard','envelope'],
-  instantphoto:['畫面還沒看清的時候','film','glasses'],
-  snips:['布捲起來以後','shuttle','safetypin'],
+  instantphoto:['把那格影像留久一點','photoslide','film'],
+  snips:['縫之前要先找一根針','needlecase','safetypin'],
   foldrule:['量過的那道門框','measure','pencil'],
   roomtag:['退房時，手裡還剩什麼？','key','deskbell'],
   inkbottle:['那個顏色特別深的字','envelope','pencap'],
@@ -145,7 +148,10 @@ const trails = {
   ticketpunch:['那張沒有剪角的票','ticket','travelcup'],
   spinningtop:['繩頭還攥在手裡','yoyo','slingshot'],
   foldingfan:['戲散了，誰還留在座位旁？','castanets','instantphoto'],
-  vestacase:['燈亮以前的那一下','matchbox','torch']
+  vestacase:['燈亮以前的那一下','matchbox','torch'],
+  drawerpull:['手在黑暗裡摸到什麼？','torch','key'],
+  needlecase:['幕拉開前，還差哪一針？','thimble','safetypin'],
+  photoslide:['留下的那一格光','film','instantphoto']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -158,7 +164,7 @@ const weatherNames = {calm:'薄霧',fog:'起霧',wind:'海風',snow:'微雪',cle
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=sixty-nine').catch(() => null);
+const modelModule = import('./scene.js?v=seventy-two').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -327,6 +333,7 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
 
 
 

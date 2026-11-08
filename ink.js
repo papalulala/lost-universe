@@ -67,7 +67,10 @@ const surfaces = {
   ticketpunch:['驗票鉗的金屬鉗口',/^Rounded ticket punch jaw/],
   spinningtop:['陀螺的木身',/^Turned wooden spinning top/],
   foldingfan:['摺扇的紙面',/^Pleated folding fan paper/],
-  vestacase:['火柴匣的金屬外殼',/^Rounded metal match safe case/]
+  vestacase:['火柴匣的金屬外殼',/^Rounded metal match safe case/],
+  drawerpull:['拉環的金屬底板',/^Stamped drawer pull backplate/],
+  needlecase:['木針筒的筒身',/^Turned wooden needle case tube/],
+  photoslide:['幻燈片的影像窗',/^Recessed transparency window/]
 };
 
 export function mountInk(article, item, signal) {
@@ -243,6 +246,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

@@ -117,7 +117,12 @@
 - [摺扇的紙面、扇骨與鉚釘](https://www.gardnermuseum.org/experience/collection/11543)
 - [火柴匣的金屬外殼與鉸蓋](https://collection.sciencemuseumgroup.org.uk/objects/co538803/vesta-case-match-holder)
 
+- [抽屜拉環的垂式把手與螺絲底板](https://www.upperdutch.com/products/authentic-brass-antique-drawer-handle-old-plate-escutcheon-drop-pull-1)
+- [筒式針盒的中空結構](https://collections.peabody.harvard.edu/objects/details/2105)
+- [紙框幻燈片的開窗與框邊](https://www.novoflex.de/MagicStudio/Kaiser-Repro/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
