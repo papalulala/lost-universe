@@ -44,7 +44,7 @@ const byId = new Map(items.map((item,index) => [item.id,{...item,number:String(i
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=rotate').catch(() => null);
+const modelModule = import('./scene.js?v=white-back').catch(() => null);
 let current;
 let pinned = false;
 let nextFrame;

@@ -3,11 +3,12 @@ import { GLTFLoader } from 'three/addons/GLTFLoader.js';
 
 const loader = new GLTFLoader();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const paper = new THREE.MeshBasicMaterial({color:0xfffefa});
-const softInk = new THREE.MeshBasicMaterial({color:0x666c66});
+const paper = new THREE.MeshBasicMaterial({color:0xfffefa,side:THREE.DoubleSide});
+const softInk = new THREE.MeshBasicMaterial({color:0x666c66,side:THREE.DoubleSide});
 const edge = new THREE.LineBasicMaterial({color:0x272a28,transparent:true,opacity:.77});
 const wash = new THREE.ShaderMaterial({
   side:THREE.BackSide,
+  depthWrite:false,
   vertexShader:`
     void main() {
       vec3 ink = position + normal * (0.012 + 0.008 * sin(position.x*13.0 + position.z*9.0));
@@ -48,7 +49,10 @@ export async function floatModel(view, still, id, index, signal, refined) {
       continue;
     }
     mesh.material = paper;
-    mesh.add(new THREE.Mesh(mesh.geometry,wash));
+    const outline = new THREE.Mesh(mesh.geometry,wash);
+    // Lay down the outline first, so the two-sided paper covers its interior.
+    outline.renderOrder = -1;
+    mesh.add(outline);
     mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry,32),edge));
   }
   view.append(renderer.domElement);
