@@ -1,8 +1,8 @@
-@font-face{font-family:UniverseBrush;src:url('./MasaFont-Regular.woff2') format('woff2');font-display:swap;unicode-range:U+5931,U+7269,U+5B87,U+5B99,U+8AA4}
 :root{color-scheme:light;--ink:#353a38;--muted:#626966;--gold:#486365;--line:#5d68652c}
 body{background:#efefec;font-family:"Noto Serif TC","PMingLiU",serif}
 header,footer{border-color:var(--line)}
-.brand,.opening-title{font-family:UniverseBrush,"BiauKai","DFKai-SB",serif;font-weight:400;letter-spacing:0}
+.brand,.opening-title,.title-intro{font-family:"Noto Serif TC","PMingLiU",serif;font-weight:700}
+.brand,.opening-title{letter-spacing:0}
 .brand{font-size:clamp(40px,6vw,68px);line-height:1;display:inline-block;white-space:nowrap}
 header{padding-block:18px}
 .stage{border:0;background:
@@ -46,4 +46,5 @@ button{border-color:#73837f63}
 body:not(.opening-active) #view,body:not(.opening-active) #still{animation:arrival 1.4s ease both}
 @keyframes arrival{from{opacity:0;filter:blur(12px)}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+
 
