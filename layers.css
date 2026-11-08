@@ -2,7 +2,7 @@
 #frame::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:#e4e8e4 radial-gradient(ellipse at 56% 36%,#fafaf785 2%,transparent 86%)}
 #frame::before{animation:daylight-base 90s linear infinite}
 .daylight{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 78% 18%,#fff8dd 0%,#fff8dd85 28%,transparent 72%);animation:daylight-glow 90s linear infinite}
-.paper-folds{position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('./paper-folds.svg') center/cover no-repeat;opacity:.37;animation:paper-light 90s linear infinite}
+.paper-folds{position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('./paper-photo.png') center/cover no-repeat;mix-blend-mode:multiply;filter:grayscale(1);opacity:.37;animation:paper-light 90s linear infinite}
 @keyframes paper-light{
   0%,100%{opacity:.62}
   16.667%,50%{opacity:.37}
@@ -44,6 +44,7 @@
   #objects{grid-template-columns:1fr;padding-inline:12px}
   .object-button{width:min(100%,280px,34dvh);aspect-ratio:1.7}
 }
+
 
 
 
