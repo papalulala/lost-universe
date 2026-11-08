@@ -43,7 +43,10 @@ const surfaces = {
   pedal:['踏板外側的橡膠',/^Outer rubber pedal block/],
   measure:['捲尺露出的尺帶',/^Extended measuring ribbon/],
   yoyo:['溜溜球的兩側木面',/^Turned wooden yo-yo cheek/],
-  teatin:['茶罐的金屬外壁',/^Rounded tea tin body/]
+  teatin:['茶罐的金屬外壁',/^Rounded tea tin body/],
+  padlock:['掛鎖的金屬鎖身',/^Worn brass padlock body/],
+  castanets:['響板的木殼',/^Carved wooden castanet shell/],
+  cankey:['開罐匙的金屬柄',/^Slotted can opener stem/]
 };
 
 export function mountInk(article, item, signal) {
@@ -219,6 +222,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

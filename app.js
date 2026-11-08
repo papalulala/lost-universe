@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=forty-five';
+import { mountInk } from './ink.js?v=forty-eight';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -49,7 +49,10 @@ const items = [
   {id:'pedal',title:'外角磨掉一塊的踏板',tag:'離開後才發現',story:'右腳踏板的外角曾擦到矮牆，少了一小塊橡膠。師傅換下來，順手擱在修車攤的木箱上。我騎出巷口才記起，本來想把舊的帶回去。'},
   {id:'measure',title:'還露著一截的捲尺',tag:'做到一半的東西',story:'改袖口前，她借我的小捲尺量手腕，叫我別縮手。試完我先去趕車。回家想補記尺寸，摸遍口袋，才想起捲尺留在裁縫桌上，還露著一截。'},
   {id:'yoyo',title:'還沒捲回去的溜溜球',tag:'做到一半的東西',story:'操場快關門時，我蹲在台階上解繩結。好不容易把最後一圈鬆開，有人在鐵門那頭喊我。我把繩頭往球身一擱，想說明天再慢慢捲。隔天只找到了那級台階。'},
-  {id:'teatin',title:'蓋子總闔不緊的茶罐',tag:'搬家後留下的東西',story:'倒完最後一撮茶葉，我又按了按罐蓋。它還是翹起一小截，像以前每一次那樣。搬家後打開紙箱，裡面有兩個杯子，沒有那只空罐。'}
+  {id:'teatin',title:'蓋子總闔不緊的茶罐',tag:'搬家後留下的東西',story:'倒完最後一撮茶葉，我又按了按罐蓋。它還是翹起一小截，像以前每一次那樣。搬家後打開紙箱，裡面有兩個杯子，沒有那只空罐。'},
+  {id:'padlock',title:'鎖梁還翹著的掛鎖',tag:'搬家後留下的東西',story:'搬走最後一箱書時，我把掛鎖打開，擱在鐵門旁的窗台。回頭拉門，手裡只有鑰匙。下一次經過，門已換了，窗台還在。'},
+  {id:'castanets',title:'鬆了一個結的響板',tag:'做到一半的東西',story:'練到第三遍時，拇指上的繩結鬆了。我把響板放在舞蹈教室的窗台，想等休息時再綁。下課後我摸到包裡的譜，才想起少了那兩片木頭。'},
+  {id:'cankey',title:'捲完最後一圈的開罐匙',tag:'離開後才發現',story:'午餐前我把鐵皮舌片穿進匙上的細縫，一圈一圈把罐頭捲開。收拾時，空罐先進了回收桶。下次我捏住舌片，才想起開罐匙還擱在上次那張桌上。'}
 ];
 
 const trails = {
@@ -83,13 +86,13 @@ const trails = {
   clothespin:['被扯鬆的那一截線','spool','thimble'],
   pencap:['借閱單上的那一天','dater','bookmark'],
   safetypin:['裙襬後來用什麼縫上？','thimble','spool'],
-  shoehorn:['最後一次搬箱子時','doorstop','luggage'],
+  shoehorn:['最後一次回頭看門','padlock','doorstop'],
   domino:['下一局拿什麼當籌碼？','bottlecap','coin'],
-  bottlecap:['小小一枚，原本要派什麼用場？','domino','coin'],
+  bottlecap:['手一鬆，原本捏著的東西去哪了？','cankey','domino'],
   teaball:['金屬碰到邊緣的那一聲','spoon','bottlecap'],
   shuttle:['布邊還牽著哪一截線？','spool','clothespin'],
   doorstop:['門闔上以後','shoehorn','key'],
-  harmonica:['最後那一聲，停在哪裡？','tape','whistle'],
+  harmonica:['最後那一聲，停在哪裡？','castanets','tape'],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
   magnifier:['那行小字後來看清了嗎？','luggage','glasses'],
@@ -97,7 +100,10 @@ const trails = {
   pedal:['磨損的地方，還記得哪一次碰撞？','bell','shoehorn'],
   measure:['繞過一圈，還露著一截','watch','spool'],
   yoyo:['還有一截線沒收好','spool','shuttle'],
-  teatin:['倒完最後一撮茶之後','teaball','spoon']
+  teatin:['倒完最後一撮茶之後','teaball','spoon'],
+  padlock:['門還在的時候','key','doorstop'],
+  castanets:['停在一半的節拍','harmonica','tape'],
+  cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -108,7 +114,7 @@ const frame = document.querySelector('#frame');
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=forty-five').catch(() => null);
+const modelModule = import('./scene.js?v=forty-eight').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -275,6 +281,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 
