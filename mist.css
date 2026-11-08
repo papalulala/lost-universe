@@ -20,7 +20,7 @@ button{border-color:#73837f63}
 .primary{background:#dbe3df;color:#253e3e;border-color:#73837f63}
 .primary:hover{background:#cbd9d3;color:#253e3e}
 #note{background:#e4e8e4}
-.opening{position:fixed;z-index:5;inset:0;background:#eeefec;overflow:hidden;display:grid;place-items:center}
+.opening{position:fixed;z-index:5;inset:0;background:#f5f6f2;overflow:hidden;display:grid;place-items:center}
 .opening-active{overflow:hidden}
 .opening-active main,.opening-active nav,.opening-active footer,.opening-active .brand{visibility:hidden}
 .opening-title{position:absolute;display:flex;align-items:center;font-size:clamp(52px,13vw,154px);line-height:1;color:#303b39;white-space:nowrap}
@@ -29,7 +29,7 @@ button{border-color:#73837f63}
 .correct{opacity:0}
 .wrong{font-family:ErrorBrush,serif;font-size:.88em}
 .turn::after{content:'';position:absolute;inset:-18%;pointer-events:none;opacity:0;background:radial-gradient(ellipse,#fff 15%,#fffffff0 34%,#ffffff90 57%,transparent 74%);filter:blur(.07em)}
-.mist{position:absolute;inset:-28%;opacity:0;background:radial-gradient(ellipse at 43% 54%,#fffefa 6%,#f9faf6 27%,#d6dedb 43%,transparent 70%),radial-gradient(ellipse at 72% 59%,#fff 7%,transparent 62%);filter:blur(25px)}
+.mist{position:absolute;inset:-28%;opacity:0;background:radial-gradient(ellipse at 43% 54%,#fff 8%,#ffffffee 30%,#ffffff75 53%,#ffffff00 74%),radial-gradient(ellipse at 72% 59%,#fff 7%,#ffffff00 62%);filter:blur(25px)}
 .skip{position:absolute;right:20px;bottom:20px;font-size:.86rem;background:#f1f2ef}
 .play{animation:curtain .75s 4.35s ease both}
 .play .opening-title{animation:ink .46s ease both,fly 1.05s 3.2s cubic-bezier(.45,0,.2,1) both}
