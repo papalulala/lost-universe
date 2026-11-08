@@ -42,13 +42,19 @@ export async function floatModel(view, still, id, index, signal, refined) {
   if (id === 'film') orientation.rotation.y = Math.PI;
   else orientation.rotation.x = Math.PI/2;
   const meshes = [];
+  const tapeInk = id === 'key' ? paper.clone() : null;
+  if (tapeInk) {
+    const recolor = () => tapeInk.color.set(view.dataset.ink ?? '#fffefa');
+    view.addEventListener('inkchange',recolor,{signal});
+    recolor();
+  }
   model.traverse(object => { if (object.isMesh) meshes.push(object); });
   for (const mesh of meshes) {
     if (mesh.name.startsWith('Ink_contour') || mesh.name.startsWith('Ink contour')) {
       mesh.material = softInk;
       continue;
     }
-    mesh.material = paper;
+    mesh.material = tapeInk && /cloth tape|tape corner/i.test(mesh.name.replaceAll('_',' ')) ? tapeInk : paper;
     const outline = new THREE.Mesh(mesh.geometry,wash);
     // Lay down the outline first, so the two-sided paper covers its interior.
     outline.renderOrder = -1;
@@ -118,6 +124,7 @@ export async function floatModel(view, still, id, index, signal, refined) {
     const geometry = new Set();
     model.traverse(object => { if (object.geometry) geometry.add(object.geometry); });
     geometry.forEach(value => value.dispose());
+    tapeInk?.dispose();
     renderer.dispose();
     renderer.forceContextLoss();
   }, {once:true});

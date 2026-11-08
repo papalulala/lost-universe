@@ -1,0 +1,9 @@
+.ink-panel{margin-top:10px;font-size:.82rem}
+.ink-panel p{margin:.5em 0}
+.ink-panel summary{cursor:pointer}
+.ink-panel button{font-size:.76rem;padding:4px 6px}
+.ink-swatches,.ink-history{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:.5em 0}
+.ink-swatches button::before,.ink-history button::before{content:'';display:inline-block;width:.72em;height:.72em;margin-right:4px;border:1px solid #636b60;border-radius:50%;background:var(--swatch)}
+.ink-swatches button[aria-pressed=true]{border-color:#43544c}
+.ink-panel button:disabled{opacity:.56;cursor:default}
+.ink-save{margin-right:5px}
