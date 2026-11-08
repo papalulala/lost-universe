@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=eighteen';
+import { mountInk } from './ink.js?v=twenty-one';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -22,15 +22,18 @@ const items = [
   {id:'envelope',title:'拆封的信封',tag:'離開後才發現',story:'拆信時，我沿著封口撕出一排毛邊。信帶回家了。後來想抄回信地址，才想起信封還擱在郵局的窗台。'},
   {id:'luggage',title:'地址寫了一半的行李牌',tag:'離開後才發現',story:'地址卡寫到門牌前，我就被催著上車。到家才看見行李箱的提把上只剩一道勒痕。幸好還沒寫到門牌。我甚至不知道該不該盼有人撿到。'},
   {id:'earbuds',title:'繞成圈的有線耳機',tag:'做到一半的東西',story:'耳機線在分岔下面繞成一個鬆鬆的圈，我一直懶得理順。磁帶翻面時，我把耳機擱在車窗下。下車後，手裡只有收好的隨身聽。'},
-  {id:'pencil',title:'削到握不住的短鉛筆',tag:'衣袋裡的東西',story:'鉛筆短到只能用兩根手指捏著，我還是把它放進制服口袋。放學後想在車票背面記一句話，才發現口袋裡只有橡皮擦屑。'}
+  {id:'pencil',title:'削到握不住的短鉛筆',tag:'衣袋裡的東西',story:'鉛筆短到只能用兩根手指捏著，我還是把它放進制服口袋。放學後想在車票背面記一句話，才發現口袋裡只有橡皮擦屑。'},
+  {id:'thimble',title:'縫到一半的頂針',tag:'做到一半的東西',story:'縫到大衣的最後一顆鈕扣，針尖在頂針的小凹點裡卡了一下。門外有人喊我，剩下兩針就先擱著。隔天打開針線盒，才發現頂針還留在那張桌上。'},
+  {id:'watch',title:'停在六點十八分的手錶',tag:'離開後才發現',story:'錶早就停在六點十八分，我還是每天戴著。那天為了搬行李，把它解下來擱在車站洗手台。上車後我抬起手腕，才看見錶帶留的一圈淡痕。'},
+  {id:'matchbox',title:'還剩三根的火柴盒',tag:'搬家後留下的東西',story:'舊家的爐火點不著時，我總伸手去摸火柴盒。搬家那天，盒裡還有三根。新家第一次煮湯，手伸出去，我才想起它還擱在舊廚房的窗邊。'}
 ];
 
 const trails = {
   key:['搬家後留下的東西','film','spoon'],
   postcard:['離開後才發現','envelope','notebook'],
   film:['做到一半的東西','postcard','tape'],
-  spoon:['搬家後留下的東西','key','film'],
-  button:['衣袋裡的東西','eraser','ticket'],
+  spoon:['搬家後留下的東西','matchbox','film'],
+  button:['做到一半的東西','thimble','notebook'],
   ticket:['離開後才發現','luggage','comb'],
   comb:['離開後才發現','mirror','ticket'],
   notebook:['做到一半的東西','bookmark','postcard'],
@@ -41,9 +44,12 @@ const trails = {
   mirror:['離開後才發現','comb','umbrella'],
   bookmark:['做到一半的東西','notebook','tape'],
   envelope:['離開後才發現','postcard','ticket'],
-  luggage:['離開後才發現','ticket','envelope'],
+  luggage:['離開後才發現','watch','ticket'],
   earbuds:['做到一半的東西','tape','film'],
-  pencil:['衣袋裡的東西','eraser','button']
+  pencil:['衣袋裡的東西','eraser','button'],
+  thimble:['做到一半的東西','button','notebook'],
+  watch:['離開後才發現','luggage','ticket'],
+  matchbox:['搬家後留下的東西','spoon','key']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
@@ -53,7 +59,7 @@ const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=all-doodles').catch(() => null);
+const modelModule = import('./scene.js?v=twenty-one').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -203,6 +209,8 @@ document.querySelector('#drift').onclick = () => {
   const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
   render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
 };
+
+
 
 
 

@@ -41,7 +41,8 @@ export async function floatModel(view, still, id, index, signal) {
   const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
   const clearance = radius + .19; // Allow for the ink outline and vertical drift.
   model.position.sub(bounds.getCenter(new THREE.Vector3()));
-  if (id === 'film') orientation.rotation.y = Math.PI;
+  const upright = id === 'film' || id === 'thimble';
+  if (upright) orientation.rotation.y = Math.PI;
   else orientation.rotation.x = Math.PI/2;
   const meshes = [];
   model.traverse(object => { if (object.isMesh) meshes.push(object); });
@@ -49,7 +50,7 @@ export async function floatModel(view, still, id, index, signal) {
   const paintMeshes = new Set(meshes.filter(mesh => surface?.matcher.test(mesh.name.replaceAll('_',' '))));
   const surfaceInk = paintMeshes.size && view.inkCanvas ? paper.clone() : null;
   const inkTexture = surfaceInk ? new THREE.CanvasTexture(view.inkCanvas) : null;
-  const project = p => id === 'film' ? [-p.x,p.y] : [p.x,-p.z];
+  const project = p => upright ? [-p.x,p.y] : [p.x,-p.z];
   const point = new THREE.Vector3();
   const coordinates = mesh => {
     const position = mesh.geometry.attributes.position;

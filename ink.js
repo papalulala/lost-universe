@@ -16,7 +16,10 @@ const surfaces = {
   envelope:['信封的背面與封口',/^Folded envelope back|^Torn open flap/],
   luggage:['行李牌的地址卡',/^Recessed luggage label/],
   earbuds:['左耳的外殼',/^Earbud housing left/],
-  pencil:['鉛筆的木桿',/^Short hexagonal pencil barrel/]
+  pencil:['鉛筆的木桿',/^Short hexagonal pencil barrel/],
+  thimble:['頂針的外壁',/^Hollow tapered thimble/],
+  watch:['手錶的錶面',/^Stopped watch dial/],
+  matchbox:['火柴盒的外套',/^Printed matchbox sleeve/]
 };
 
 export function mountInk(article, item, signal) {

@@ -22,6 +22,9 @@
 | 地址寫了一半的行李牌 | 有縫線、地址卡和彎折的皮帶。地址卡可畫。 |
 | 繞成圈的有線耳機 | 分岔線接到兩個有細格柵的耳塞，主線繞成一圈並接到插頭。左耳外殼可畫。 |
 | 削到握不住的短鉛筆 | 六角木桿接到削尖的木頭與石墨，桿上留有磨痕。木桿可畫。 |
+| 縫到一半的頂針 | 有中空的薄壁、捲邊與交錯排列的針痕。外壁可畫。 |
+| 停在六點十八分的手錶 | 錶帶有扣孔，錶面有刻度和停在六點十八的兩根指針。錶面可畫。 |
+| 還剩三根的火柴盒 | 紙套露出半拉開的薄抽屜，裡面有三根火柴。外套可畫。 |
 
 ## 本輪照片參考
 
@@ -44,6 +47,9 @@
 - [有縫線與地址卡的皮革行李牌](https://www.jackgeorges.com/products/voyager-leather-luggage-tag-7101)
 - [有線耳機的分岔線與插頭](https://www.ebay.com/itm/357116494412)
 - [木鉛筆與石墨的交界](https://www.hmnh.harvard.edu/tangible-things-objects-other-harvard-collections-harvard-museum-natural-history)
+- [銀製頂針與針痕](https://www.britishmuseum.org/collection/object/H_1921-0217-4)
+- [皮帶手錶館藏](https://www.si.edu/object/wristwatch-lindbergh-king-collection%3Anasm_A20040287024)
+- [抽屜式火柴盒館藏](https://collection.sciencemuseumgroup.org.uk/objects/co159307/matchbox-rectangular-slide-in-chipwood-drawer)
 
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
 
