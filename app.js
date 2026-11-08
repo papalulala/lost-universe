@@ -30,26 +30,26 @@ const items = [
 
 const trails = {
   key:['搬家後留下的東西','film','spoon'],
-  postcard:['離開後才發現','envelope','notebook'],
-  film:['做到一半的東西','postcard','tape'],
-  spoon:['搬家後留下的東西','matchbox','film'],
-  button:['做到一半的東西','thimble','notebook'],
-  ticket:['離開後才發現','luggage','comb'],
-  comb:['離開後才發現','mirror','ticket'],
-  notebook:['做到一半的東西','bookmark','postcard'],
-  umbrella:['離開後才發現','comb','ticket'],
-  tape:['做到一半的東西','earbuds','film'],
-  stamp:['做到一半的東西','notebook','tape'],
-  eraser:['衣袋裡的東西','pencil','button'],
-  mirror:['離開後才發現','comb','umbrella'],
-  bookmark:['做到一半的東西','notebook','tape'],
-  envelope:['離開後才發現','postcard','ticket'],
-  luggage:['離開後才發現','watch','ticket'],
-  earbuds:['做到一半的東西','tape','film'],
-  pencil:['衣袋裡的東西','eraser','button'],
-  thimble:['做到一半的東西','button','notebook'],
-  watch:['離開後才發現','luggage','ticket'],
-  matchbox:['搬家後留下的東西','spoon','key']
+  postcard:['還沒寄出的那句話','envelope','notebook'],
+  film:['如果能再多留一格','postcard','tape'],
+  spoon:['舊廚房還留著什麼？','matchbox','film'],
+  button:['穿過那四個孔的針','thimble','notebook'],
+  ticket:['到了下一站，才想起上一站','luggage','comb'],
+  comb:['車窗倒影裡少了什麼？','mirror','ticket'],
+  notebook:['替讀到一半的地方做記號','bookmark','postcard'],
+  umbrella:['旅途上，手總有空下來的時候','comb','ticket'],
+  tape:['那句「等一下」，有人聽見嗎？','earbuds','film'],
+  stamp:['第三刀之後，還有一筆','notebook','tape'],
+  eraser:['口袋裡剩下的一點碎屑','pencil','button'],
+  mirror:['照到耳後那一撮頭髮','comb','umbrella'],
+  bookmark:['翻到還沒讀完的那一頁','notebook','tape'],
+  envelope:['地址還能從哪裡找回來？','postcard','ticket'],
+  luggage:['提把上的勒痕，手腕上的淡痕','watch','ticket'],
+  earbuds:['車窗下，聲音停在哪裡？','tape','film'],
+  pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
+  thimble:['留在原地的線與筆跡','button','notebook'],
+  watch:['上車後，才發現少了一樣','luggage','ticket'],
+  matchbox:['手伸向舊廚房的窗邊','spoon','key']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
@@ -217,6 +217,7 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
 
 
 
