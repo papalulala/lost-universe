@@ -3,14 +3,11 @@ import { mountInk } from './ink.js?v=doodle';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
-    story:'搬家那天，我用藍膠帶把這把鑰匙和新家的分開。三年來，我一直把兩把掛在一起。\n\n上週經過那棟樓，大門已經換成刷卡的了。回家才發現，鑰匙圈上只剩新家的那把。',
-    reply:'我也留著一把。偶爾拿錯，才想起以前回家要先把門往上抬一點。'},
+    story:'搬家那天，我用藍膠帶把這把鑰匙和新家的分開。三年來，我一直把兩把掛在一起。\n\n上週經過那棟樓，大門已經換成刷卡的了。回家才發現，鑰匙圈上只剩新家的那把。'},
   {id:'postcard', title:'沒寄出的明信片', tag:'寫到一半的東西',
-    story:'明信片上只有一句「我今天走到海邊了」。原本想等浪小一點，再補一句海是什麼顏色。\n\n退房那天，我把它夾進床邊的旅遊手冊。回家整理行李時，才摸到口袋裡的郵票。',
-    reply:'我在舊書裡撿過一張。背面只寫了星期二。'},
+    story:'明信片上只有一句「我今天走到海邊了」。原本想等浪小一點，再補一句海是什麼顏色。\n\n退房那天，我把它夾進床邊的旅遊手冊。回家整理行李時，才摸到口袋裡的郵票。'},
   {id:'film', title:'半卷底片', tag:'搬家後留下的東西',
-    story:'最後一張是搬家前的廚房。冰箱搬走以後，牆上有一塊比四周還白的長方形。\n\n那卷拍到一半的底片，我記得放在窗台上。新家拆完最後一箱，我才想起那扇窗。',
-    reply:'我家也有那樣一塊白牆。冰箱上的磁鐵倒是全帶走了。'},
+    story:'最後一張是搬家前的廚房。冰箱搬走以後，牆上有一塊比四周還白的長方形。\n\n那卷拍到一半的底片，我記得放在窗台上。新家拆完最後一箱，我才想起那扇窗。'},
   {id:'spoon',title:'舊家的湯匙',tag:'搬家後留下的東西',story:'這把湯匙碰到碗邊，會響很輕的一聲。搬走後第一次煮湯，我在新家的抽屜裡翻了兩遍，才想起它還晾在舊家的水槽旁。'},
   {id:'button',title:'四孔鈕扣',tag:'衣袋裡的東西',story:'媽媽把備用鈕扣縫在大衣內側，用的是一截比較粗的線。送洗回來，線還在，四個孔裡卻什麼也沒有了。'},
   {id:'ticket',title:'沒有剪角的車票',tag:'離開後才發現',story:'我從衣袋摸出回程票，擱在椅袋裡的報紙旁。下車只帶走報紙，直到站務員伸出手，我才想起椅袋裡還有一張票。'},
@@ -40,12 +37,11 @@ const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
   {label:'手還記得它在哪裡',destination:'spoon',companion:'comb',arrival:'到了新家，煮湯時還是伸手去拉原本那一格抽屜。'}
 ];
-const refined = new Set(['key','film','spoon','postcard','comb','button']);
 const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=fit-model').catch(() => null);
+const modelModule = import('./scene.js?v=refined-collection').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -76,13 +72,12 @@ function mount(item,index) {
   article.innerHTML = `
     <button class="object-button" type="button" aria-expanded="false" aria-controls="story-${item.id}">
       <span class="model" aria-hidden="true"></span>
-      <img class="model-still" alt="" src="./${item.id}.png${refined.has(item.id) ? '?v=paper-objects' : ''}">
+      <img class="model-still" alt="" src="./${item.id}.png?v=refined-collection">
     </button>
     <p class="glimpse" aria-hidden="true"></p>
     <section class="object-info" id="story-${item.id}" inert>
       <h2></h2><p></p>
-      <details><summary>背面的話</summary><p></p><small>示範留言</small></details>
-      <button type="button" class="story-link">留一行回聲</button>
+      <button type="button" class="story-link">背面的話</button>
       <div class="story-trails"></div>
     </section>`;
   const button = article.querySelector('button');
@@ -93,8 +88,6 @@ function mount(item,index) {
   article.querySelector('h2').textContent = item.title;
   article.querySelector('.glimpse').textContent = item.title + ' · ' + item.story.split('。')[0] + '。';
   info.querySelector('p').textContent = item.story;
-  info.querySelector('details').hidden = !item.reply;
-  info.querySelector('details p').textContent = item.reply ?? '';
   const [label,...neighbors] = trails[item.id];
   const choices = info.querySelector('.story-trails');
   function action(text, handler) {
@@ -139,7 +132,7 @@ function mount(item,index) {
   });
   const {signal} = modelScope;
   if (item.id === 'key') mountInk(article,signal);
-  modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal,refined.has(item.id))).catch(() => {});
+  modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal)).catch(() => {});
 }
 
 function chooseKeyTrail(choice) {
@@ -198,6 +191,7 @@ document.querySelector('#drift').onclick = () => {
   const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
   render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
 };
+
 
 
 

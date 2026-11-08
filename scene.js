@@ -17,9 +17,9 @@ const wash = new THREE.ShaderMaterial({
   fragmentShader:`void main() { gl_FragColor = vec4(0.15,0.16,0.15,1.0); }`
 });
 
-export async function floatModel(view, still, id, index, signal, refined) {
+export async function floatModel(view, still, id, index, signal) {
   if (signal.aborted) return;
-  const {scene:model} = await loader.loadAsync('./'+id+'.glb'+(refined ? '?v=paper-objects' : ''));
+  const {scene:model} = await loader.loadAsync('./'+id+'.glb?v=refined-collection');
   const originalMaterials = new Set();
   model.traverse(object => { if (object.isMesh) originalMaterials.add(object.material); });
   originalMaterials.forEach(material => material.dispose());

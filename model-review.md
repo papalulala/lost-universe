@@ -9,13 +9,13 @@
 | 舊家的湯匙 | 已重做。匙碗有凹面與薄邊，匙柄由頸部收窄，末端再展開。 |
 | 沒寄出的明信片 | 已重做。海岸線貼在略彎的紙面，右上角翹起，背面有地址分隔線。 |
 | 四孔鈕扣 | 已重做。圓邊抬高，盤面下凹，四個縫線孔貫穿鈕扣。 |
-| 沒有剪角的車票 | 紙太厚，票面標記像凸出的零件。下次改成薄卡紙，讓角落和印線交代方向。 |
+| 沒有剪角的車票 | 已重做。用薄卡紙、細印線與完整角落保留未剪票的特徵。 |
 | 少一齒的梳子 | 已重做。梳背和梳齒連成一片，齒身漸窄，第五齒留有短短的斷根。 |
-| 夾著書籤的筆記本 | 封面、紙芯及書籤的厚薄差異太小。下次做彎曲書脊與柔軟垂下的書籤。 |
-| 繫帶鬆了的傘 | 傘面像一根硬桿。下次以三四道不規則的布褶表現束起的傘面，讓束帶留一端鬆開。 |
-| 沒錄完的錄音帶 | 卷盤浮在盒面。下次加盒身接縫、凹入的卷盤孔和出帶口。 |
-| 刻了一半的印章 | 三道刻痕像貼在面上的長條。下次做下陷的刀痕，讓木柄、橡皮底各有厚度。 |
-| 紙套翹起的橡皮擦 | 紙套與橡皮都像厚塊。下次將紙套改成薄折片，翹角與橡皮磨圓的一側相鄰。 |
+| 夾著書籤的筆記本 | 已重做。封面、紙芯與書脊分出厚薄，書籤向下垂出。 |
+| 繫帶鬆了的傘 | 已重做。收攏的傘面有布褶與縫線，束帶一端鬆開。 |
+| 沒錄完的錄音帶 | 已重做。卷盤孔凹入盒身，另有出帶口、盒縫與螺絲。 |
+| 刻了一半的印章 | 已重做。木塊與橡皮印面分層，三道刀痕往下刻入。 |
+| 紙套翹起的橡皮擦 | 已重做。紙套是薄折片，留翹角，橡皮一端磨圓。 |
 
 ## 本輪照片參考
 
@@ -27,4 +27,11 @@
 - [口袋梳的比例與圓齒](https://kentbrushes.com/products/mens-pocket-comb-135mm-thick-fine-hair-spc85)
 - [凹面四孔外套鈕扣](https://pacifictrimming.com/products/round-rim-concave-4-hole-polyester-jacket-coat-button)
 
+- [鐵路車票館藏照片](https://www.culhamstation.co.uk/collection/tickets.html)
+- [布面筆記本與書籤](https://www.moleskine.com/on/demandware.static/-/Library-Sites-MoleskineSharedLibrary/default/dw2ec9bcd0/catalogB2B/MSK_CatalogueB2B_SS2022_Digital_EN.pdf)
+- [束帶與傘柄](https://www.muji.net/lab/mujiarchive/140618.html)
+- [橡皮章刻痕](https://www.leevalley.com/en-us/shop/tools/supplies/project-materials/117330-make-it-yourself-linocut-printmaking-kit)
+- [橡皮擦紙套](https://www.tombow.com/en/products/mono/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
