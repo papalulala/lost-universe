@@ -73,7 +73,12 @@
 - [木織梭的中空槽與線軸](https://www.si.edu/object/shuttle-used-weaving%3Anmaahc_2017.108.25.19)
 - [門擋實物參考](https://museumcollection.tokyo/works/6551714/)
 
+- [口琴的金屬蓋板、螺絲與木格](https://www.si.edu/object/hohner-harmonica%3Anmah_1306116)
+- [窗簾環的外圈與吊掛構造](https://commons.wikimedia.org/wiki/File:Medieval_to_Post_Medieval,_Complete_curtain_fitting_(ring)_(FindID_627355).jpg)
+- [可調式橡膠日期章](https://collection.sciencemuseumgroup.org.uk/objects/co8405957/collection-of-personal-papers)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

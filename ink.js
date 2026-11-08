@@ -34,7 +34,10 @@ const surfaces = {
   bottlecap:['瓶蓋的頂面',/^Crimped bottle cap crown/],
   teaball:['濾茶球的金屬外殼',/^Perforated tea ball shell/],
   shuttle:['織梭的木殼',/^Polished wooden shuttle hull/],
-  doorstop:['門擋的橡膠斜面',/^Scuffed rubber door wedge/]
+  doorstop:['門擋的橡膠斜面',/^Scuffed rubber door wedge/],
+  harmonica:['口琴的上蓋',/^Rounded harmonica cover/],
+  curtainring:['窗簾掛環的外圈',/^Worn brass curtain ring/],
+  dater:['日期章的握柄',/^Turned date stamp handle/]
 };
 
 export function mountInk(article, item, signal) {
@@ -210,6 +213,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 
