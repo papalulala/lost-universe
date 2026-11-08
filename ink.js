@@ -31,7 +31,10 @@ const surfaces = {
   safetypin:['別針的扣頭',/^Folded safety pin clasp/],
   shoehorn:['鞋拔的弧面',/^Curved shoehorn shell/],
   domino:['骨牌的點數面',/^Worn domino face/],
-  bottlecap:['瓶蓋的頂面',/^Crimped bottle cap crown/]
+  bottlecap:['瓶蓋的頂面',/^Crimped bottle cap crown/],
+  teaball:['濾茶球的金屬外殼',/^Perforated tea ball shell/],
+  shuttle:['織梭的木殼',/^Polished wooden shuttle hull/],
+  doorstop:['門擋的橡膠斜面',/^Scuffed rubber door wedge/]
 };
 
 export function mountInk(article, item, signal) {
@@ -207,5 +210,6 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 

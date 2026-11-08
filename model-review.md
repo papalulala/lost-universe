@@ -69,7 +69,12 @@
 - [五一骨牌的凹點與分隔線](https://www.londonmuseum.org.uk/collections/v/object-124270/domino/)
 - [冠形瓶蓋的摺邊與密封墊](https://patents.google.com/patent/US468258A/en)
 
+- [濾茶球的球形外殼、孔洞與鏈環](https://emuseum.nyhistory.org/objects/20535/tea-infuser)
+- [木織梭的中空槽與線軸](https://www.si.edu/object/shuttle-used-weaving%3Anmaahc_2017.108.25.19)
+- [門擋實物參考](https://museumcollection.tokyo/works/6551714/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
