@@ -16,6 +16,9 @@
 | 沒錄完的錄音帶 | 已重做。卷盤孔凹入盒身，另有出帶口、盒縫與螺絲。 |
 | 刻了一半的印章 | 已重做。木塊與橡皮印面分層，三道刀痕往下刻入。 |
 | 紙套翹起的橡皮擦 | 已重做。紙套是薄折片，留翹角，橡皮一端磨圓。 |
+| 袖珍手鏡 | 橢圓鏡面嵌入捲邊金屬框，短柄收窄，玻璃邊緣留一道細痕。鏡面可畫。 |
+| 對摺的書籤 | 紙面沿舊摺痕彎起，留一筆鉛筆線。紙面可畫。 |
+| 拆封的信封 | 紙面有摺縫，封口沿不規則的撕邊掀起。背面與封口可畫。 |
 
 ## 本輪照片參考
 
@@ -32,6 +35,9 @@
 - [束帶與傘柄](https://www.muji.net/lab/mujiarchive/140618.html)
 - [橡皮章刻痕](https://www.leevalley.com/en-us/shop/tools/supplies/project-materials/117330-make-it-yourself-linocut-printmaking-kit)
 - [橡皮擦紙套](https://www.tombow.com/en/products/mono/)
+- [橢圓手鏡與金屬框](https://www.gigiliving.com/SHOP/kan2848.html)
+- [手製紙書籤館藏](https://victoriancollections.net.au/items/68312776675df5c02ffec8a8)
+- [摺疊信封館藏](https://www.londonmuseum.org.uk/collections/v/object-969057/envelope/)
 
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
 
