@@ -70,7 +70,10 @@ const surfaces = {
   vestacase:['火柴匣的金屬外殼',/^Rounded metal match safe case/],
   drawerpull:['拉環的金屬底板',/^Stamped drawer pull backplate/],
   needlecase:['木針筒的筒身',/^Turned wooden needle case tube/],
-  photoslide:['幻燈片的影像窗',/^Recessed transparency window/]
+  photoslide:['幻燈片的影像窗',/^Recessed transparency window/],
+  hanger:['衣架的木肩',/^Shaped wooden hanger shoulder/],
+  tyrelever:['撬胎棒的金屬面',/^Forged steel tyre lever/],
+  tally:['計數器的金屬外殼',/^Rounded mechanical tally counter shell/]
 };
 
 export function mountInk(article, item, signal) {
@@ -246,6 +249,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

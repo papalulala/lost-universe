@@ -121,7 +121,12 @@
 - [筒式針盒的中空結構](https://collections.peabody.harvard.edu/objects/details/2105)
 - [紙框幻燈片的開窗與框邊](https://www.novoflex.de/MagicStudio/Kaiser-Repro/)
 
+- [木衣架的弧形木肩與金屬掛鉤](https://collections.museumsvictoria.com.au/items/828192)
+- [鋼製撬胎棒的扁頭與彎曲端部](https://www.universalcycles.com/shopping/product_details.php?id=1242)
+- [手按計數器的數字窗、按桿與歸零輪](https://ice-museum-scotland.hw.ac.uk/item/2021_007/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
