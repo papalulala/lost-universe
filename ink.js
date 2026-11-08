@@ -37,7 +37,10 @@ const surfaces = {
   doorstop:['門擋的橡膠斜面',/^Scuffed rubber door wedge/],
   harmonica:['口琴的上蓋',/^Rounded harmonica cover/],
   curtainring:['窗簾掛環的外圈',/^Worn brass curtain ring/],
-  dater:['日期章的握柄',/^Turned date stamp handle/]
+  dater:['日期章的握柄',/^Turned date stamp handle/],
+  magnifier:['放大鏡的鏡面',/^Round pocket magnifier lens/],
+  darner:['補襪木蛋的曲面',/^Turned wooden darning egg/],
+  pedal:['踏板外側的橡膠',/^Outer rubber pedal block/]
 };
 
 export function mountInk(article, item, signal) {
@@ -213,6 +216,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

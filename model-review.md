@@ -77,7 +77,12 @@
 - [窗簾環的外圈與吊掛構造](https://commons.wikimedia.org/wiki/File:Medieval_to_Post_Medieval,_Complete_curtain_fitting_(ring)_(FindID_627355).jpg)
 - [可調式橡膠日期章](https://collection.sciencemuseumgroup.org.uk/objects/co8405957/collection-of-personal-papers)
 
+- [折疊放大鏡的金屬殼與轉軸](https://stichtinghistorischemicroscopie.nl/en/other/folding-magnifier-8x-sm-509/)
+- [補襪木蛋的木質曲面與握柄](https://emuseum.tempe.gov/objects/74294/darning-egg)
+- [自行車踏板的雙面橡膠與金屬軸](https://mkspedal.com/?q=en%2Fproduct%2Fnode%2F111)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
