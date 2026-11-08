@@ -65,7 +65,12 @@
 - [鋼筆筆蓋與筆夾](https://collections.oldstatehouse.com/objects/3577/pen-black-fountain)
 - [鋼製別針的線圈與扣頭](https://collection.sciencemuseumgroup.org.uk/objects/co120905/bunch-of-steel-safety-pins-europe-1880-1920)
 
+- [鞋拔的曲面與柄端](https://sammlung.mak.at/en/collect/shoehorn_19663)
+- [五一骨牌的凹點與分隔線](https://www.londonmuseum.org.uk/collections/v/object-124270/domino/)
+- [冠形瓶蓋的摺邊與密封墊](https://patents.google.com/patent/US468258A/en)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

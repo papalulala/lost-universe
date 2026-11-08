@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=thirty';
+import { mountInk } from './ink.js?v=thirty-three';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -34,11 +34,14 @@ const items = [
   {id:'coin',title:'磨薄的硬幣',tag:'衣袋裡的東西',story:'那枚硬幣的邊緣磨得很滑，我閉著眼也摸得出來。月台上的販賣機把它退回來兩次。我把它擱在出幣口旁，車來了，就忘了把它拿起來。'},
   {id:'clothespin',title:'咬著一根棉線的衣夾',tag:'做到一半的東西',story:'收床單時，我把一枚木衣夾擱在陽台欄杆上。它還咬著從床單角落扯下來的一截線。夜裡我想起那枚衣夾，出去一看，欄杆上只剩一塊淺淺的印子。'},
   {id:'pencap',title:'落在借書桌上的筆蓋',tag:'離開後才發現',story:'我把還書日期抄在借閱單上，鋼筆順手塞回胸袋。走到樓下，手往口袋一摸，指尖染了一點墨。筆蓋大概還在桌上，跟那張借閱單一起。'},
-  {id:'safetypin',title:'替裙襬撐了一晚的別針',tag:'做到一半的東西',story:'出門前裙襬開了線，我從抽屜摸出一枚別針，從內側扣上。回家時裙襬又垂下來了。我扶著牆，一階一階往回找。掌心最後沾上的，只有剝落的漆。'}
+  {id:'safetypin',title:'替裙襬撐了一晚的別針',tag:'做到一半的東西',story:'出門前裙襬開了線，我從抽屜摸出一枚別針，從內側扣上。回家時裙襬又垂下來了。我扶著牆，一階一階往回找。掌心最後沾上的，只有剝落的漆。'},
+  {id:'shoehorn',title:'門邊少了一支鞋拔',tag:'離開後才發現',story:'門背後有一個釘子，鞋拔掛在那裡，開門時總會碰一下。搬家的那天我兩手抱著紙箱，門一開，竟然沒有聲音。'},
+  {id:'domino',title:'五點對一點的骨牌',tag:'做到一半的東西',story:'那局只差一張牌。桌腳不平，我趁他倒茶，把手裡的五一塞到桌腳底下。隔週再去，桌子換了地方，地板上只有一塊淺色的方印。'},
+  {id:'bottlecap',title:'被撬翹一角的瓶蓋',tag:'衣袋裡的東西',story:'我們在堤岸開了兩瓶汽水。她撿起被撬翹的瓶蓋當成籌碼，說下一局要贏回來。回家洗外套前，我摸遍口袋，只找得到一枚磨薄的硬幣。'}
 ];
 
 const trails = {
-  key:['搬家後留下的東西','film','spoon'],
+  key:['搬家後留下的東西','shoehorn','film'],
   postcard:['還沒寄出的那句話','envelope','notebook'],
   film:['如果能再多留一格','postcard','tape'],
   spoon:['舊廚房還留著什麼？','matchbox','film'],
@@ -67,7 +70,10 @@ const trails = {
   coin:['車一來，有什麼沒跟上？','ticket','luggage'],
   clothespin:['被扯鬆的那一截線','spool','thimble'],
   pencap:['合上書前，拿什麼記住這一頁？','bookmark','notebook'],
-  safetypin:['裙襬後來用什麼縫上？','thimble','spool']
+  safetypin:['裙襬後來用什麼縫上？','thimble','spool'],
+  shoehorn:['搬走那天，原本掛著的東西','key','luggage'],
+  domino:['下一局拿什麼當籌碼？','bottlecap','coin'],
+  bottlecap:['小小一枚，原本要派什麼用場？','domino','coin']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -78,7 +84,7 @@ const frame = document.querySelector('#frame');
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=thirty').catch(() => null);
+const modelModule = import('./scene.js?v=thirty-three').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -245,6 +251,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 

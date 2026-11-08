@@ -28,7 +28,10 @@ const surfaces = {
   coin:['硬幣的幣面',/^Worn coin face/],
   clothespin:['衣夾的上半片木面',/^Upper wooden jaw/],
   pencap:['筆蓋的外壁',/^Fountain pen cap barrel/],
-  safetypin:['別針的扣頭',/^Folded safety pin clasp/]
+  safetypin:['別針的扣頭',/^Folded safety pin clasp/],
+  shoehorn:['鞋拔的弧面',/^Curved shoehorn shell/],
+  domino:['骨牌的點數面',/^Worn domino face/],
+  bottlecap:['瓶蓋的頂面',/^Crimped bottle cap crown/]
 };
 
 export function mountInk(article, item, signal) {
@@ -204,4 +207,5 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
