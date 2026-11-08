@@ -18,7 +18,7 @@ const wash = new THREE.ShaderMaterial({
 
 export async function floatModel(view, still, id, index, signal, refined) {
   if (signal.aborted) return;
-  const {scene:model} = await loader.loadAsync('./'+id+'.glb'+(refined ? '?v=ink-study' : ''));
+  const {scene:model} = await loader.loadAsync('./'+id+'.glb'+(refined ? '?v=paper-objects' : ''));
   const originalMaterials = new Set();
   model.traverse(object => { if (object.isMesh) originalMaterials.add(object.material); });
   originalMaterials.forEach(material => material.dispose());
@@ -79,3 +79,4 @@ export async function floatModel(view, still, id, index, signal, refined) {
     renderer.render(scene,camera);
   });
 }
+
