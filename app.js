@@ -45,7 +45,7 @@ const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=doodle').catch(() => null);
+const modelModule = import('./scene.js?v=fit-model').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;

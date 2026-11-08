@@ -38,6 +38,8 @@ export async function floatModel(view, still, id, index, signal, refined) {
   pivot.add(orientation);
   orientation.add(model);
   const bounds = new THREE.Box3().setFromObject(model);
+  const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
+  const clearance = radius + .19; // Allow for the ink outline and vertical drift.
   model.position.sub(bounds.getCenter(new THREE.Vector3()));
   if (id === 'film') orientation.rotation.y = Math.PI;
   else orientation.rotation.x = Math.PI/2;
@@ -81,8 +83,11 @@ export async function floatModel(view, still, id, index, signal, refined) {
     const width = view.clientWidth;
     const height = view.clientHeight;
     if (!width || !height) return;
-    camera.top = 2.1*height/width;
+    const aspect = width/height;
+    camera.top = Math.max(clearance,2.1/aspect);
     camera.bottom = -camera.top;
+    camera.right = camera.top*aspect;
+    camera.left = -camera.right;
     camera.updateProjectionMatrix();
     renderer.setSize(width,height);
     still.hidden = true;
