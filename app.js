@@ -81,10 +81,11 @@ function route() {
 }
 addEventListener('hashchange',route);
 route();
-import('./scene.js').then(({floatModel}) => {
+import('./scene.js?v=ink-frame').then(({floatModel}) => {
   items.forEach((item,index) => {
     const article = entries.get(item.id).article;
     floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index).catch(() => {});
   });
 }).catch(() => {});
+
 
