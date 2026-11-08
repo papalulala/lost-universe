@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/addons/GLTFLoader.js';
 const loader = new GLTFLoader();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const paper = new THREE.MeshBasicMaterial({color:0xfffefa});
+const softInk = new THREE.MeshBasicMaterial({color:0x666c66});
 const edge = new THREE.LineBasicMaterial({color:0x272a28,transparent:true,opacity:.77});
 const wash = new THREE.ShaderMaterial({
   side:THREE.BackSide,
@@ -15,9 +16,9 @@ const wash = new THREE.ShaderMaterial({
   fragmentShader:`void main() { gl_FragColor = vec4(0.15,0.16,0.15,1.0); }`
 });
 
-export async function floatModel(view, still, id, index, signal) {
+export async function floatModel(view, still, id, index, signal, refined) {
   if (signal.aborted) return;
-  const {scene:model} = await loader.loadAsync('./'+id+'.glb');
+  const {scene:model} = await loader.loadAsync('./'+id+'.glb'+(refined ? '?v=ink-study' : ''));
   const originalMaterials = new Set();
   model.traverse(object => { if (object.isMesh) originalMaterials.add(object.material); });
   originalMaterials.forEach(material => material.dispose());
@@ -42,6 +43,10 @@ export async function floatModel(view, still, id, index, signal) {
   const meshes = [];
   model.traverse(object => { if (object.isMesh) meshes.push(object); });
   for (const mesh of meshes) {
+    if (mesh.name.startsWith('Ink_contour') || mesh.name.startsWith('Ink contour')) {
+      mesh.material = softInk;
+      continue;
+    }
     mesh.material = paper;
     mesh.add(new THREE.Mesh(mesh.geometry,wash));
     mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry,32),edge));

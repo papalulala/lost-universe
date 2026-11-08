@@ -35,14 +35,20 @@ const trails = {
   stamp:['做到一半的東西','notebook','tape'],
   eraser:['衣袋裡的東西','button','ticket']
 };
+const keyChoices = [
+  {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
+  {label:'手還記得它在哪裡',destination:'spoon',companion:'comb',arrival:'到了新家，煮湯時還是伸手去拉原本那一格抽屜。'}
+];
+const refined = new Set(['key','film','spoon']);
 const byId = new Map(items.map((item,index) => [item.id,{...item,number:String(index+1).padStart(2,'0')}]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=twelve').catch(() => null);
+const modelModule = import('./scene.js?v=branches').catch(() => null);
 let current;
 let pinned = false;
 let nextFrame;
+let returnToKey;
 
 function reveal(entry, lock = false) {
   pinned = Boolean(entry && lock);
@@ -62,10 +68,11 @@ function reveal(entry, lock = false) {
 function mount(item,index) {
   const article = document.createElement('article');
   article.className = 'floating';
+  article.dataset.item = item.id;
   article.innerHTML = `
     <button class="object-button" type="button" aria-expanded="false" aria-controls="story-${item.id}">
       <span class="model" aria-hidden="true"></span>
-      <img class="model-still" alt="" src="./${item.id}.png">
+      <img class="model-still" alt="" src="./${item.id}.png${refined.has(item.id) ? '?v=ink-study' : ''}">
       <span class="object-id" aria-hidden="true">${item.number}</span>
     </button>
     <p class="glimpse" aria-hidden="true"></p>
@@ -73,7 +80,7 @@ function mount(item,index) {
       <h2></h2><p></p>
       <details><summary>背面的話</summary><p></p><small>示範留言</small></details>
       <button type="button" class="story-link">留一行回聲</button>
-      <button type="button" class="follow"></button>
+      <div class="story-trails"></div>
     </section>`;
   const button = article.querySelector('button');
   const info = article.querySelector('.object-info');
@@ -86,12 +93,29 @@ function mount(item,index) {
   info.querySelector('details').hidden = !item.reply;
   info.querySelector('details p').textContent = item.reply ?? '';
   const [label,...neighbors] = trails[item.id];
-  const follow = info.querySelector('.follow');
-  follow.textContent = '沿著線索走 · ' + label;
-  follow.onclick = () => {
-    render([item.id,...neighbors],item.id);
-    entries.get(item.id).button.focus();
-  };
+  const choices = info.querySelector('.story-trails');
+  function action(text, handler) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'follow';
+    button.textContent = text;
+    button.onclick = handler;
+    choices.append(button);
+  }
+  if (item.id === 'key') {
+    keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
+  } else {
+    action('沿著線索走 · ' + label,() => {
+      render([item.id,...neighbors],item.id);
+      entries.get(item.id).button.focus();
+    });
+    if (keyChoices.some(choice => choice.destination === item.id)) {
+      action('回到鑰匙旁',() => {
+        render(returnToKey ?? ['key','postcard','film'],'key');
+        entries.get('key').info.querySelector('.follow').focus();
+      });
+    }
+  }
   article.querySelector('.story-link').onclick = () => openEcho(item);
   entries.set(item.id,entry);
   objects.append(article);
@@ -111,12 +135,34 @@ function mount(item,index) {
     }
   });
   const {signal} = modelScope;
-  modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal)).catch(() => {});
+  modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal,refined.has(item.id))).catch(() => {});
 }
 
-function render(ids, selected) {
+function chooseKeyTrail(choice) {
+  const ids = Array.from(objects.children,article => article.dataset.item);
+  returnToKey ??= ids;
+  const others = [choice.destination,choice.companion];
+  render(ids.map(id => id === 'key' ? id : others.shift()),undefined,true);
+  const entry = entries.get(choice.destination);
+  const glimpse = entry.article.querySelector('.glimpse');
+  glimpse.textContent = choice.arrival;
+  glimpse.removeAttribute('aria-hidden');
+  entry.button.setAttribute('aria-describedby',glimpse.id = 'arrival-' + choice.destination);
+  entry.article.classList.add('arrived');
+  entry.button.focus({preventScroll:true});
+  entry.article.scrollIntoView({block:'nearest',behavior:'instant'});
+}
+
+function render(ids, selected, branch = false) {
   reveal();
+  if (!branch && selected !== 'key') returnToKey = undefined;
   for (const [id,entry] of entries) {
+    entry.article.classList.remove('arrived');
+    entry.button.removeAttribute('aria-describedby');
+    const glimpse = entry.article.querySelector('.glimpse');
+    const item = byId.get(id);
+    glimpse.textContent = item.title + ' · ' + item.story.split('。')[0] + '。';
+    glimpse.setAttribute('aria-hidden','true');
     if (ids.includes(id)) continue;
     entry.modelScope.abort();
     entry.article.remove();
@@ -129,7 +175,7 @@ function render(ids, selected) {
     else mount(byId.get(id),index);
   }
   reveal(entries.get(selected),Boolean(selected));
-  if (!selected && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!selected && !branch && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     nextFrame?.cancel();
     nextFrame = objects.animate([{opacity:.1,filter:'blur(10px)'},{opacity:1,filter:'blur(0)'}],{duration:650,easing:'ease-out'});
   }
@@ -141,6 +187,7 @@ document.addEventListener('pointerdown',event => {
 function route() {
   const id = location.hash.slice(1);
   if (entries.has(id)) reveal(entries.get(id),true);
+  else if (id === 'key') render(['key','postcard','film'],'key');
   else if (byId.has(id)) render([id,...trails[id].slice(1)],id);
   else render(['key','postcard','film']);
 }
