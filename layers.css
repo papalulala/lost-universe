@@ -2,6 +2,8 @@
 #frame::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 56% 36%,#fafaf7 2%,#eceeea 66%,#e4e8e4)}
 #frame .frame-title{position:relative;z-index:2;width:100%;max-width:none;margin:0;border:0;padding:clamp(14px,3vw,32px) clamp(16px,5vw,64px) 3px;pointer-events:none}
 .frame-title .brand{pointer-events:auto}
+#frame .frame-title{justify-content:flex-start;gap:clamp(20px,4vw,56px)}
+.title-intro{margin:0;color:#48534c;font:clamp(20px,2.2vw,30px)/1.32 IntroBrush,IntroBrushTraditional,serif;letter-spacing:.02em}
 #objects{flex:1;min-height:0;align-content:center;width:min(100%,1440px);margin-inline:auto}
 .frame-hint{position:relative;pointer-events:none;padding-block:10px}
 #frame .frame-controls{padding-bottom:max(18px,env(safe-area-inset-bottom))}
@@ -13,6 +15,9 @@
   .object-button{max-height:34dvh}
 }
 @media(max-width:720px){
+  #frame .frame-title{flex-direction:column;align-items:flex-start;gap:7px}
   #objects{grid-template-columns:1fr;padding-inline:12px}
   .object-button{width:min(100%,280px,34dvh);aspect-ratio:1.7}
 }
+@font-face{font-family:IntroBrush;src:url('./intro-brush.ttf') format('truetype');font-display:swap}
+@font-face{font-family:IntroBrushTraditional;src:url('./intro-brush-traditional.ttf') format('truetype');font-display:swap}
