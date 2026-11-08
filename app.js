@@ -41,7 +41,7 @@ const keyChoices = [
   {label:'手還記得它在哪裡',destination:'spoon',companion:'comb',arrival:'到了新家，煮湯時還是伸手去拉原本那一格抽屜。'}
 ];
 const refined = new Set(['key','film','spoon','postcard','comb','button']);
-const byId = new Map(items.map((item,index) => [item.id,{...item,number:String(index+1).padStart(2,'0')}]));
+const byId = new Map(items.map(item => [item.id,item]));
 const objects = document.querySelector('#objects');
 const entries = new Map();
 const visited = new Set();
@@ -77,7 +77,6 @@ function mount(item,index) {
     <button class="object-button" type="button" aria-expanded="false" aria-controls="story-${item.id}">
       <span class="model" aria-hidden="true"></span>
       <img class="model-still" alt="" src="./${item.id}.png${refined.has(item.id) ? '?v=paper-objects' : ''}">
-      <span class="object-id" aria-hidden="true">${item.number}</span>
     </button>
     <p class="glimpse" aria-hidden="true"></p>
     <section class="object-info" id="story-${item.id}" inert>

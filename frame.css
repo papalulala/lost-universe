@@ -10,7 +10,6 @@
 .object-button:focus-visible{outline-offset:-8px}
 .model,.model-still{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .model-still{object-fit:contain;filter:grayscale(1) brightness(1.3) contrast(.85)}
-.object-id{position:absolute;bottom:4px;left:50%;translate:-50%;color:#67716b;font:11px ui-monospace,monospace;letter-spacing:.16em}
 .object-info{position:absolute;left:4%;right:4%;top:calc(100% - 3px);padding:14px 16px;color:#373e39;background:#fafbf6f5;border-top:1px solid #87968c;box-shadow:0 12px 32px #64736814;visibility:hidden;opacity:0;transform:translateY(22px) scaleY(.95);filter:blur(9px);clip-path:ellipse(78% 65% at 50% -65%);pointer-events:none;transition:opacity .57s,transform .57s,filter .57s,clip-path .57s,visibility 0s .57s}
 .surfaced .object-info{visibility:visible;opacity:1;transform:none;filter:none;clip-path:ellipse(100% 100% at 50% 50%);pointer-events:auto;transition-delay:0s;transition-duration:.35s}
 .object-info h2{margin:0 0 6px;font-size:1.24rem}
