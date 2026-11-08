@@ -15,7 +15,7 @@
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
-<link rel="stylesheet" href="./weather.css?v=four-skies">
+<link rel="stylesheet" href="./weather.css?v=foreground">
 <script type="module" src="./app.js?v=thirty-nine"></script>
 <script type="module" src="./opening.js?v=mist-letter"></script>
 </head>
@@ -26,7 +26,8 @@
   <button class="skip">跳過開場</button>
 </div>
 <main id="frame" aria-label="失物宇宙" data-weather="calm">
-  <div class="weather" aria-hidden="true"><div class="weather-fog"></div><div class="weather-rain"></div><div class="weather-light"></div><div class="weather-wind"></div><div class="weather-snow"></div></div>
+  <div class="weather" aria-hidden="true"><div class="weather-fog"></div><div class="weather-rain"></div><div class="weather-light"></div></div>
+  <div class="weather weather-front" aria-hidden="true"><div class="weather-fog"></div><div class="weather-wind"></div><div class="weather-snow"></div></div>
   <header class="frame-title">
     <a class="brand" href="./">失物宇宙</a>
     <p class="title-intro">點開一件失物，讀它的故事。<br>循著線索，看看下一件會漂到哪裡。</p>
@@ -48,6 +49,7 @@
 </main>
 </body>
 </html>
+
 
 
 
