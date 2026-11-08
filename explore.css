@@ -7,7 +7,6 @@
 .object-button.rotatable{cursor:grab;touch-action:pan-y pinch-zoom;user-select:none}
 .object-button.rotating{cursor:grabbing}
 .arrived:not(.surfaced) .glimpse{opacity:1;filter:none;transform:none}
-.arrived .model,.arrived .model-still{animation:arrival .9s ease both}
 .object-button::after{content:'';position:absolute;inset:67% 21% 10%;border:1px solid #778a8055;border-radius:50%;opacity:0;transform:scale(.7);transition:opacity .4s,transform .65s;pointer-events:none}
 .near .object-button::after,.surfaced .object-button::after{opacity:1;transform:scale(1)}
 #catalog{width:min(475px,calc(100% - 32px));max-height:80vh;background:#f5f6f0;color:#353e38;border:1px solid #8d9691;padding:22px}

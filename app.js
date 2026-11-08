@@ -48,7 +48,6 @@ const visited = new Set();
 const modelModule = import('./scene.js?v=shared-ink').catch(() => null);
 let current;
 let pinned = false;
-let nextFrame;
 let returnToKey;
 
 function reveal(entry, lock = false) {
@@ -68,7 +67,11 @@ function reveal(entry, lock = false) {
 
 function mount(item,index) {
   const article = document.createElement('article');
-  article.className = 'floating';
+  article.className = 'floating emerging';
+  article.addEventListener('animationend', event => {
+    if (event.animationName === 'fog-drift') article.classList.remove('emerging');
+  });
+  article.style.setProperty('--fog-delay', `${index * 130}ms`);
   article.dataset.item = item.id;
   article.innerHTML = `
     <button class="object-button" type="button" aria-expanded="false" aria-controls="story-${item.id}">
@@ -177,10 +180,6 @@ function render(ids, selected, branch = false) {
     else mount(byId.get(id),index);
   }
   reveal(entries.get(selected),Boolean(selected));
-  if (!selected && !branch && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    nextFrame?.cancel();
-    nextFrame = objects.animate([{opacity:.1,filter:'blur(10px)'},{opacity:1,filter:'blur(0)'}],{duration:650,easing:'ease-out'});
-  }
 }
 
 document.addEventListener('pointerdown',event => {
@@ -200,5 +199,6 @@ document.querySelector('#drift').onclick = () => {
   const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
   render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
 };
+
 
 

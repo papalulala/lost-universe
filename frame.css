@@ -19,7 +19,12 @@
 .object-info summary,.story-link{color:#495952;cursor:pointer}
 .object-info details p{margin:5px 0 0}
 .story-link{display:inline-block;margin-top:6px}
-body:not(.opening-active) #objects{animation:arrival 1.4s ease both}
+.object-button::before{content:'';position:absolute;z-index:1;inset:4% 3% 12%;background:radial-gradient(ellipse,#fff 12%,#ffffffdb 38%,#ffffff80 58%,transparent 76%);pointer-events:none;opacity:0}
+body:not(.opening-active) .emerging .object-button::before{animation:fog-drift 1.8s var(--fog-delay) ease-out both}
+body:not(.opening-active) .emerging .model,body:not(.opening-active) .emerging .model-still{animation:fog-reveal 1.65s var(--fog-delay) ease-out both}
+@keyframes fog-drift{0%{opacity:.94;transform:translate(-8%,9%) scale(.86)}45%{opacity:.72}100%{opacity:0;transform:translate(13%,-13%) scale(1.2)}}
+@keyframes fog-reveal{0%{opacity:0;transform:translateY(13px) scale(.96);filter:blur(8px)}55%{opacity:.68}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.object-button::before{opacity:0}}
 @media(max-width:720px){
   #frame{width:calc(100% - 24px);margin-top:4px}
   #objects{grid-template-columns:1fr;min-height:0;padding-inline:12px}
@@ -28,3 +33,4 @@ body:not(.opening-active) #objects{animation:arrival 1.4s ease both}
   .object-info{position:relative;left:auto;right:auto;top:auto;max-height:0;overflow:hidden;padding-block:0;border-top-width:0;transition-property:opacity,transform,filter,clip-path,visibility,max-height,padding}
   .surfaced .object-info{max-height:28rem;padding-block:14px;border-top-width:1px}
 }
+
