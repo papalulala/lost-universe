@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=forty-two';
+import { mountInk } from './ink.js?v=forty-five';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -46,14 +46,17 @@ const items = [
   {id:'dater',title:'還停在昨天的日期章',tag:'做到一半的東西',story:'閉館前我把日期章轉回昨天，替一張漏蓋的借閱單補印。關燈時忘了把它轉回來。隔天桌上換了新印臺，昨天的日期和那枚舊章一起不見了。'},
   {id:'magnifier',title:'翻開後忘了合上的放大鏡',tag:'做到一半的東西',story:'地圖上的巷名太小，我把放大鏡從殼裡翻出來，壓住折痕。走到那條巷子，我想再核對一次小字，才想起放大鏡還攤在桌上。'},
   {id:'darner',title:'替襪跟撐住一個洞的補襪木蛋',tag:'做到一半的東西',story:'襪跟破了，我把木蛋塞進去，把洞撐成一個小圓。那天只補好一隻。搬走針線籃時，沒補完的那隻還反扣在椅背上，後來連木蛋也沒帶回來。'},
-  {id:'pedal',title:'外角磨掉一塊的踏板',tag:'離開後才發現',story:'右腳踏板的外角曾擦到矮牆，少了一小塊橡膠。師傅換下來，順手擱在修車攤的木箱上。我騎出巷口才記起，本來想把舊的帶回去。'}
+  {id:'pedal',title:'外角磨掉一塊的踏板',tag:'離開後才發現',story:'右腳踏板的外角曾擦到矮牆，少了一小塊橡膠。師傅換下來，順手擱在修車攤的木箱上。我騎出巷口才記起，本來想把舊的帶回去。'},
+  {id:'measure',title:'還露著一截的捲尺',tag:'做到一半的東西',story:'改袖口前，她借我的小捲尺量手腕，叫我別縮手。試完我先去趕車。回家想補記尺寸，摸遍口袋，才想起捲尺留在裁縫桌上，還露著一截。'},
+  {id:'yoyo',title:'還沒捲回去的溜溜球',tag:'做到一半的東西',story:'操場快關門時，我蹲在台階上解繩結。好不容易把最後一圈鬆開，有人在鐵門那頭喊我。我把繩頭往球身一擱，想說明天再慢慢捲。隔天只找到了那級台階。'},
+  {id:'teatin',title:'蓋子總闔不緊的茶罐',tag:'搬家後留下的東西',story:'倒完最後一撮茶葉，我又按了按罐蓋。它還是翹起一小截，像以前每一次那樣。搬家後打開紙箱，裡面有兩個杯子，沒有那只空罐。'}
 ];
 
 const trails = {
   key:['搬家後留下的東西','shoehorn','film'],
   postcard:['還沒寄出的那句話','envelope','notebook'],
   film:['那扇窗還留著什麼？','curtainring','postcard'],
-  spoon:['舊廚房還留著什麼？','teaball','matchbox'],
+  spoon:['舊廚房還留著什麼？','teatin','teaball'],
   button:['穿過那四個孔的針','thimble','notebook'],
   ticket:['車門關上前，還有什麼沒拿？','coin','luggage'],
   comb:['車窗倒影裡少了什麼？','mirror','ticket'],
@@ -74,7 +77,7 @@ const trails = {
   glasses:['得湊近才看得清','magnifier','mirror'],
   mitten:['藏在拇指旁的一針','thimble','button'],
   bell:['修車攤上還留了什麼？','pedal','whistle'],
-  spool:['那截線的另一頭','shuttle','clothespin'],
+  spool:['那截沒捲回去的線','yoyo','shuttle'],
   whistle:['聲音一停，手還會去找','harmonica','bell'],
   coin:['車一來，有什麼沒跟上？','ticket','luggage'],
   clothespin:['被扯鬆的那一截線','spool','thimble'],
@@ -90,8 +93,11 @@ const trails = {
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
   magnifier:['那行小字後來看清了嗎？','luggage','glasses'],
-  darner:['手指摸得到的那幾針','thimble','mitten'],
-  pedal:['磨損的地方，還記得哪一次碰撞？','bell','shoehorn']
+  darner:['動針以前，先比一比尺寸','measure','thimble'],
+  pedal:['磨損的地方，還記得哪一次碰撞？','bell','shoehorn'],
+  measure:['繞過一圈，還露著一截','watch','spool'],
+  yoyo:['還有一截線沒收好','spool','shuttle'],
+  teatin:['倒完最後一撮茶之後','teaball','spoon']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -102,7 +108,7 @@ const frame = document.querySelector('#frame');
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=forty-two').catch(() => null);
+const modelModule = import('./scene.js?v=forty-five').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -269,6 +275,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 

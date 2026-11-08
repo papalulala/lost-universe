@@ -81,7 +81,12 @@
 - [補襪木蛋的木質曲面與握柄](https://emuseum.tempe.gov/objects/74294/darning-egg)
 - [自行車踏板的雙面橡膠與金屬軸](https://mkspedal.com/?q=en%2Fproduct%2Fnode%2F111)
 
+- [收納式圓捲尺與尺帶](https://utsic.utoronto.ca/wpm_instrument/diametercircumference-tape-measure/)
+- [木製溜溜球的兩瓣輪廓](https://collections.museumsvictoria.com.au/items/250470)
+- [金屬茶罐的鉸鏈與罐蓋](https://www.horniman.ac.uk/object/1992.287/)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

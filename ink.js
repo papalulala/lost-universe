@@ -40,7 +40,10 @@ const surfaces = {
   dater:['日期章的握柄',/^Turned date stamp handle/],
   magnifier:['放大鏡的鏡面',/^Round pocket magnifier lens/],
   darner:['補襪木蛋的曲面',/^Turned wooden darning egg/],
-  pedal:['踏板外側的橡膠',/^Outer rubber pedal block/]
+  pedal:['踏板外側的橡膠',/^Outer rubber pedal block/],
+  measure:['捲尺露出的尺帶',/^Extended measuring ribbon/],
+  yoyo:['溜溜球的兩側木面',/^Turned wooden yo-yo cheek/],
+  teatin:['茶罐的金屬外壁',/^Rounded tea tin body/]
 };
 
 export function mountInk(article, item, signal) {
@@ -216,6 +219,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 
