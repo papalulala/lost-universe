@@ -1,0 +1,9 @@
+#frame{isolation:isolate;margin-top:24px;background:none}
+#frame::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 56% 36%,#fafaf7 2%,#eceeea 66%,#e4e8e4)}
+#frame .frame-title{position:relative;z-index:2;border:0;padding:18px 22px 3px;pointer-events:none}
+.frame-title .brand{pointer-events:auto}
+.frame-label,.frame-hint{position:relative;pointer-events:none}
+@media(max-width:720px){
+  #frame{margin-top:12px}
+  #frame .frame-title{padding:14px 13px 3px}
+}
