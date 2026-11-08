@@ -13,7 +13,10 @@ const surfaces = {
   eraser:['橡皮擦的紙套',/^Thin folded paper sleeve|^Lifted sleeve corner/],
   mirror:['手鏡的鏡面',/^Recessed mirror glass/],
   bookmark:['書籤的紙面',/^Folded bookmark paper/],
-  envelope:['信封的背面與封口',/^Folded envelope back|^Torn open flap/]
+  envelope:['信封的背面與封口',/^Folded envelope back|^Torn open flap/],
+  luggage:['行李牌的地址卡',/^Recessed luggage label/],
+  earbuds:['左耳的外殼',/^Earbud housing left/],
+  pencil:['鉛筆的木桿',/^Short hexagonal pencil barrel/]
 };
 
 export function mountInk(article, item, signal) {

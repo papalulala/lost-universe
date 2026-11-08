@@ -19,6 +19,9 @@
 | 袖珍手鏡 | 橢圓鏡面嵌入捲邊金屬框，短柄收窄，玻璃邊緣留一道細痕。鏡面可畫。 |
 | 對摺的書籤 | 紙面沿舊摺痕彎起，留一筆鉛筆線。紙面可畫。 |
 | 拆封的信封 | 紙面有摺縫，封口沿不規則的撕邊掀起。背面與封口可畫。 |
+| 地址寫了一半的行李牌 | 有縫線、地址卡和彎折的皮帶。地址卡可畫。 |
+| 繞成圈的有線耳機 | 分岔線接到兩個有細格柵的耳塞，主線繞成一圈並接到插頭。左耳外殼可畫。 |
+| 削到握不住的短鉛筆 | 六角木桿接到削尖的木頭與石墨，桿上留有磨痕。木桿可畫。 |
 
 ## 本輪照片參考
 
@@ -38,6 +41,9 @@
 - [橢圓手鏡與金屬框](https://www.gigiliving.com/SHOP/kan2848.html)
 - [手製紙書籤館藏](https://victoriancollections.net.au/items/68312776675df5c02ffec8a8)
 - [摺疊信封館藏](https://www.londonmuseum.org.uk/collections/v/object-969057/envelope/)
+- [有縫線與地址卡的皮革行李牌](https://www.jackgeorges.com/products/voyager-leather-luggage-tag-7101)
+- [有線耳機的分岔線與插頭](https://www.ebay.com/itm/357116494412)
+- [木鉛筆與石墨的交界](https://www.hmnh.harvard.edu/tangible-things-objects-other-harvard-collections-harvard-museum-natural-history)
 
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
 

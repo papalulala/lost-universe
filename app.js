@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=fifteen';
+import { mountInk } from './ink.js?v=eighteen';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -19,7 +19,10 @@ const items = [
   {id:'eraser',title:'紙套翹起的橡皮擦',tag:'衣袋裡的東西',story:'我總用拇指把紙套的角壓平。放學跑回家，手伸進制服口袋，裡面只剩一小片擦下來的紙。'},
   {id:'mirror',title:'袖珍手鏡',tag:'離開後才發現',story:'鏡面有一道細痕，照到右耳時，我總會把鏡子往左偏一下。離開旅館後，我想看一眼頭髮，伸進袋裡的手只碰到空的鏡套。'},
   {id:'bookmark',title:'對摺的書籤',tag:'做到一半的東西',story:'我把書籤對摺，在摺痕旁畫一道鉛筆線，記住故事停在哪一行。還書時忘了抽出它。下次借到同一本書，那一頁平平地攤開，書籤已經不在了。'},
-  {id:'envelope',title:'拆封的信封',tag:'離開後才發現',story:'拆信時，我沿著封口撕出一排毛邊。信帶回家了。後來想抄回信地址，才想起信封還擱在郵局的窗台。'}
+  {id:'envelope',title:'拆封的信封',tag:'離開後才發現',story:'拆信時，我沿著封口撕出一排毛邊。信帶回家了。後來想抄回信地址，才想起信封還擱在郵局的窗台。'},
+  {id:'luggage',title:'地址寫了一半的行李牌',tag:'離開後才發現',story:'地址卡寫到門牌前，我就被催著上車。到家才看見行李箱的提把上只剩一道勒痕。幸好還沒寫到門牌。我甚至不知道該不該盼有人撿到。'},
+  {id:'earbuds',title:'繞成圈的有線耳機',tag:'做到一半的東西',story:'耳機線在分岔下面繞成一個鬆鬆的圈，我一直懶得理順。磁帶翻面時，我把耳機擱在車窗下。下車後，手裡只有收好的隨身聽。'},
+  {id:'pencil',title:'削到握不住的短鉛筆',tag:'衣袋裡的東西',story:'鉛筆短到只能用兩根手指捏著，我還是把它放進制服口袋。放學後想在車票背面記一句話，才發現口袋裡只有橡皮擦屑。'}
 ];
 
 const trails = {
@@ -28,16 +31,19 @@ const trails = {
   film:['做到一半的東西','postcard','tape'],
   spoon:['搬家後留下的東西','key','film'],
   button:['衣袋裡的東西','eraser','ticket'],
-  ticket:['離開後才發現','comb','umbrella'],
+  ticket:['離開後才發現','luggage','comb'],
   comb:['離開後才發現','mirror','ticket'],
   notebook:['做到一半的東西','bookmark','postcard'],
   umbrella:['離開後才發現','comb','ticket'],
-  tape:['做到一半的東西','film','notebook'],
+  tape:['做到一半的東西','earbuds','film'],
   stamp:['做到一半的東西','notebook','tape'],
-  eraser:['衣袋裡的東西','button','ticket'],
+  eraser:['衣袋裡的東西','pencil','button'],
   mirror:['離開後才發現','comb','umbrella'],
   bookmark:['做到一半的東西','notebook','tape'],
-  envelope:['離開後才發現','postcard','ticket']
+  envelope:['離開後才發現','postcard','ticket'],
+  luggage:['離開後才發現','ticket','envelope'],
+  earbuds:['做到一半的東西','tape','film'],
+  pencil:['衣袋裡的東西','eraser','button']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'},
@@ -197,6 +203,8 @@ document.querySelector('#drift').onclick = () => {
   const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
   render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
 };
+
+
 
 
 
