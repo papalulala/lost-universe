@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js?v=lost-messages';
-import { mountInk } from './ink.js?v=sixty';
+import { mountInk } from './ink.js?v=sixty-three';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -64,7 +64,10 @@ const items = [
   {id:'compass',title:'忘了把蓋子闔上的指南針',tag:'做到一半的東西',story:'走到步道分岔口，我掀開指南針的蓋子，把它和地圖一起擱在石欄上。朋友在前面喊我，我抓起地圖跟上去。等我回到岔口，石欄已經曬熱了。地圖還在手裡，那枚指南針卻不見了。'},
   {id:'accesscard',title:'刷不回那扇門的感應卡',tag:'搬家後留下的東西',story:'大樓換成刷卡進出後，我把感應卡和鑰匙放在同一個口袋。搬走那天，我在門邊的小平台上放下卡片，騰出手去提紙箱。到新家才發現，口袋裡只剩鑰匙硌著手。'},
   {id:'phone',title:'訊息還沒送出的手機',tag:'做到一半的東西',story:'我打了「我到了」，還沒按送出，就把手機擱在候車椅上，起身去接人。後來想補一句「你在哪裡」，手伸進袋裡，只摸到一團沒解開的耳機線。'},
-  {id:'instantphoto',title:'拍下空長椅的拍立得照片',tag:'離開後才發現',story:'相紙剛吐出來時，椅背只是一團白。我把它擱在旁邊的矮牆上等顯影，跑回屋裡拿筆，想在底下寫日期。再出來時，相紙不見了，長椅還空著。'}
+  {id:'instantphoto',title:'拍下空長椅的拍立得照片',tag:'離開後才發現',story:'相紙剛吐出來時，椅背只是一團白。我把它擱在旁邊的矮牆上等顯影，跑回屋裡拿筆，想在底下寫日期。再出來時，相紙不見了，長椅還空著。'},
+  {id:'snips',title:'還張著口的裁縫剪',tag:'做到一半的東西',story:'剪到袖口那一圈，她叫我先別動。我把剪刀擱下去取別針，回來時桌上的布已經捲起來了。後來拆開那卷布，找到了剪落的線頭，沒找到剪刀。'},
+  {id:'foldrule',title:'只折回兩節的木尺',tag:'做到一半的東西',story:'搬書櫃之前，我用木尺量門框。折回第二節時，有人在樓下按喇叭。我把它擱在門邊，先下樓開門。回來時書櫃已經搬走，門邊只剩一道鉛筆記號。'},
+  {id:'roomtag',title:'刻著五十五號的房牌',tag:'離開後才發現',story:'退房前我把鑰匙從鬆掉的圈上取下，先還到櫃檯。那枚房牌還在窗邊，我本來想一起帶下樓。車開到下一站，我才想起窗台上的五十五號。'}
 ];
 
 const trails = {
@@ -108,9 +111,9 @@ const trails = {
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
   magnifier:['沿著地圖上的折痕','compass','luggage'],
-  darner:['動針以前，先比一比尺寸','measure','thimble'],
+  darner:['收拾針線以前','snips','thimble'],
   pedal:['騎出去試車以前','bikepump','bell'],
-  measure:['繞過一圈，還露著一截','watch','spool'],
+  measure:['尺寸還沒記下來','foldrule','watch'],
   yoyo:['還有一截線沒收好','slingshot','spool'],
   teatin:['倒完最後一撮茶之後','teaball','spoon'],
   padlock:['那扇門後來怎麼開？','accesscard','key'],
@@ -123,11 +126,14 @@ const trails = {
   travelcup:['匆匆離開前，還有什麼沒收好？','teaball','ticket'],
   bikepump:['再騎一段就知道了','pedal','bell'],
   shoelast:['腳跟還記得的形狀','shoehorn','darner'],
-  deskbell:['最後那一聲，誰聽見了？','bell','harmonica'],
+  deskbell:['退房後，還有什麼沒還？','roomtag','key'],
   compass:['走到一半，還想記下什麼？','magnifier','postcard'],
   accesscard:['口袋裡還剩什麼？','key','ticket'],
   phone:['那句話後來有寄出去嗎？','postcard','envelope'],
-  instantphoto:['畫面還沒看清的時候','film','glasses']
+  instantphoto:['畫面還沒看清的時候','film','glasses'],
+  snips:['布捲起來以後','shuttle','safetypin'],
+  foldrule:['量過的那道門框','measure','pencil'],
+  roomtag:['退房時，手裡還剩什麼？','key','deskbell']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -140,7 +146,7 @@ const weatherNames = {calm:'薄霧',fog:'起霧',wind:'海風',snow:'微雪',cle
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=sixty').catch(() => null);
+const modelModule = import('./scene.js?v=sixty-three').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -309,6 +315,7 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
 
 
 

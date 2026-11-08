@@ -52,4 +52,6 @@
 
 .title-context{display:flex;align-items:center;flex-wrap:wrap;gap:4px clamp(10px,2vw,26px)}
 #weather-label{color:#303a37;font-size:clamp(12px,1.1vw,15px);font-weight:700;white-space:nowrap}
-.title-intro img{display:block;width:clamp(155px,14.4vw,200px);max-width:100%;height:auto}
+.title-intro img{display:block;width:clamp(170px,15.8vw,220px);max-width:100%;height:auto}
+
+@media(max-width:720px){#frame .brand{width:clamp(176px,26.4vw,299px);max-width:100%}}

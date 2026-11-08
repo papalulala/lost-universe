@@ -105,7 +105,12 @@
 - [手機的螢幕與機身](https://naturalhistory.si.edu/visit/accessibility/audio-and-visual-description/cellphone-unseen-connections-visual-description-tour)
 - [拍立得相紙的白框與影像區](https://americanhistory.si.edu/collections/object/nmah_689070)
 
+- [裁縫剪的環形握柄與金屬刀片](https://collection.sciencemuseumgroup.org.uk/objects/co69391/folding-scissors)
+- [折疊木尺的刻度與鉸接](https://americanhistory.si.edu/collections/object/nmah_1819743)
+- [旅館房牌的外形與吊環](https://www.thehenryford.org/collections/explore/artifact/365287)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 
