@@ -7,9 +7,9 @@
 <meta name="description" content="三件失物在灰白的霧裡漂流。靠近一點，就能讀到它們的故事。">
 <title>失物宇宙｜漂流檔案</title>
 <link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="./mist.css?v=serif-title">
+<link rel="stylesheet" href="./mist.css?v=geometric">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
-<link rel="stylesheet" href="./layers.css?v=weather-label">
+<link rel="stylesheet" href="./layers.css?v=geometric">
 <link rel="stylesheet" href="./explore.css?v=quiet-objects">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
@@ -21,7 +21,7 @@
 <body>
 <div class="opening" hidden>
   <div class="mist" aria-hidden="true"></div>
-  <div class="opening-title" aria-hidden="true"><span>失</span><span class="turn"><span class="correct">物</span><span class="wrong">誤</span></span><span>宇宙</span></div>
+  <div class="opening-title" aria-hidden="true"><img class="opening-base" src="./lost-universe-geometric.svg" alt=""><span class="turn"><img class="correct" src="./lost-universe-geometric.svg" alt=""><img class="wrong" src="./mistake-universe-geometric.svg" alt=""></span></div>
   <button class="skip">跳過開場</button>
 </div>
 <main id="frame" aria-label="失物宇宙" data-weather="calm">
@@ -30,8 +30,8 @@
   <div class="weather" aria-hidden="true"><div class="weather-fog"></div><div class="weather-rain"></div><div class="weather-light"></div></div>
   <div class="weather weather-front" aria-hidden="true"><div class="weather-fog"></div><div class="weather-wind"></div><div class="weather-snow"></div></div>
   <header class="frame-title">
-    <a class="brand" href="./">失物宇宙</a>
-    <div class="title-context"><p class="title-intro">點開一件失物，讀它的故事。<br>循著線索，看看下一件會漂到哪裡。</p><strong id="weather-label" role="status">薄霧</strong></div>
+    <a class="brand" href="./"><img src="./lost-universe-geometric.svg" alt="失物宇宙"></a>
+    <div class="title-context"><p class="title-intro"><img src="./geometric-intro.svg" alt="點開一件失物，讀它的故事。循著線索，看看下一件會漂到哪裡。"></p><strong id="weather-label" role="status">薄霧</strong></div>
   </header>
   <div id="objects"></div>
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
@@ -50,6 +50,7 @@
 </main>
 </body>
 </html>
+
 
 
 

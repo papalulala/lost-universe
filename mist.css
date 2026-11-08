@@ -48,3 +48,9 @@ body:not(.opening-active) #view,body:not(.opening-active) #still{animation:arriv
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
 
 
+.brand{width:clamp(160px,24vw,272px)}
+.brand img,.opening-base{display:block;width:100%;height:auto}
+.opening-title{display:block;width:clamp(208px,52vw,616px);aspect-ratio:456/116}
+.opening-base{clip-path:polygon(0 0,25.66% 0,25.66% 100%,0 100%,0 0,49.78% 0,100% 0,100% 100%,49.78% 100%,49.78% 0)}
+.opening-title .turn{position:absolute;display:block;inset:0 50.22% 0 25.66%;overflow:hidden}
+.opening-title .turn img{position:absolute;top:0;left:-106.36%;width:414.55%;max-width:none;height:auto}
