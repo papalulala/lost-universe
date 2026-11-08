@@ -151,31 +151,4 @@ document.querySelector('#drift').onclick = () => {
   const elsewhere = items.filter(item => visited.has(item.id) && !entries.has(item.id));
   render([...unseen,...elsewhere].slice(0,3).map(item => item.id));
 };
-const indexPanel = document.querySelector('#catalog');
-const search = indexPanel.querySelector('input');
-const results = indexPanel.querySelector('ul');
-function filterIndex() {
-  const term = search.value.trim();
-  const matches = [...byId.values()].filter(item => [item.title,item.number,item.tag,trails[item.id][0]].some(value => value.includes(term)));
-  results.replaceChildren(...matches.map(item => {
-    const row = document.createElement('li');
-    const link = document.createElement('a');
-    link.href = '#' + item.id;
-    link.textContent = item.number + '　' + item.title;
-    link.onclick = () => {
-      indexPanel.close();
-      if (location.hash === link.hash) route();
-    };
-    row.append(link);
-    return row;
-  }));
-  indexPanel.querySelector('output').textContent = matches.length ? '' : '沒有找到符合的失物。';
-}
-search.addEventListener('input',filterIndex);
-document.querySelector('#open-catalog').onclick = () => {
-  filterIndex();
-  indexPanel.showModal();
-  search.focus();
-};
-
 

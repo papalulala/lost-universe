@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./mist.css">
 <link rel="stylesheet" href="./frame.css?v=ink-frame">
-<link rel="stylesheet" href="./layers.css">
+<link rel="stylesheet" href="./layers.css?v=open-space">
 <link rel="stylesheet" href="./explore.css">
 <link rel="preload" href="./title-brush.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="./error-brush.ttf" as="font" type="font/ttf" crossorigin>
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
-<script type="module" src="./app.js?v=echo"></script>
+<script type="module" src="./app.js?v=open-space"></script>
 <script type="module" src="./opening.js"></script>
 </head>
 <body>
@@ -25,17 +25,10 @@
   <button class="skip">跳過開場</button>
 </div>
 <main id="frame" aria-label="失物宇宙">
-  <header class="frame-title"><a class="brand" href="./">失物宇宙</a><span class="edition">漂流檔案 / VOL. 01</span></header>
-  <p class="frame-label">第一輯 · 十二件漂流中的失物</p>
+  <header class="frame-title"><a class="brand" href="./">失物宇宙</a></header>
   <div id="objects"></div>
   <p class="frame-hint">靠近一件失物，讀它的故事。</p>
-  <div class="frame-controls"><button id="drift">漂去遠方</button><button id="open-catalog">漂流索引</button></div>
-  <dialog id="catalog" aria-labelledby="catalog-title">
-    <form method="dialog"><button aria-label="關閉索引">關閉</button></form>
-    <h2 id="catalog-title">漂流索引</h2>
-    <label>名稱、編號或線索 <input type="search"></label>
-    <output></output><ul></ul>
-  </dialog>
+  <div class="frame-controls"><button id="drift">漂去遠方</button></div>
   <dialog id="echo" aria-labelledby="echo-title">
     <form method="dialog"><button aria-label="關閉回聲簿">關閉</button></form>
     <h2 id="echo-title">回聲簿</h2>
