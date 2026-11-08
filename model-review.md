@@ -97,7 +97,12 @@
 - [摺疊杯的多層金屬杯身](https://olympic-museum-artefacts.zetcom.net/en/collection/item/122086/)
 - [自行車打氣筒的筒身與握柄](https://www.americanhistory.si.edu/collections/object/nmah_1347419)
 
+- [木鞋楦的鞋尖與足背輪廓](https://collections.yorkarchaeologicaltrust.co.uk/s/collections/item/133706)
+- [櫃檯鈴的金屬圓頂與按鈕](https://emuseum.mfah.org/objects/35223/service-bell)
+- [口袋指南針的錶殼與刻度盤](https://www.rmg.co.uk/collections/objects/rmgc-object-42650)
+
 新物件先找正面與斜側面的照片，量出主要比例，再挑一個故事提到的特徵。匯出後用網站實際顯示尺寸檢查，優先修正剪影和接縫。若採用外部模型，公開前逐件記下來源、作者、授權與修改內容。
+
 
 
 

@@ -52,7 +52,10 @@ const surfaces = {
   plugfuse:['保險絲的瓷頭',/^Glazed porcelain fuse crown/],
   slingshot:['彈弓的木柄',/^Natural forked slingshot handle/],
   travelcup:['摺疊杯的金屬外圈',/^Telescoping travel cup ring/],
-  bikepump:['打氣筒的筒身',/^Portable pump barrel/]
+  bikepump:['打氣筒的筒身',/^Portable pump barrel/],
+  shoelast:['鞋楦的木面',/^Carved wooden shoe last/],
+  deskbell:['櫃檯鈴的圓頂',/^Pressed desk bell dome/],
+  compass:['指南針的刻度盤',/^Recessed compass dial/]
 };
 
 export function mountInk(article, item, signal) {
@@ -62,7 +65,7 @@ export function mountInk(article, item, signal) {
   const panel = document.createElement('details');
   panel.className = 'ink-panel';
   panel.innerHTML = `
-    <summary>打開塗鴉畫板</summary>
+    <summary>為失物上色</summary>
     <p>在畫板上畫幾筆，圖案會貼到${label}。</p>
     <canvas width="256" height="256" aria-label="${label}塗鴉畫板"></canvas>
     <div class="ink-tools">
@@ -228,6 +231,7 @@ export function mountInk(article, item, signal) {
   blank();
   load();
 }
+
 
 
 

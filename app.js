@@ -1,5 +1,5 @@
-import { openEcho } from './echo.js';
-import { mountInk } from './ink.js?v=fifty-four';
+import { openEcho } from './echo.js?v=lost-messages';
+import { mountInk } from './ink.js?v=fifty-seven';
 
 const items = [
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
@@ -58,7 +58,10 @@ const items = [
   {id:'plugfuse',title:'留在停電那晚的瓷保險絲',tag:'搬家後留下的東西',story:'那晚樓梯間的燈全滅了。電工把換下來的瓷保險絲交給我，我擱在電表下的小木板上，想留著給房東看。後來搬走前經過那裡，燈亮著，木板上卻只有一圈灰。'},
   {id:'slingshot',title:'橡皮筋鬆垂的木彈弓',tag:'做到一半的東西',story:'我從兩根岔枝裡挑了比較歪的那根，磨了一下午。橡皮筋綁好，垂在兩個枝頭之間。我把它擱在後院的矮牆上，回屋找剪刀。再出來時，牆上只剩兩小堆木屑。'},
   {id:'travelcup',title:'沒壓回去的摺疊杯',tag:'離開後才發現',story:'在車站喝完水，我把杯子放在飲水機旁，等它滴乾再壓回去。聽見廣播就跑去月台。上車後我從袋裡摸出扁扁的杯蓋，才想起杯身還一圈一圈張著。'},
-  {id:'bikepump',title:'軟管捲不起來的打氣筒',tag:'離開後才發現',story:'前輪沒氣，我在巷口蹲下來打了幾下。那截軟管彎久了，總是翹出來。我把打氣筒橫放在階梯上，騎出去試車。回來時，台階上只剩一道輪胎印。'}
+  {id:'bikepump',title:'軟管捲不起來的打氣筒',tag:'離開後才發現',story:'前輪沒氣，我在巷口蹲下來打了幾下。那截軟管彎久了，總是翹出來。我把打氣筒橫放在階梯上，騎出去試車。回來時，台階上只剩一道輪胎印。'},
+  {id:'shoelast',title:'留在修鞋攤的木鞋楦',tag:'離開後才發現',story:'父親修鞋時總讓我扶住鞋楦，他自己用指腹把鞋跟一點一點推平。收攤那天我只顧著把修好的鞋裝箱。再掀開帆布，桌面上還有個鞋尖形的淺印。'},
+  {id:'deskbell',title:'櫃檯上那一下沒人應的鈴',tag:'離開後才發現',story:'退房那天，我把手指放在鈴頂上，按了一下。樓上有人拖動椅子，櫃檯還是空的。旅館歇業後我回去幫忙收東西，櫃檯上只剩一圈沒落灰的地方。'},
+  {id:'compass',title:'忘了把蓋子闔上的指南針',tag:'做到一半的東西',story:'走到步道分岔口，我掀開指南針的蓋子，把它和地圖一起擱在石欄上。朋友在前面喊我，我抓起地圖跟上去。等我回到岔口，石欄已經曬熱了。地圖還在手裡，那枚指南針卻不見了。'}
 ];
 
 const trails = {
@@ -92,16 +95,16 @@ const trails = {
   clothespin:['被扯鬆的那一截線','spool','thimble'],
   pencap:['借閱單上的那一天','dater','bookmark'],
   safetypin:['裙襬後來用什麼縫上？','thimble','spool'],
-  shoehorn:['最後一次回頭看門','padlock','doorstop'],
+  shoehorn:['留下來的鞋跟形狀','shoelast','padlock'],
   domino:['下一局拿什麼當籌碼？','bottlecap','coin'],
   bottlecap:['手一鬆，原本捏著的東西去哪了？','cankey','domino'],
   teaball:['杯子旁少了什麼？','travelcup','spoon'],
   shuttle:['布邊還牽著哪一截線？','spool','clothespin'],
   doorstop:['門闔上以後','shoehorn','key'],
-  harmonica:['最後那一聲，停在哪裡？','castanets','tape'],
+  harmonica:['最後那一聲，停在哪裡？','deskbell','castanets'],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
-  magnifier:['那行小字後來看清了嗎？','luggage','glasses'],
+  magnifier:['沿著地圖上的折痕','compass','luggage'],
   darner:['動針以前，先比一比尺寸','measure','thimble'],
   pedal:['騎出去試車以前','bikepump','bell'],
   measure:['繞過一圈，還露著一截','watch','spool'],
@@ -115,7 +118,10 @@ const trails = {
   plugfuse:['燈熄掉後，手摸到哪裡？','matchbox','key'],
   slingshot:['還垂著一截，沒來得及收好','yoyo','castanets'],
   travelcup:['匆匆離開前，還有什麼沒收好？','teaball','ticket'],
-  bikepump:['再騎一段就知道了','pedal','bell']
+  bikepump:['再騎一段就知道了','pedal','bell'],
+  shoelast:['腳跟還記得的形狀','shoehorn','darner'],
+  deskbell:['最後那一聲，誰聽見了？','bell','harmonica'],
+  compass:['走到一半，還想記下什麼？','magnifier','postcard']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -128,7 +134,7 @@ const weatherNames = {calm:'薄霧',fog:'起霧',wind:'海風',snow:'微雪',cle
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=fifty-four').catch(() => null);
+const modelModule = import('./scene.js?v=fifty-seven').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -164,7 +170,7 @@ function mount(item,index) {
     <p class="glimpse" aria-hidden="true"></p>
     <section class="object-info" id="story-${item.id}" inert>
       <h2></h2><p></p>
-      <button type="button" class="story-link">背面的話</button>
+      <button type="button" class="story-link">失物留言</button>
       <div class="story-trails"></div>
     </section>`;
   const button = article.querySelector('button');
@@ -297,6 +303,8 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+
+
 
 
 

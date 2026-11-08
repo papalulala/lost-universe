@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=fifty-four"></script>
+<script type="module" src="./app.js?v=fifty-seven"></script>
 <script type="module" src="./opening.js?v=mist-letter"></script>
 </head>
 <body>
@@ -37,19 +37,21 @@
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
   <div class="frame-controls"><button id="drift">漂去遠方</button></div>
   <dialog id="echo" aria-labelledby="echo-title">
-    <form method="dialog"><button aria-label="關閉回聲簿">關閉</button></form>
-    <h2 id="echo-title">回聲簿</h2>
+    <form method="dialog"><button aria-label="關閉失物留言">關閉</button></form>
+    <h2 id="echo-title">失物留言</h2>
     <p role="status"></p>
-    <ul aria-label="訪客的回聲"></ul>
+    <ul aria-label="訪客留言"></ul>
     <form class="echo-form" hidden>
       <label>這件失物，讓你想起了什麼？<textarea maxlength="280" rows="4" required></textarea></label>
       <small>免登入。送出後，這句話會公開顯示。</small>
-      <button type="submit">留下回聲</button>
+      <button type="submit">送出留言</button>
     </form>
   </dialog>
 </main>
 </body>
 </html>
+
+
 
 
 

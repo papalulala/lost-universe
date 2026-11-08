@@ -13,12 +13,12 @@ export function openEcho(item) {
   const list = dialog.querySelector('ul');
   const submit = form.querySelector('button');
   const url = endpoint ? new URL('echoes/' + item.id, endpoint) : null;
-  dialog.querySelector('h2').textContent = item.title + '的回聲簿';
+  dialog.querySelector('h2').textContent = item.title + '｜失物留言';
   list.replaceChildren();
   form.reset();
   submit.disabled = false;
   form.hidden = !url;
-  status.textContent = url ? '正在聽這件失物的回聲。' : '回聲簿尚未開放。';
+  status.textContent = url ? '正在讀取留言。' : '失物留言尚未開放。';
   dialog.showModal();
   dialog.addEventListener('close', () => controller.abort(), {once:true});
   function append(row) {
@@ -36,7 +36,7 @@ export function openEcho(item) {
       rows.forEach(append);
       status.textContent = rows.length ? '' : '這裡還很安靜。';
     } catch {
-      if (!signal.aborted) status.textContent = '暫時讀不到回聲，請稍後再試。';
+      if (!signal.aborted) status.textContent = '暫時讀不到留言，請稍後再試。';
     }
   }
   form.onsubmit = async event => {
@@ -51,7 +51,7 @@ export function openEcho(item) {
       if (!response.ok) throw Error(String(response.status));
       input.value = '';
       list.prepend(Object.assign(document.createElement('li'),{textContent:body}));
-      if (!signal.aborted) status.textContent = '你的回聲已留下。';
+      if (!signal.aborted) status.textContent = '你的留言已留下。';
     } catch (error) {
       if (!signal.aborted) status.textContent = error.message === '429' ? '先等一會兒，再留下一行。' : '這行還沒送出，請稍後再試。';
     } finally {
@@ -60,3 +60,4 @@ export function openEcho(item) {
   };
   load();
 }
+
