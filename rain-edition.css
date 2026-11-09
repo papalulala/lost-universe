@@ -40,3 +40,5 @@ body{--rain-title-font:ui-monospace,"Cascadia Mono","Noto Sans TC",monospace;bac
 @media(prefers-reduced-motion:reduce){#frame .emerging .object-button::before{animation:none}}
 
 #frame, #frame *, #frame *::before, #frame *::after{font-family:var(--rain-title-font)}
+
+#frame[data-window-step]:not([data-window-step="4"]):not([data-window-step="5"]) #scene-explore{display:none}
