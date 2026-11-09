@@ -68,3 +68,13 @@
 
 .site-name .brand{display:block}
 .site-tagline{margin:.3rem 0 0;color:#394640;font:600 clamp(.8rem,1.7vw,1rem)/1.55 "Noto Serif TC","PMingLiU",serif;letter-spacing:.06em}
+
+.object-info .story-trails{display:grid;gap:.5rem;margin:.35rem 0 .95rem}
+.object-info .trail-label{margin:0}
+.object-info .trail-choice p{margin:0 0 .4rem}
+#frame .object-info .trail-primary{width:100%;min-height:44px;background:#344740;color:#fff;border:1px solid #60786e;font-weight:700;padding:.55rem .8rem}
+#frame .object-info .trail-primary:hover{background:#476356}
+.arrived:not(.surfaced) .object-button{animation:arrival-light .8s ease-out}
+#frame .arrived:not(.surfaced) .glimpse{z-index:2;color:#182923;background:#f0f5ee;font-weight:700}
+@keyframes arrival-light{from{filter:drop-shadow(0 0 12px #9cbfb1)}to{filter:none}}
+@media(prefers-reduced-motion:reduce){.arrived:not(.surfaced) .object-button{animation:none}}

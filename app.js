@@ -211,11 +211,12 @@ function mount(item,index) {
     </button>
     <p class="glimpse" aria-hidden="true"></p>
     <section class="object-info" id="story-${item.id}" inert>
-      <h2></h2><p></p>
-      <button type="button" class="story-link">失物留言</button>
+      <h2></h2>
       <div class="story-trails" role="group" aria-labelledby="trail-${item.id}">
-        <p class="trail-label" id="trail-${item.id}">尋找下一件失物</p>
+        <p class="trail-label" id="trail-${item.id}">下一件的線索</p>
       </div>
+      <p class="object-story"></p>
+      <button type="button" class="story-link">失物留言</button>
     </section>`;
   const button = article.querySelector('button');
   const info = article.querySelector('.object-info');
@@ -224,7 +225,7 @@ function mount(item,index) {
   button.setAttribute('aria-label',item.title);
   article.querySelector('h2').textContent = item.title;
   article.querySelector('.glimpse').textContent = item.title + ' · ' + item.story.split('。')[0] + '。';
-  info.querySelector('p').textContent = item.story;
+  info.querySelector('.object-story').textContent = item.story;
   const [label,...neighbors] = trails[item.id];
   const choices = info.querySelector('.story-trails');
   function action(text, handler) {
@@ -236,10 +237,23 @@ function mount(item,index) {
     choices.append(button);
     return button;
   }
+  function clue(text, handler) {
+    const row = document.createElement('div');
+    row.className = 'trail-choice';
+    const copy = document.createElement('p');
+    copy.textContent = text;
+    copy.id = 'clue-' + item.id + '-' + choices.children.length;
+    const button = action('沿線索找下一件 →',handler);
+    button.classList.add('trail-primary');
+    button.setAttribute('aria-describedby',copy.id);
+    row.append(copy,button);
+    choices.append(row);
+    return {copy,button};
+  }
   if (item.id === 'key') {
-    keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
+    keyChoices.forEach(choice => clue(choice.label,() => chooseKeyTrail(choice)));
   } else {
-    entry.trailButton = action(label,() => followTrail(item.id,neighbors[0]));
+    entry.clue = clue(label,() => followTrail(item.id,neighbors[0]));
     if (keyChoices.some(choice => choice.destination === item.id)) {
       action('回到鑰匙旁',() => {
         render(returnToKey ?? ['key','postcard','film'],'key');
@@ -274,7 +288,7 @@ function mount(item,index) {
   modelModule.then(module => module?.floatModel(article.querySelector('.model'),article.querySelector('img'),item.id,index,signal)).catch(() => {});
 }
 
-function followTrail(source, destination, branch = false) {
+function followTrail(source, destination, branch = false, arrival) {
   const ids = Array.from(objects.children,article => article.dataset.item);
   if (!ids.includes(destination)) {
     const nextSlot = (ids.indexOf(source) + 1) % ids.length;
@@ -282,20 +296,24 @@ function followTrail(source, destination, branch = false) {
   }
   const entry = entries.get(source);
   entry.article.classList.remove('near');
-  entry.button.focus({preventScroll:true});
   render(ids,undefined,branch);
   connectMemory(source,destination);
+  markArrival(destination,arrival);
 }
 
 function chooseKeyTrail(choice) {
   returnToKey ??= Array.from(objects.children,article => article.dataset.item);
-  followTrail('key',choice.destination,true);
-  const entry = entries.get(choice.destination);
+  followTrail('key',choice.destination,true,choice.arrival);
+}
+
+function markArrival(destination,arrival = byId.get(destination).title) {
+  const entry = entries.get(destination);
   const glimpse = entry.article.querySelector('.glimpse');
-  glimpse.textContent = choice.arrival;
+  glimpse.textContent = '下一件在這裡 · ' + arrival;
   glimpse.removeAttribute('aria-hidden');
-  entry.button.setAttribute('aria-describedby',glimpse.id = 'arrival-' + choice.destination);
+  entry.button.setAttribute('aria-describedby',glimpse.id = 'arrival-' + destination);
   entry.article.classList.add('arrived');
+  entry.button.focus();
 }
 
 function render(ids, selected, branch = false) {
@@ -753,9 +771,10 @@ function updateMemoryControls() {
   for (const memory of collectedMemories) {
     const [destination,label] = memoryExits[memory.ids[0]];
     for (const id of memory.ids) {
-      const button = entries.get(id)?.trailButton;
-      if (!button) continue;
-      button.textContent = label;
+      const clue = entries.get(id)?.clue;
+      if (!clue) continue;
+      const {copy,button} = clue;
+      copy.textContent = label;
       button.onclick = () => {
         latestMemory = undefined;
         followTrail(id,destination);
