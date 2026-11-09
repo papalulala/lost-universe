@@ -1,5 +1,5 @@
 import { openEcho } from './echo.js?v=lost-messages';
-import { mountInk } from './ink.js?v=seventy-eight';
+import { mountInk } from './ink.js?v=paint-first';
 
 const items = [
   {id:'shadow',title:'留在牆上的影子',tag:'影子',story:'巷口的燈亮起來時，我正抬手跟你道別。你說我的影子比我先揮手。我退回去試了一次，燈已經熄了，手還舉在半空。'},

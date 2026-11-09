@@ -98,7 +98,7 @@ export function mountInk(article, item, signal) {
     <button type="button" data-reset>還原公開圖案</button>
     <p role="status"></p>
     <button type="button" data-save>公開這幅塗鴉</button>`;
-  article.querySelector('.story-trails').before(panel);
+  article.querySelector('.story-link').before(panel);
   const canvas = panel.querySelector('canvas');
   const ctx = canvas.getContext('2d',{willReadFrequently:true});
   if (!ctx) return;
