@@ -1,7 +1,10 @@
 import { openEcho } from './echo.js?v=lost-messages';
-import { mountInk } from './ink.js?v=seventy-five';
+import { mountInk } from './ink.js?v=seventy-eight';
 
 const items = [
+  {id:'shadow',title:'留在牆上的影子',tag:'影子',story:'巷口的燈亮起來時，我正抬手跟你道別。你說我的影子比我先揮手。我退回去試了一次，燈已經熄了，手還舉在半空。'},
+  {id:'sprout',title:'窗縫裡的小樹芽',tag:'小樹芽',story:'你把一粒種子塞進窗縫，叫我別急著掃掉。後來我每天開窗都避開那一角。搬家那早，兩片小葉剛好張開，還托著一點水。',weather:'clearing'},
+  {id:'smile',title:'忘在相紙外的微笑',tag:'微笑',story:'你說相片拍好了，我才笑出來。我們低頭看顯影的相紙，上面兩個人都端端正正。你用指甲在白邊劃了一下，說就把剛才那個笑留在這裡。'},
   {id:'key', title:'藍膠帶鑰匙', tag:'搬家後留下的東西',
     story:'搬家那天，我用藍膠帶把這把鑰匙和新家的分開。三年來，我一直把兩把掛在一起。\n\n上週經過那棟樓，大門已經換成刷卡的了。回家才發現，鑰匙圈上只剩新家的那把。'},
   {id:'postcard',weather:'wind', title:'沒寄出的明信片', tag:'寫到一半的東西',
@@ -83,6 +86,9 @@ const items = [
 ];
 
 const trails = {
+  shadow:['看看窗縫裡留下了什麼','sprout','smile'],
+  sprout:['看看那張拍慢了的照片','smile','shadow'],
+  smile:['循著牆上的影子走','shadow','sprout'],
   key:['搬家後留下的東西','shoehorn','film'],
   postcard:['還沒寄出的那句話','envelope','notebook'],
   film:['還沒來得及看清的畫面','instantphoto','curtainring'],

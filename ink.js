@@ -72,6 +72,9 @@ const surfaces = {
   needlecase:['木針筒的筒身',/^Turned wooden needle case tube/],
   photoslide:['幻燈片的影像窗',/^Recessed transparency window/],
   hanger:['衣架的木肩',/^Shaped wooden hanger shoulder/],
+  shadow:['影子的紙面',/^Unfolded shadow/],
+  sprout:['小樹芽的兩片葉子',/^Seed leaf/],
+  smile:['微笑的弧面',/^Curved porcelain smile/],
   tyrelever:['撬胎棒的金屬面',/^Forged steel tyre lever/],
   tally:['計數器的金屬外殼',/^Rounded mechanical tally counter shell/]
 };
