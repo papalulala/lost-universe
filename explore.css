@@ -65,3 +65,6 @@
   #frame[data-window-step="5"] #objects{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){#frame[data-window-step="4"] #window-set::after{animation:none}.turned .model-still{transition:none}}
+
+.site-name .brand{display:block}
+.site-tagline{margin:.3rem 0 0;color:#394640;font:600 clamp(.8rem,1.7vw,1rem)/1.55 "Noto Serif TC","PMingLiU",serif;letter-spacing:.06em}
