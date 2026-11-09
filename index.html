@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="./mist.css?v=enter-only">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
 <link rel="stylesheet" href="./layers.css?v=gray-weather-label">
-<link rel="stylesheet" href="./explore.css?v=shared-memories">
+<link rel="stylesheet" href="./explore.css?v=memory-archive">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=eleven-memories"></script>
+<script type="module" src="./app.js?v=memory-archive"></script>
 <script type="module" src="./opening.js?v=enter-only"></script>
 </head>
 <body>
@@ -45,8 +45,14 @@
   <div class="frame-controls"><button id="drift">漂去遠方</button></div>
   <div id="theater-controls" class="frame-controls" hidden>
     <p id="thread-status" role="status"></p>
-    <div id="memory-buttons"></div>
+    <button type="button" id="read-memory" hidden></button>
+    <button type="button" id="memory-archive-button" hidden></button>
   </div>
+  <dialog id="memory-archive" aria-labelledby="memory-archive-title">
+    <form method="dialog"><button>關閉</button></form>
+    <h2 id="memory-archive-title">拾得的往事</h2>
+    <ul></ul>
+  </dialog>
   <dialog id="thread-story" aria-labelledby="thread-title">
     <form method="dialog"><button>關閉</button></form>
     <h2 id="thread-title">你串起的往事</h2>

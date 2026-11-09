@@ -226,11 +226,12 @@ function mount(item,index) {
     button.textContent = text;
     button.onclick = handler;
     choices.append(button);
+    return button;
   }
   if (item.id === 'key') {
     keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
   } else {
-    action(label,() => followTrail(item.id,neighbors[0]));
+    entry.trailButton = action(label,() => followTrail(item.id,neighbors[0]));
     if (keyChoices.some(choice => choice.destination === item.id)) {
       action('回到鑰匙旁',() => {
         render(returnToKey ?? ['key','postcard','film'],'key');
@@ -287,6 +288,7 @@ function chooseKeyTrail(choice) {
 
 function render(ids, selected, branch = false) {
   threadLines.replaceChildren();
+  memoryStatus.textContent = '';
   reveal();
   if (!branch && selected !== 'key') returnToKey = undefined;
   for (const [id,entry] of entries) {
@@ -308,6 +310,8 @@ function render(ids, selected, branch = false) {
     else if (objects.children[index] !== existing.article) objects.insertBefore(existing.article,objects.children[index] ?? null);
   }
   reveal(entries.get(selected),Boolean(selected));
+  if (latestMemory && !latestMemory.ids.every(id => ids.includes(id))) latestMemory = undefined;
+  updateMemoryControls();
   const sceneKey = [...ids].sort().join(',');
   if (sceneKey !== weatherScene) {
     weatherScene = sceneKey;
@@ -344,6 +348,7 @@ document.querySelector('#drift').onclick = () => {
     for (const id of entries.keys()) visited.add(id);
     draw([...byId.keys()].filter(id => !visited.has(id) && !next.includes(id)));
   }
+  latestMemory = undefined;
   render(next);
 };
 const memories = [
@@ -554,7 +559,25 @@ const memories = [
 ];
 const memoryControls = document.querySelector('#theater-controls');
 const memoryStatus = document.querySelector('#thread-status');
-const memoryButtons = document.querySelector('#memory-buttons');
+const readMemoryButton = document.querySelector('#read-memory');
+const archiveButton = document.querySelector('#memory-archive-button');
+const archiveDialog = document.querySelector('#memory-archive');
+const archiveList = archiveDialog.querySelector('ul');
+const collectedMemories = [];
+let latestMemory;
+const memoryExits = {
+  ticket:['luggage','看看掉下的行李牌'],
+  harmonica:['earbuds','循著聲音去找耳機'],
+  tyrelever:['slingshot','看看矮牆旁的木彈弓'],
+  snips:['hanger','看看後台的木衣架'],
+  deskbell:['accesscard','看看另一張門禁卡'],
+  padlock:['luggage','看看箱上的行李牌'],
+  spoon:['travelcup','看看帶上路的杯子'],
+  film:['tape','看看窗邊的錄音帶'],
+  hanger:['ticket','看看沒有剪角的車票'],
+  pencap:['postcard','看看另一封寄出的消息'],
+  torch:['doorstop','看看那扇門旁的門擋']
+};
 const threadLines = document.querySelector('#thread-lines');
 const threadStory = document.querySelector('#thread-story');
 
@@ -585,25 +608,58 @@ function connectMemory(source,destination) {
     memoryStatus.textContent = `「${memory.title}」已串起兩件失物。`;
     return;
   }
+  collectedMemories.unshift(memory);
+  latestMemory = memory;
   memoryStatus.textContent = `「${memory.title}」可以閱讀了。`;
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = `讀這段往事｜${memory.title}`;
-  button.onclick = () => {
-    threadStory.querySelector('h2').textContent = memory.title;
-    const paragraphs = [memory.openings[memory.thread[0]],memory.scene,memory.endings[memory.thread[2]]].map(copy => {
-      const p = document.createElement('p');
-      p.textContent = copy;
-      return p;
-    });
-    threadStory.querySelector('.thread-copy').replaceChildren(...paragraphs);
-    threadStory.showModal();
-  };
-  memoryButtons.append(button);
+  updateMemoryControls();
 }
 
+function updateMemoryControls() {
+  readMemoryButton.hidden = !latestMemory;
+  readMemoryButton.textContent = latestMemory ? `讀這段往事｜${latestMemory.title}` : '';
+  archiveButton.hidden = !collectedMemories.length;
+  archiveButton.textContent = `拾得的往事 · ${collectedMemories.length}`;
+  memoryControls.hidden = !latestMemory && !collectedMemories.length;
+  for (const memory of collectedMemories) {
+    const [destination,label] = memoryExits[memory.ids[0]];
+    for (const id of memory.ids) {
+      const button = entries.get(id)?.trailButton;
+      if (!button) continue;
+      button.textContent = label;
+      button.onclick = () => {
+        latestMemory = undefined;
+        followTrail(id,destination);
+      };
+    }
+  }
+}
+
+function readMemory(memory) {
+  threadStory.querySelector('h2').textContent = memory.title;
+  const paragraphs = [memory.openings[memory.thread[0]],memory.scene,memory.endings[memory.thread[2]]].map(copy => {
+    const p = document.createElement('p');
+    p.textContent = copy;
+    return p;
+  });
+  threadStory.querySelector('.thread-copy').replaceChildren(...paragraphs);
+  threadStory.showModal();
+}
+
+readMemoryButton.onclick = () => readMemory(latestMemory);
+archiveButton.onclick = () => {
+  archiveList.replaceChildren(...collectedMemories.map(memory => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = memory.title;
+    button.onclick = () => {
+      archiveDialog.close();
+      readMemory(memory);
+    };
+    item.append(button);
+    return item;
+  }));
+  archiveDialog.showModal();
+};
+
 route();
-
-
-
-
