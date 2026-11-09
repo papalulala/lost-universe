@@ -88,11 +88,11 @@ const trails = {
   film:['還沒來得及看清的畫面','instantphoto','curtainring'],
   spoon:['吃完飯，罐裡還剩多少茶？','teatin','teaball'],
   button:['穿過那四個孔的針','thimble','notebook'],
-  ticket:['那個原本要剪掉的角','ticketpunch','coin'],
+  ticket:["票袋裡還有什麼？","coin","ticketpunch"],
   comb:['耳後還留著什麼？','hairclip','mirror'],
   notebook:['替讀到一半的地方做記號','bookmark','postcard'],
   umbrella:['一隻手撐傘，另一隻手找零錢','mitten','ticket'],
-  tape:['那句「等一下」，有人聽見嗎？','earbuds','film'],
+  tape:["倒帶後聽見誰？","harmonica","film"],
   stamp:['第三刀之後，還有一筆','notebook','tape'],
   eraser:['口袋裡剩下的一點碎屑','pencil','button'],
   mirror:['樓下是哪一聲鈴？','deskbell','umbrella'],
@@ -109,7 +109,7 @@ const trails = {
   bell:['修車攤上還留了什麼？','pedal','whistle'],
   spool:['那截沒捲回去的線','yoyo','shuttle'],
   whistle:['聲音一停，手還會去找','harmonica','bell'],
-  coin:['車一來，有什麼沒跟上？','ticket','luggage'],
+  coin:["喝口水再走","travelcup","luggage"],
   clothespin:['被扯鬆的那一截線','spool','thimble'],
   pencap:['手指上的那一點墨','inkbottle','dater'],
   safetypin:['裙襬後來用什麼縫上？','thimble','spool'],
@@ -119,7 +119,7 @@ const trails = {
   teaball:['喝茶以前，碗邊響過什麼？','spoon','spoon'],
   shuttle:['布邊還牽著哪一截線？','spool','clothespin'],
   doorstop:['舊門旁還擱著什麼？','padlock','shoehorn'],
-  harmonica:['最後那一聲，停在哪裡？','deskbell','castanets'],
+  harmonica:["下一拍由誰接？","castanets","deskbell"],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
   magnifier:['沿著地圖上的折痕','compass','luggage'],
@@ -129,13 +129,13 @@ const trails = {
   yoyo:['還有一截線沒收好','spinningtop','slingshot'],
   teatin:['最後一撮茶要放進哪裡？','teaball','spoon'],
   padlock:['哪張卡能開下一扇門？','accesscard','key'],
-  castanets:['散場後留下的聲音','foldingfan','harmonica'],
+  castanets:["把這一遍留下來","tape","harmonica"],
   cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin'],
   clothesbrush:['大衣掛起來以後','hanger','mitten'],
   hairclip:['耳邊少了什麼？','comb','earbuds'],
   plugfuse:['摸黑時擦亮的第一根火柴','vestacase','matchbox'],
   slingshot:['還垂著一截，沒來得及收好','yoyo','castanets'],
-  travelcup:['匆匆離開前，還有什麼沒收好？','teaball','ticket'],
+  travelcup:["廣播響起之後","ticket","teaball"],
   bikepump:['工具袋裡少了哪一件？','tyrelever','pedal'],
   shoelast:['腳跟還記得的形狀','shoehorn','darner'],
   deskbell:['鈴響以前，哪個房號還沒交回？','roomtag','key'],
@@ -347,6 +347,46 @@ document.querySelector('#drift').onclick = () => {
   render(next);
 };
 const memories = [
+  {
+    "title": "車開以前",
+    "ids": [
+      "ticket",
+      "coin",
+      "travelcup"
+    ],
+    "thread": [],
+    "openings": {
+      "ticket": "我把回程票折進報紙。妹妹說她已經會看月台號碼了，我就讓她領我過去。",
+      "coin": "販賣機把硬幣退回來兩次。妹妹看了看出幣口，問我：「它是不是不收舊的？」",
+      "travelcup": "摺疊杯卡在最後一圈。妹妹用兩隻手把它撐開，說她來接水，我只要拿好車票。"
+    },
+    "scene": "販賣機買不到水，我們到飲水機前共喝了一杯。廣播換了月台，妹妹比我先聽懂，拉著我往回跑。我們剛坐下，她就問：「你剛才是不是也不知道往哪裡走？」我點頭，把靠窗的位置讓給她。",
+    "endings": {
+      "ticket": "到了終點，站務員伸出手。我把報紙翻了兩遍，才想起上車後曾把票抽出來，塞進前座的椅袋。妹妹陪我回去找，那班車已經開走了。",
+      "coin": "回到家，我翻遍外套也沒摸到那枚硬幣。妹妹從口袋掏出一枚新的，放到桌上，說下次讓她投。",
+      "travelcup": "上車後我摸到杯蓋，才想起杯身還張在飲水機旁。妹妹問要不要回去拿。車窗外的月台已經開始往後退。"
+    }
+  },
+  {
+    "title": "錄到第三遍",
+    "ids": [
+      "harmonica",
+      "castanets",
+      "tape"
+    ],
+    "thread": [],
+    "openings": {
+      "harmonica": "弟弟一吹口琴就搶拍。我叫他看我的拇指，等它抬起來再吹。",
+      "castanets": "響板的繩結鬆了。我重綁一次，弟弟已經把同一句曲子吹了三遍。",
+      "tape": "我把錄音帶倒到空白處，叫弟弟離麥克風遠一點。他往後退，椅子在地上刮了一聲。"
+    },
+    "scene": "第三遍，弟弟吹到一半就沒氣了。我照舊打了兩下響板，等他吸一口氣把尾音補上。門外媽媽叫我們吃飯。他對著還在轉的錄音機說：「等一下，這遍有吹完。」",
+    "endings": {
+      "harmonica": "吃完飯，他跑回去找口琴，窗台上只有琴盒。他把空盒帶來給我，還比了個要我數拍子的手勢。",
+      "castanets": "第二天我去教室找響板，只找到一截繩頭。弟弟照舊等我數到二，這次我用手拍桌子。",
+      "tape": "搬家時，錄音機和卡帶分裝。我拆了三箱才找到錄音機，按下播放，裡頭是空的。那句「這遍有吹完」，我倒還記得他的停頓。"
+    }
+  },
   {
     "title": "坡頂才停下來",
     "ids": [
