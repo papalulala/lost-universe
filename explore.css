@@ -3,7 +3,7 @@
 .follow{display:block;margin-top:8px;font-size:.79rem;padding:5px 8px}
 .glimpse{position:absolute;top:calc(100% - 2px);left:5%;right:5%;margin:0;padding:8px 12px;color:#48534d;background:#fafbf5dd;font-size:.85rem;opacity:0;filter:blur(7px);transform:translateY(12px);pointer-events:none;transition:opacity .45s,filter .45s,transform .45s}
 .near:not(.surfaced) .glimpse{opacity:1;filter:none;transform:none;transition-delay:.18s}
-.object-info .trail-label{margin:10px 0 2px;font-size:.75rem;font-weight:700;color:#505b56}
+.object-info .trail-label{flex-basis:100%;margin:8px 0 0;font-size:.75rem;font-weight:700;color:#505b56}
 .story-trails .follow{margin-top:0}
 .story-trails{display:flex;flex-wrap:wrap;gap:6px}
 .object-button.rotatable{cursor:grab;touch-action:pan-y pinch-zoom;user-select:none}

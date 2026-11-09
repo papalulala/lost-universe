@@ -213,8 +213,9 @@ function mount(item,index) {
     <section class="object-info" id="story-${item.id}" inert>
       <h2></h2><p></p>
       <button type="button" class="story-link">失物留言</button>
-      <p class="trail-label" id="trail-${item.id}">尋找下一件失物</p>
-      <div class="story-trails" role="group" aria-labelledby="trail-${item.id}"></div>
+      <div class="story-trails" role="group" aria-labelledby="trail-${item.id}">
+        <p class="trail-label" id="trail-${item.id}">尋找下一件失物</p>
+      </div>
     </section>`;
   const button = article.querySelector('button');
   const info = article.querySelector('.object-info');
