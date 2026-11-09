@@ -96,7 +96,7 @@ const trails = {
   button:['穿過那四個孔的針','thimble','notebook'],
   ticket:["票袋裡還有什麼？","coin","ticketpunch"],
   comb:['耳後還留著什麼？','hairclip','mirror'],
-  notebook:['替讀到一半的地方做記號','bookmark','postcard'],
+  notebook:['看看地圖上那行小字','magnifier','postcard'],
   umbrella:['一隻手撐傘，另一隻手找零錢','mitten','ticket'],
   tape:["倒帶後聽見誰？","harmonica","film"],
   stamp:['第三刀之後，還有一筆','notebook','tape'],
@@ -128,7 +128,7 @@ const trails = {
   harmonica:["下一拍由誰接？","castanets","deskbell"],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
-  magnifier:['沿著地圖上的折痕','compass','luggage'],
+  magnifier:['在岔路口辨一辨方向','compass','luggage'],
   darner:['收拾針線以前','snips','thimble'],
   pedal:['換完踏板，先替前輪打氣','bikepump','bell'],
   measure:['尺寸還沒記下來','foldrule','watch'],
@@ -145,7 +145,7 @@ const trails = {
   bikepump:['工具袋裡少了哪一件？','tyrelever','pedal'],
   shoelast:['腳跟還記得的形狀','shoehorn','darner'],
   deskbell:['鈴響以前，哪個房號還沒交回？','roomtag','key'],
-  compass:['走到一半，還想記下什麼？','magnifier','postcard'],
+  compass:['把走過的路記下來','notebook','postcard'],
   accesscard:['搬最後一箱時，什麼撐著門？','doorstop','ticket'],
   phone:['那句話後來有寄出去嗎？','postcard','envelope'],
   instantphoto:['把那格影像留久一點','photoslide','film'],
@@ -360,6 +360,22 @@ document.querySelector('#drift').onclick = () => {
   render(next);
 };
 const memories = [
+  {
+    title:'地圖上沒有這條路',
+    ids:['magnifier','compass','notebook'],
+    thread:[],
+    openings:{
+      magnifier:'出門前，朋友用放大鏡把舊地圖上的小字讀給我聽。巷名末尾有一個「井」字，他說：「找到井，就知道有沒有走錯。」',
+      compass:'到了石欄旁，指南針指向山坡。我們低頭看地圖，畫在那個方向的只有一片空白。',
+      notebook:'朋友借我的筆記本第一頁寫著「去找井」。他在下面空了兩行，說回來再填路怎麼走。'
+    },
+    scene:'巷口的路牌掉了一角。我們照著指南針的方向走，拐進兩排晾衣繩之間。井就在一戶人家門前，井口蓋了木板，上面曬著一雙童鞋。朋友翻開筆記本，把原先寫的「見井右轉」劃掉，改成「看見鞋，就到了」。',
+    endings:{
+      magnifier:'回到借地圖的店，桌子已經擦過，放大鏡也不見了。朋友從袋裡抽出筆記本，把「看見鞋」念了一遍。那四個字寫得很大。',
+      compass:'回程我摸了摸口袋，才想起指南針留在石欄上。朋友說他記得路。我們走回岔口時，先認出那兩排晾衣繩投下來的影子。',
+      notebook:'等車時，他把筆記本擱在長椅上，讓墨慢慢乾。車開了，他才伸手去摸背包。我們後來又去過一次，那雙鞋換成了兩個花盆。'
+    }
+  },
   {
     title:'石板上最後一圈',
     ids:['yoyo','spinningtop','slingshot'],
@@ -606,6 +622,7 @@ const archiveList = archiveDialog.querySelector('ul');
 const collectedMemories = [];
 let latestMemory;
 const memoryExits = {
+  magnifier:['postcard','看看那張沒寄出的明信片'],
   yoyo:['tally','看看替人數數的計數器'],
   shadow:['instantphoto','看看窗前那張拍立得'],
   ticket:['luggage','看看掉下的行李牌'],
