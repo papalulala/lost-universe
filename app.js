@@ -75,7 +75,7 @@ const items = [
   {id:'foldingfan',title:'缺了一小角的摺扇',tag:'離開後才發現',story:'戲散了，母親還坐著替我搧風。扇子每掠過一次，缺角的那一摺就輕輕刮一下她的袖口。我說回家拿紙補，她把扇子插進椅背的縫裡，先幫我繫鞋帶。\n\n走到街口，我伸手替她拿扇子。她攤開手，兩個人都停了一下。身後的戲台已經開始收椅子。'},
   {id:'vestacase',title:'底部磨亮的火柴匣',tag:'搬家後留下的東西',story:'停電時，父親讓我摸火柴匣的底。「粗的那面朝外。」我擦了兩次才亮，火光照見匣底有一道被磨得發亮的地方。燈一亮，他把匣子擱到窗台上，順手把火吹熄。\n\n多年後回去交鑰匙，我伸手摸那個窗台。漆刷過一層又一層，原來放匣子的地方摸起來一樣平。'},
   {id:'drawerpull',title:'被拇指磨亮的抽屜拉環',tag:'搬家後留下的東西',story:'祖母找藥時不用開燈。她的拇指往下一勾，拉環便碰在銅片上，叩一聲，我就知道她又睡不著。搬走那天，抽屜卡住了，我用力一扯，拉環連著螺絲一起掉進掌心。\n\n我把它放回空抽屜裡，想等清點完再裝。搬家公司把櫃子抬過門檻時，裡頭也叩了一聲。我竟然下意識地問她，要不要喝水。'},
-  {id:'needlecase',title:'蓋子放在一旁的針筒',tag:'做到一半的東西',story:'戲還有兩分鐘開場，孩子的袖口卻裂了。我拔開木針筒的蓋子，挑最短的一根針。她把手伸得直直的，問我：「縫完我還能把手舉高嗎？」我叫她先試一次，縫線跟著袖子一起抬了起來。\n\n幕一拉開，我把針插回去，蓋子擱在旁邊。散場收桌的人把布一掀，我才看見桌面上只有一小截線。'},
+  {id:'needlecase',title:'沒蓋上的木針筒',tag:'做到一半的東西',story:'戲還有兩分鐘開場，孩子的袖口卻裂了。我拔開木針筒的蓋子，挑最短的一根針。她把手伸得直直的，問我：「縫完我還能把手舉高嗎？」我叫她先試一次，縫線跟著袖子一起抬了起來。\n\n幕一拉開，我把針收回筒裡，蓋子擱在旁邊。散場收桌的人把布一掀，我才看見桌面上只有一小截線。'},
   {id:'photoslide',title:'投在牆上時倒過來的幻燈片',tag:'做到一半的東西',story:'父親把幻燈片插反了。舊家的屋簷倒掛在牆上，我們笑得連投影機的風扇聲都聽不見。他用鉛筆在紙框角上畫了一個小記號，說下回就知道哪面朝上。\n\n收機器時，我把那張挑出來，想留著多看一眼。好多年後，白牆早拆了，我還記得倒過來的屋簷，卻想不起紙框最後放在哪裡。'},
   {id:'hanger',title:'右肩磨亮的木衣架',tag:'搬家後留下的東西',story:'戲院的衣帽間快收了，最後一位客人卻回頭問：「這是我的嗎？」我照著號碼把外套遞給她。取衣服時，袖子在衣架磨亮的右肩上滑了一下，那動靜我聽了十幾年。\n\n第二天戲院封門，我回去拿便當盒。鐵桿已經拆下來，平放在地上。那只衣架原本掛在最外側，現在連掛鉤都找不到。我第一次看見那面牆上，所有掛過東西的地方都比四周白。'},
   {id:'tyrelever',title:'尖端磨白的撬胎棒',tag:'離開後才發現',story:'補胎時，我弟蹲在路邊幫我扶車。「你先騎一圈，我在這裡等。」他把撬胎棒從輪框抽出來，金屬尖擦過一道白痕，便順手擱在矮牆上。\n\n我繞回來時，他已經提著工具袋往前走了。我追上去問他收齊了沒。他掂掂袋子，說差不多。我們騎到下一個坡頂才一起停下來。他拉開袋口，我們數了一遍。少的那支，還在剛才的矮牆上。'},
@@ -86,7 +86,7 @@ const trails = {
   key:['搬家後留下的東西','shoehorn','film'],
   postcard:['還沒寄出的那句話','envelope','notebook'],
   film:['還沒來得及看清的畫面','instantphoto','curtainring'],
-  spoon:['舊廚房還留著什麼？','teatin','teaball'],
+  spoon:['吃完飯，罐裡還剩多少茶？','teatin','teaball'],
   button:['穿過那四個孔的針','thimble','notebook'],
   ticket:['那個原本要剪掉的角','ticketpunch','coin'],
   comb:['耳後還留著什麼？','hairclip','mirror'],
@@ -95,13 +95,13 @@ const trails = {
   tape:['那句「等一下」，有人聽見嗎？','earbuds','film'],
   stamp:['第三刀之後，還有一筆','notebook','tape'],
   eraser:['口袋裡剩下的一點碎屑','pencil','button'],
-  mirror:['雨停了，玻璃上還留著什麼？','glasses','umbrella'],
+  mirror:['樓下是哪一聲鈴？','deskbell','umbrella'],
   bookmark:['翻到還沒讀完的那一頁','notebook','tape'],
   envelope:['地址旁那一點墨','pencap','postcard'],
   luggage:['提把上的勒痕，手腕上的淡痕','watch','ticket'],
   earbuds:['線的另一頭接著什麼？','phone','tape'],
   pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
-  thimble:['順著那截沒收好的線','darner','spool'],
+  thimble:['線頭要用什麼剪掉？','snips','spool'],
   watch:['上車後，才發現少了一樣','luggage','ticket'],
   matchbox:['燈還沒亮起來時','vestacase','plugfuse'],
   glasses:['得湊近才看得清','magnifier','mirror'],
@@ -116,19 +116,19 @@ const trails = {
   shoehorn:['留下來的鞋跟形狀','shoelast','padlock'],
   domino:['下一局拿什麼當籌碼？','bottlecap','coin'],
   bottlecap:['手一鬆，原本捏著的東西去哪了？','cankey','domino'],
-  teaball:['杯子旁少了什麼？','travelcup','spoon'],
+  teaball:['喝茶以前，碗邊響過什麼？','spoon','spoon'],
   shuttle:['布邊還牽著哪一截線？','spool','clothespin'],
-  doorstop:['搬走時又聽見的那一聲','drawerpull','shoehorn'],
+  doorstop:['舊門旁還擱著什麼？','padlock','shoehorn'],
   harmonica:['最後那一聲，停在哪裡？','deskbell','castanets'],
   curtainring:['窗台上還留著什麼？','film','envelope'],
   dater:['借書時留下的記號','pencap','bookmark'],
   magnifier:['沿著地圖上的折痕','compass','luggage'],
   darner:['收拾針線以前','snips','thimble'],
-  pedal:['騎出去試車以前','bikepump','bell'],
+  pedal:['換完踏板，先替前輪打氣','bikepump','bell'],
   measure:['尺寸還沒記下來','foldrule','watch'],
   yoyo:['還有一截線沒收好','spinningtop','slingshot'],
-  teatin:['倒完最後一撮茶之後','teaball','spoon'],
-  padlock:['那扇門後來怎麼開？','accesscard','key'],
+  teatin:['最後一撮茶要放進哪裡？','teaball','spoon'],
+  padlock:['哪張卡能開下一扇門？','accesscard','key'],
   castanets:['散場後留下的聲音','foldingfan','harmonica'],
   cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin'],
   clothesbrush:['大衣掛起來以後','hanger','mitten'],
@@ -138,14 +138,14 @@ const trails = {
   travelcup:['匆匆離開前，還有什麼沒收好？','teaball','ticket'],
   bikepump:['工具袋裡少了哪一件？','tyrelever','pedal'],
   shoelast:['腳跟還記得的形狀','shoehorn','darner'],
-  deskbell:['退房後，還有什麼沒還？','roomtag','key'],
+  deskbell:['鈴響以前，哪個房號還沒交回？','roomtag','key'],
   compass:['走到一半，還想記下什麼？','magnifier','postcard'],
-  accesscard:['口袋裡還剩什麼？','key','ticket'],
+  accesscard:['搬最後一箱時，什麼撐著門？','doorstop','ticket'],
   phone:['那句話後來有寄出去嗎？','postcard','envelope'],
   instantphoto:['把那格影像留久一點','photoslide','film'],
-  snips:['縫之前要先找一根針','needlecase','safetypin'],
+  snips:['剪刀旁還差一根針','needlecase','safetypin'],
   foldrule:['量過的那道門框','measure','pencil'],
-  roomtag:['退房時，手裡還剩什麼？','key','deskbell'],
+  roomtag:['那位房客在玻璃前停了多久？','mirror','deskbell'],
   inkbottle:['那個顏色特別深的字','envelope','pencap'],
   torch:['那晚電表下的小木板','plugfuse','matchbox'],
   ticketpunch:['那張票後來塞進哪件外套？','hanger','ticket'],
@@ -153,10 +153,10 @@ const trails = {
   foldingfan:['戲散了，誰還留在座位旁？','castanets','instantphoto'],
   vestacase:['火熄了，誰照亮樓梯？','torch','matchbox'],
   drawerpull:['手在黑暗裡摸到什麼？','torch','key'],
-  needlecase:['幕拉開前，還差哪一針？','thimble','safetypin'],
+  needlecase:['針尖要靠什麼推過去？','thimble','safetypin'],
   photoslide:['留下的那一格光','film','instantphoto'],
   hanger:['最後一件外套，算進哪一場？','tally','shoelast'],
-  tyrelever:['騎上坡前，工具收齊了嗎？','bikepump','pedal'],
+  tyrelever:['矮牆上那道擦痕','pedal','bikepump'],
   tally:['最後一位客人的票角','ticketpunch','deskbell']
 };
 const keyChoices = [
@@ -348,6 +348,106 @@ document.querySelector('#drift').onclick = () => {
 };
 const memories = [
   {
+    "title": "坡頂才停下來",
+    "ids": [
+      "tyrelever",
+      "pedal",
+      "bikepump"
+    ],
+    "thread": [],
+    "openings": {
+      "tyrelever": "弟弟第一次自己撬胎，棒尖從輪框上滑下來，刮出一道白痕。他先看我一眼，才把工具擱到矮牆上。",
+      "pedal": "修車師傅把換下的踏板放到木箱上。右角缺了一塊，是我學騎車那年擦的。弟弟伸手去摸那個缺角。",
+      "bikepump": "我蹲在巷口打氣，軟管翹著，怎麼繞都收不攏。弟弟扶住車頭，說前輪好了就讓他先騎。"
+    },
+    "scene": "師傅拍了拍新踏板，叫我們出去試一圈。弟弟推車上坡時，問我當年摔車有沒有哭。我跟在他後面，到了坡頂才說，我那年真的有哭。他笑得把工具袋落在地上，拉開拉鍊時，兩個人都想起還有東西沒收。",
+    "endings": {
+      "tyrelever": "折回去時，矮牆上只剩一點磨下來的白粉。弟弟用手指把它抹掉，說下次換我扶車。",
+      "pedal": "那只舊踏板仍擱在攤上的木箱。我回去想拿時，鐵捲門已經拉下。騎回家的路上，右腳好幾次還是下意識避開路邊的牆。",
+      "bikepump": "打氣筒原先橫在階梯上。我們回到巷口，台階只剩一道輪胎印。弟弟沒再問我哭過沒有，換他推車陪我走回家。"
+    }
+  },
+  {
+    "title": "開幕前的最後一針",
+    "ids": [
+      "snips",
+      "needlecase",
+      "thimble"
+    ],
+    "thread": [],
+    "openings": {
+      "snips": "開演的鈴已經響過一次，孩子卻把一邊袖子藏在背後。我放下還張著口的剪刀，請她把手伸出來。袖口的縫一路裂到了手肘。",
+      "needlecase": "孩子跑來找我時，木針筒的蓋子還擱在桌角。我挑出最短的針。她看了看台口，小聲問：「還來得及嗎？」",
+      "thimble": "我在暗處戴上頂針，針尖在小凹點裡卡了一下。站在面前的孩子一動也不敢動，只用眼睛看著幕布。"
+    },
+    "scene": "我把袖口往內折一點，用頂針把針推過厚處，再用剪刀剪掉線頭。她問：「我還能把手舉高嗎？」我叫她先試一次。她把手舉過頭，線沒有繃開。台上的人這時念到她的名字。",
+    "endings": {
+      "snips": "我看著她跑上台，才想起剪刀還張著口。回來收桌，布已被捲起，我拆開來，只找到一小截剪落的線。",
+      "needlecase": "我把針收回木筒，正想蓋上，就聽見她在台上說出了第一句。散場後桌布被掀走，木筒和那個沒蓋上的蓋子都不在了。",
+      "thimble": "她謝幕時把雙手舉得很高。我在後台摸了摸自己的指尖，才發現頂針不見了。隔天翻開針線盒，手還記得它壓過的地方。"
+    }
+  },
+  {
+    "title": "交班前的五十五號",
+    "ids": [
+      "deskbell",
+      "roomtag",
+      "mirror"
+    ],
+    "thread": [],
+    "openings": {
+      "deskbell": "旅館最後一天營業，我替櫃檯值早班。樓上有人拖動椅子，接著鈴響了一下。我從後房出來，櫃檯前站著五十五號的房客。",
+      "roomtag": "五十五號的房牌已經鬆了圈。房客把鑰匙拆下來，放在櫃檯上，說房牌還擱在窗台，等一下就上樓拿。",
+      "mirror": "五十五號的房客向我借了一面小鏡子。她照到右耳時，把鏡子往左偏了一點，像是早知道鏡面那道細痕會擋住視線。"
+    },
+    "scene": "她說自己在這間旅館住過三次，每次都趕同一班車。這次她慢慢在退房單上簽完名字，才把小鏡子放到櫃檯邊。外頭司機按了喇叭，她摸了一下放鑰匙的口袋，轉身出去。",
+    "endings": {
+      "deskbell": "打烊後，我回去收櫃檯。鈴的位置留下一圈沒落灰的印子。我伸手按了一下那片木頭，樓上也沒再傳來拖椅子的聲音。",
+      "roomtag": "等我拿著五十五號的房牌跑下樓，車已經過了轉角。後來上樓關窗，我把它擱回她原先放的位置。那是最後一間還留著房號的房。",
+      "mirror": "退房單下只剩一個空鏡套。我把它拉開又闔上，才想起她照到細痕時偏過去的那個小動作。"
+    }
+  },
+  {
+    "title": "最後一趟搬箱子",
+    "ids": [
+      "padlock",
+      "accesscard",
+      "doorstop"
+    ],
+    "thread": [],
+    "openings": {
+      "padlock": "我把舊鐵門上的掛鎖打開，擱在窗台。父親說最後一箱書先別封，裡面還有門牌下拆下來的兩顆螺絲。",
+      "accesscard": "新家的感應卡早就領到了。我把它和舊鑰匙塞在同一個口袋，伸手摸時，總是先碰到鑰匙的齒。",
+      "doorstop": "最後一趟上樓，我用橡膠門擋撐住走廊的門。父親抱著書箱在後面喊我慢一點，他說過門檻要先把箱子抬高。"
+    },
+    "scene": "書箱卡在走廊轉角。我蹲下撿掉出的螺絲，順手把新門卡放到門邊的平台。父親在裡頭說：「這趟出去，我們就不用再回來開門了。」我抬起箱子，聽見背後那扇門慢慢闔上。",
+    "endings": {
+      "padlock": "到了樓下，我才想起鎖梁還翹著。父親問我是不是要回去拿，我隔著樓梯看了一眼窗台。那枚掛鎖現在已經沒有哪一扇門需要鎖。",
+      "accesscard": "到新家我摸出口袋裡的鑰匙，才想起感應卡還在舊樓。父親陪我在門外坐了一會，把書箱翻過來當椅子。",
+      "doorstop": "我折回去拿門擋，地上只有橡膠拖過的短痕。我用鞋尖對了對那個位置，然後把空著的手伸給父親。"
+    }
+  },
+  {
+    "title": "舊廚房最後一桌",
+    "ids": [
+      "spoon",
+      "teatin",
+      "teaball"
+    ],
+    "thread": [],
+    "openings": {
+      "spoon": "搬家車還沒到，母親舀了最後一碗湯給我。湯匙碰到碗邊很輕，她聽見了，隔著空廚房問我還要不要添。",
+      "teatin": "我從櫃子深處翻出那只茶罐。蓋子照舊闔不緊，我按了一下，母親說：「就剩一撮，今天泡掉吧。」",
+      "teaball": "母親把濾茶球的小環掛在杯耳，叫我別急著收桌。水還沒滾，窗外搬家車已經倒進巷子。"
+    },
+    "scene": "我們先把湯喝完，才用罐底的茶葉泡了兩杯。母親把最後一杯推到我面前，說等搬到新家，再買一包一樣的。茶葉只有一點，泡得很淡，我卻喝得比平常慢。",
+    "endings": {
+      "spoon": "第一晚在新家煮湯，我在抽屜裡找了兩遍湯匙。後來才想起收桌時，它還晾在舊家的水槽旁。",
+      "teatin": "拆完箱子，我找到了兩個杯子。那只空罐沒跟來。我把杯子靠在一起，原本想拿來壓住罐蓋的那本書，倒還夾在箱底。",
+      "teaball": "收桌時水槽裡叮了一聲。隔天新茶買回來，我摸到杯耳，才想起那個小環沒掛回來。新家的第一杯茶，我就讓葉子浮著。"
+    }
+  },
+  {
     title:'牆上最後一格光',
     ids:['film','instantphoto','photoslide'],
     thread:[],
@@ -463,6 +563,7 @@ function connectMemory(source,destination) {
 }
 
 route();
+
 
 
 
