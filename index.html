@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="./mist.css?v=enter-only">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
 <link rel="stylesheet" href="./layers.css?v=gray-weather-label">
-<link rel="stylesheet" href="./explore.css?v=theater-only">
+<link rel="stylesheet" href="./explore.css?v=shared-memories">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=theater-only"></script>
+<script type="module" src="./app.js?v=shared-memories"></script>
 <script type="module" src="./opening.js?v=enter-only"></script>
 </head>
 <body>
@@ -42,11 +42,10 @@
   <svg id="thread-lines" aria-hidden="true"></svg>
   <div id="objects"></div>
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
-  <div class="frame-controls"><button id="drift">漂去遠方</button><button id="theater-start">試玩：戲院的往事</button></div>
+  <div class="frame-controls"><button id="drift">漂去遠方</button></div>
   <div id="theater-controls" class="frame-controls" hidden>
     <p id="thread-status" role="status"></p>
-    <button id="read-thread" hidden>讀這段往事</button>
-    <button id="thread-reset">重新串接</button>
+    <div id="memory-buttons"></div>
   </div>
   <dialog id="thread-story" aria-labelledby="thread-title">
     <form method="dialog"><button>關閉</button></form>
@@ -67,6 +66,8 @@
 </main>
 </body>
 </html>
+
+
 
 
 

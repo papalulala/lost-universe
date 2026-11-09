@@ -97,7 +97,7 @@ const trails = {
   eraser:['口袋裡剩下的一點碎屑','pencil','button'],
   mirror:['雨停了，玻璃上還留著什麼？','glasses','umbrella'],
   bookmark:['翻到還沒讀完的那一頁','notebook','tape'],
-  envelope:['地址還能從哪裡找回來？','postcard','ticket'],
+  envelope:['地址旁那一點墨','pencap','postcard'],
   luggage:['提把上的勒痕，手腕上的淡痕','watch','ticket'],
   earbuds:['線的另一頭接著什麼？','phone','tape'],
   pencil:['鉛筆寫過的地方，還留著什麼？','eraser','button'],
@@ -133,7 +133,7 @@ const trails = {
   cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin'],
   clothesbrush:['大衣掛起來以後','hanger','mitten'],
   hairclip:['耳邊少了什麼？','comb','earbuds'],
-  plugfuse:['燈熄掉後，手摸到哪裡？','torch','matchbox'],
+  plugfuse:['摸黑時擦亮的第一根火柴','vestacase','matchbox'],
   slingshot:['還垂著一截，沒來得及收好','yoyo','castanets'],
   travelcup:['匆匆離開前，還有什麼沒收好？','teaball','ticket'],
   bikepump:['工具袋裡少了哪一件？','tyrelever','pedal'],
@@ -148,16 +148,16 @@ const trails = {
   roomtag:['退房時，手裡還剩什麼？','key','deskbell'],
   inkbottle:['那個顏色特別深的字','envelope','pencap'],
   torch:['那晚電表下的小木板','plugfuse','matchbox'],
-  ticketpunch:['最後一個進門的人','tally','ticket'],
+  ticketpunch:['那張票後來塞進哪件外套？','hanger','ticket'],
   spinningtop:['繩頭還攥在手裡','yoyo','slingshot'],
   foldingfan:['戲散了，誰還留在座位旁？','castanets','instantphoto'],
-  vestacase:['燈亮以前的那一下','matchbox','torch'],
+  vestacase:['火熄了，誰照亮樓梯？','torch','matchbox'],
   drawerpull:['手在黑暗裡摸到什麼？','torch','key'],
   needlecase:['幕拉開前，還差哪一針？','thimble','safetypin'],
   photoslide:['留下的那一格光','film','instantphoto'],
-  hanger:['衣服拿走後留下的形狀','clothesbrush','shoelast'],
+  hanger:['最後一件外套，算進哪一場？','tally','shoelast'],
   tyrelever:['騎上坡前，工具收齊了嗎？','bikepump','pedal'],
-  tally:['最後一場，還有人進來嗎？','deskbell','ticketpunch']
+  tally:['最後一位客人的票角','ticketpunch','deskbell']
 };
 const keyChoices = [
   {label:'最後一次回頭看',destination:'film',companion:'notebook',arrival:'搬走前，有人替空下來的廚房拍了最後一張照片。'}
@@ -174,7 +174,6 @@ const modelModule = import('./scene.js?v=seventy-five').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
-let theaterActive = false;
 
 function reveal(entry, lock = false) {
   pinned = Boolean(entry && lock);
@@ -228,9 +227,7 @@ function mount(item,index) {
     button.onclick = handler;
     choices.append(button);
   }
-  if (theaterActive) {
-    action('把這件串進往事',() => threadObject(item.id));
-  } else if (item.id === 'key') {
+  if (item.id === 'key') {
     keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
   } else {
     action(label,() => followTrail(item.id,neighbors[0]));
@@ -274,6 +271,7 @@ function followTrail(source, destination, branch = false) {
   entry.article.classList.remove('near');
   entry.button.focus({preventScroll:true});
   render(ids,undefined,branch);
+  connectMemory(source,destination);
 }
 
 function chooseKeyTrail(choice) {
@@ -288,6 +286,7 @@ function chooseKeyTrail(choice) {
 }
 
 function render(ids, selected, branch = false) {
+  threadLines.replaceChildren();
   reveal();
   if (!branch && selected !== 'key') returnToKey = undefined;
   for (const [id,entry] of entries) {
@@ -323,7 +322,6 @@ document.addEventListener('pointerdown',event => {
   if (current && !current.article.contains(event.target) && !event.target.closest('.floating')) reveal();
 });
 function route() {
-  if (theaterActive) { closeTheater(); render([]); }
   const id = location.hash.slice(1);
   if (entries.has(id)) reveal(entries.get(id),true);
   else if (id === 'key') render(['key','postcard','film'],'key');
@@ -331,9 +329,8 @@ function route() {
   else render(['key','postcard','film']);
 }
 addEventListener('hashchange',route);
-route();
+
 document.querySelector('#drift').onclick = () => {
-  if (theaterActive) { closeTheater(); render([]); }
   const pool = [...byId.keys()].filter(id => !visited.has(id));
   const next = [];
   function draw(from) {
@@ -349,12 +346,11 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
-const theaterIds = ['hanger','tally','ticketpunch'];
-const theaterDraft = {
+const memoryDraft = {
   hanger:[
     '那晚我先去了衣帽間。她把外套遞給我，袖子在木衣架磨亮的右肩滑了一下。「散場再來拿。」她說。',
     '我繞進衣帽間，把她那件外套往裡挪了一格。袖子滑過磨亮的木肩，跟以往每個晚上沒兩樣。',
-    '我最後回到衣帽間。她的外套已經取走了。我把空衣架往裡推，木頭碰到隔壁那一支，響得像還有人在排隊。'
+    '我最後回到衣帽間。母親的外套已經取走了。我把空衣架往裡推，木頭碰到隔壁那一支，響得像還有人在排隊。'
   ],
   tally:[
     '母親來看戲院最後一場放映，比說好的時間晚了一點。我在門口替老闆數人，數到她時，拇指停了一下。',
@@ -364,75 +360,93 @@ const theaterDraft = {
   ticketpunch:[
     '最後一場放映前，一個孩子把票遞給我，又縮回手。「能不能留著給我弟看？」我在空中按了一下鉗子，把票還給他。',
     '門邊有個孩子想留下完整的票。我把鉗口挪開，空按了一下。他聽見那聲喀噠，才放心走進去。',
-    '關門前，那孩子跑回來給我看他的票，票角好好的。我把驗票鉗擱在櫃檯上，忽然想起，明天就沒有人需要在這裡打孔了。'
+    '關門前，有個孩子跑來給我看他的票，票角好好的。我把驗票鉗擱在櫃檯上，忽然想起，明天就沒有人需要在這裡打孔了。'
+  ]
+,
+  pencap:[
+    '借書桌上的鋼筆沒了蓋。我在胸袋摸了一下，指尖就染了墨。那天我要寄一封信，連收信的人住哪一戶都還沒寫完。',
+    '我把鋼筆借給她補寫門牌。她交回來時筆尖朝外，我下意識去找筆蓋，桌上只有一小圈墨。',
+    '信寄走以後，我回圖書館找筆蓋。桌子擦乾淨了。我把指尖翻過來，那點墨還在指紋裡。'
+  ],
+  inkbottle:[
+    '郵局快關門時，我從袋裡拿出墨水瓶。紙標的角勾住袖口，我用拇指把它壓平，才發現手上還有一個地址沒有寫。',
+    '門牌補在信封右下角。墨蘸得太多，那一個字慢慢洇開，比整行都深。',
+    '隔天我想再抄一次那個地址，筆尖只在紙上刮了兩下。原來昨天把信推進窗口時，墨水瓶還留在外頭。'
+  ],
+  envelope:[
+    '我把信封攤在郵局的窗台，沿著毛邊讀回信地址。玻璃上倒映著自己的手，指尖有一點墨。',
+    '信封推進窗口之前，我把它翻過來。封口壓得很平，只有右下角那個字還沒乾。',
+    '櫃員把信封收走，我站在窗台旁等了一會，才想起自己本來想把地址抄一份。信封背面有什麼，現在只能等對方看見。'
+  ],
+  torch:[
+    '樓梯一黑，門後的孩子喊我照地上。我把滑鈕推了兩次，光才亮。她的兩隻鞋隔著一級台階。',
+    '我把手電筒擱在電表下。光順著階梯落下去，那孩子把鞋往身邊拉近了一點。',
+    '隔天樓梯燈亮了，孩子已經自己繫好鞋帶。我去摸昨天放手電筒的木板，只摸到一層灰。'
+  ],
+  plugfuse:[
+    '停電那晚，電工換下瓷保險絲交給我。它很沉，我把它擱在電表下，怕在黑裡放到別處就找不回來。',
+    '電工把換下的瓷保險絲交給我。白瓷在暗處還辨認得出來，我把它放在電表下的小木板上。',
+    '再經過樓梯間時，燈亮著，木板上只剩一圈灰。我用指腹沿著圓圈摸了一遍。瓷件比它留下的印子小不了多少。'
+  ],
+  vestacase:[
+    '父親把火柴匣塞給我，叫我摸底下粗的那一面。我擦了兩下，火光照出他站在樓梯轉角，手還扶著欄杆。',
+    '父親摸出火柴匣。我擦亮一根，才看見粗面中間早磨出了一道亮痕。他把火柴舉高，讓我看清腳下。',
+    '燈亮了，父親把最後一根火柴吹熄，把匣子擱在窗台。那晚我記得最清楚的，是燈亮以後，火柴頭還紅了一會。'
   ]
 };
-const thread = [];
-const theaterControls = document.querySelector('#theater-controls');
-const threadStatus = document.querySelector('#thread-status');
+const memories = [
+  {title:'戲院的往事',ids:['hanger','tally','ticketpunch'],thread:[]},
+  {title:'地址上的墨痕',ids:['pencap','inkbottle','envelope'],thread:[]},
+  {title:'樓梯熄燈那晚',ids:['torch','plugfuse','vestacase'],thread:[]}
+];
+const memoryControls = document.querySelector('#theater-controls');
+const memoryStatus = document.querySelector('#thread-status');
+const memoryButtons = document.querySelector('#memory-buttons');
 const threadLines = document.querySelector('#thread-lines');
-const readThread = document.querySelector('#read-thread');
 const threadStory = document.querySelector('#thread-story');
 
-function drawThreads() {
-  if (thread.length < 2) return;
-  const area = frame.getBoundingClientRect();
-  for (let i = 1; i < thread.length; i++) {
-    const a = entries.get(thread[i-1]).button.getBoundingClientRect();
-    const b = entries.get(thread[i]).button.getBoundingClientRect();
+function connectMemory(source,destination) {
+  const memory = memories.find(({ids}) => ids.includes(source) && ids.includes(destination));
+  if (!memory) return;
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  threadLines.append(path);
+  setTimeout(() => path.remove(),1700);
+  function trace() {
+    if (!path.isConnected) return;
+    const area = frame.getBoundingClientRect();
+    const a = entries.get(source).button.getBoundingClientRect();
+    const b = entries.get(destination).button.getBoundingClientRect();
     const x = a.left+a.width/2-area.left, y = a.top+a.height/2-area.top;
     const u = b.left+b.width/2-area.left, v = b.top+b.height/2-area.top;
-    const existing = threadLines.children[i-1];
-    const path = existing ?? document.createElementNS('http://www.w3.org/2000/svg','path');
     path.setAttribute('d',`M ${x} ${y} Q ${(x+u)/2+8} ${(y+v)/2+13} ${u} ${v}`);
-    if (!existing) threadLines.append(path);
+    requestAnimationFrame(trace);
   }
+  trace();
+
+  if (memory.thread.length === 3) return;
+  for (const id of [source,destination]) {
+    if (!memory.thread.includes(id)) memory.thread.push(id);
+  }
+  memoryControls.hidden = false;
+  if (memory.thread.length < 3) {
+    memoryStatus.textContent = `「${memory.title}」已串起兩件失物。`;
+    return;
+  }
+  memoryStatus.textContent = `「${memory.title}」可以閱讀了。`;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = `讀這段往事｜${memory.title}`;
+  button.onclick = () => {
+    threadStory.querySelector('h2').textContent = memory.title;
+    const paragraphs = memory.thread.map((id,index) => {
+      const p = document.createElement('p');
+      p.textContent = memoryDraft[id][index];
+      return p;
+    });
+    threadStory.querySelector('.thread-copy').replaceChildren(...paragraphs);
+    threadStory.showModal();
+  };
+  memoryButtons.append(button);
 }
 
-function threadObject(id) {
-  if (!theaterActive || thread.includes(id)) return;
-  thread.push(id);
-  const entry = entries.get(id);
-  const action = entry.info.querySelector('.follow');
-  action.textContent = '已串進往事';
-  action.disabled = true;
-  entry.button.focus({preventScroll:true});
-  reveal();
-  threadStatus.textContent = thread.length === 3 ? '三件失物串成了一段往事。' : `已串起 ${thread.length} 件。再選一件失物。`;
-  readThread.hidden = thread.length < 3;
-  drawThreads();
-}
-
-function closeTheater() {
-  theaterActive = false;
-  thread.length = 0;
-  theaterControls.hidden = true;
-  document.querySelector('#theater-start').hidden = false;
-  threadLines.replaceChildren();
-}
-
-function startTheater() {
-  closeTheater();
-  // Rebuild these entries so their clue buttons use the trial interaction.
-  render([]);
-  theaterActive = true;
-  theaterControls.hidden = false;
-  document.querySelector('#theater-start').hidden = true;
-  threadStatus.textContent = '打開任一件失物，把它串進往事。';
-  readThread.hidden = true;
-  render(theaterIds);
-  entries.get(theaterIds[0]).button.focus({preventScroll:true});
-}
-
-document.querySelector('#theater-start').onclick = startTheater;
-document.querySelector('#thread-reset').onclick = startTheater;
-readThread.onclick = () => {
-  const paragraphs = thread.map((id,index) => {
-    const p = document.createElement('p');
-    p.textContent = theaterDraft[id][index];
-    return p;
-  });
-  threadStory.querySelector('.thread-copy').replaceChildren(...paragraphs);
-  threadStory.showModal();
-};
-new ResizeObserver(drawThreads).observe(objects);
+route();
