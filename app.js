@@ -361,6 +361,22 @@ document.querySelector('#drift').onclick = () => {
 };
 const memories = [
   {
+    title:'窗台上少了一個人',
+    ids:['shadow','sprout','smile'],
+    thread:[],
+    openings:{
+      shadow:'搬家車停在巷口時，妹妹還站在窗下。她抬手替我扶窗，牆上的影子也跟著伸長，差一點就碰到那片葉子。',
+      sprout:'搬家那天，我才看見窗縫裡的種子冒了芽。妹妹伸手想把它拔起來，指尖碰到葉子，又縮了回去。',
+      smile:'妹妹說要替我拍一張站在舊窗前的照片。我站得太直，她等了一會，索性叫我蹲下去看看窗縫。'
+    },
+    scene:'窗縫裡有兩片小葉。妹妹問：「要把它帶走嗎？」我說先拍一張，等我們回來再比它長了多少。她往後退，把我的影子也收進取景框。快門響了，我才笑出來。',
+    endings:{
+      shadow:'照片上，我的手正扶著窗，影子倒像在揮手。我把照片貼在新家的窗邊。到了傍晚，這扇窗的光從另一邊照進來。',
+      sprout:'隔週我回去看，窗縫已補了一道新灰。我蹲在原來的位置，照片裡那兩片葉子，還朝著窗外。',
+      smile:'妹妹拿筆在照片白邊補了一道小弧線。她說快門按早了半拍，只好把我的笑畫在這裡。後來照片折過一次，折痕正好避開那一筆。'
+    }
+  },
+  {
     "title": "車開以前",
     "ids": [
       "ticket",
@@ -574,6 +590,7 @@ const archiveList = archiveDialog.querySelector('ul');
 const collectedMemories = [];
 let latestMemory;
 const memoryExits = {
+  shadow:['instantphoto','看看窗前那張拍立得'],
   ticket:['luggage','看看掉下的行李牌'],
   harmonica:['earbuds','循著聲音去找耳機'],
   tyrelever:['slingshot','看看矮牆旁的木彈弓'],
