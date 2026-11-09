@@ -29,3 +29,12 @@ body{--rain-title-font:ui-monospace,"Cascadia Mono","Noto Sans TC",monospace;bac
 #frame .glimpse{color:#d1dfe5}
 #frame :focus-visible{outline-color:#bbd5e1}
 @media(prefers-reduced-motion:reduce){.rain-grain::before,.rain-grain::after{animation:none}}
+
+#frame .emerging .object-button::before{
+  background:radial-gradient(ellipse,#5266713b 0%,#3f56632b 33%,#2e414e14 55%,transparent 74%);
+}
+@keyframes fog-drift{
+  0%{opacity:.48;transform:translate(-5%,4%) scale(.94)}
+  100%{opacity:0;transform:translate(7%,-5%) scale(1.12)}
+}
+@media(prefers-reduced-motion:reduce){#frame .emerging .object-button::before{animation:none}}
