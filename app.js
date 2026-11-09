@@ -137,7 +137,7 @@ const trails = {
   padlock:['哪張卡能開下一扇門？','accesscard','key'],
   castanets:["把這一遍留下來","tape","harmonica"],
   cankey:['罐子開了，手裡還有什麼？','bottlecap','teatin'],
-  clothesbrush:['大衣掛起來以後','hanger','mitten'],
+  clothesbrush:['看看哪把傘還在滴水','umbrella','hanger'],
   hairclip:['耳邊少了什麼？','comb','earbuds'],
   plugfuse:['摸黑時擦亮的第一根火柴','vestacase','matchbox'],
   slingshot:['找找還沒收好的那截繩','yoyo','castanets'],
@@ -360,6 +360,22 @@ document.querySelector('#drift').onclick = () => {
   render(next);
 };
 const memories = [
+  {
+    title:'門口還亮著一盞燈',
+    ids:['umbrella','mitten','clothesbrush'],
+    thread:[],
+    openings:{
+      umbrella:'雨裡摻著一點雪。我把傘往弟弟那邊偏，他只顧看自己踩下去的腳印。我問他冷不冷，他把兩隻手都塞進口袋。',
+      mitten:'弟弟走到樓下才把手伸出來。他左手光著，右手還戴著那隻毛手套。我問左邊那隻呢，他低頭看著自己的袖口。',
+      clothesbrush:'奶奶把衣刷掛在門邊。她聽見腳步就把門打開，叫我先替弟弟刷掉肩上的雪。刷毛缺了一角，刷過去還留了一小撮。'
+    },
+    scene:'弟弟站在樓梯口，說手套可能落在站牌下。我把濕傘從牆邊拿回來，奶奶伸手接過去，叫我們先進屋。她把門口的燈按亮，說等手暖一點，她陪我們去找。弟弟把光著的那隻手伸給她，另一隻還攥著我的袖口。',
+    endings:{
+      umbrella:'後來我們共撐那把傘回到站牌下。雨已停，我把傘擱在長椅上，蹲下去照椅底。回家路上，我牽著弟弟，走到樓下才發現手上只剩他。',
+      mitten:'長椅下只有一團濕紙。回程弟弟把右手的手套脫下來，塞進奶奶的大衣口袋，騰出兩隻手，一邊牽一個。',
+      clothesbrush:'第二天我拿起大衣，肩頭留著一小塊乾掉的水痕。衣刷已經不在門邊，奶奶用手掌替我拍了兩下，才把門打開。'
+    }
+  },
   {
     title:'地圖上沒有這條路',
     ids:['magnifier','compass','notebook'],
@@ -622,6 +638,7 @@ const archiveList = archiveDialog.querySelector('ul');
 const collectedMemories = [];
 let latestMemory;
 const memoryExits = {
+  umbrella:['hanger','看看門邊掛大衣的木衣架'],
   magnifier:['postcard','看看那張沒寄出的明信片'],
   yoyo:['tally','看看替人數數的計數器'],
   shadow:['instantphoto','看看窗前那張拍立得'],
