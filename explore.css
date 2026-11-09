@@ -78,3 +78,8 @@
 #frame .arrived:not(.surfaced) .glimpse{z-index:2;color:#182923;background:#f0f5ee;font-weight:700}
 @keyframes arrival-light{from{filter:drop-shadow(0 0 12px #9cbfb1)}to{filter:none}}
 @media(prefers-reduced-motion:reduce){.arrived:not(.surfaced) .object-button{animation:none}}
+
+#frame[data-scene="doorway"] #window-set::before,#frame[data-scene="doorway"] #window-set::after{display:none}
+#frame[data-scene="doorway"] .window-light{inset:0;background:radial-gradient(ellipse at 72% 37%,#e9d6aa99,transparent 48%);opacity:.25;transition:opacity .5s}
+#frame[data-scene="doorway"][data-window-step="2"] .window-light,#frame[data-scene="doorway"][data-window-step="3"] .window-light,#frame[data-scene="doorway"][data-window-step="4"] .window-light{opacity:.72}
+@media(prefers-reduced-motion:reduce){#frame[data-scene="doorway"] .window-light{transition:none}}

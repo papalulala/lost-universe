@@ -272,7 +272,7 @@ function mount(item,index) {
   });
   button.addEventListener('click',event => {
     if (windowStep !== undefined && windowStep < 5) {
-      if (item.id === ['smile','smile','shadow','sprout','sprout'][windowStep]) advanceWindowScene();
+      if (item.id === activeSceneItems[Math.min(2,Math.max(0,windowStep-1))]) advanceWindowScene();
       return;
     }
     reveal(current === entry ? undefined : entry,true);
@@ -826,12 +826,34 @@ const windowSteps = [
 let windowStep;
 let windowFlipTimer;
 const windowItems = ['smile','shadow','sprout'];
+const doorwayItems = ['umbrella','mitten','clothesbrush'];
+const doorwaySteps = [
+  ['到樓下了。弟弟還把左手藏在袖子裡。','收起傘'],
+  ['「手套呢？」他這才把凍紅的手伸出來：「可能掉在站牌下。」','看看落單的手套 →'],
+  ['門燈啪一聲亮了。奶奶看了看他的肩頭：「先把雪刷掉。」','拿起門邊的衣刷 →'],
+  ['奶奶把傘拿回來，騰出一隻手牽他。我拉開大衣口袋，讓他先暖一暖。','重現回家的路'],
+  ['站牌下只剩一團濕紙。手套沒找回來。回家時，他兩隻手都有人牽。','讀完整往事'],
+  ['點開失物，看看它還留下了什麼。','進入自由探索 →']
+];
+let activeSceneItems = windowItems;
+
+function startDoorwayScene() {
+  activeSceneItems = doorwayItems;
+  frame.dataset.scene = 'doorway';
+  windowScene.setAttribute('aria-label','第二個失物現場');
+  windowScene.querySelector('h1').textContent = '門口還亮著一盞燈';
+  const number = windowScene.querySelector('.scene-number');
+  if (number) number.textContent = '失物現場 02';
+  showWindowStep(0);
+  render(doorwayItems.slice(0,1));
+}
 
 function showWindowStep(step) {
   windowStep = step;
   frame.dataset.windowStep = step;
-  sceneLine.textContent = windowSteps[step][0];
-  sceneNext.textContent = windowSteps[step][1];
+  const [line,action] = (activeSceneItems === doorwayItems ? doorwaySteps : windowSteps)[step];
+  sceneLine.textContent = line;
+  sceneNext.textContent = action;
 }
 
 function revealSmileClue() {
@@ -844,6 +866,10 @@ function revealSmileClue() {
 function advanceWindowScene() {
   switch (windowStep) {
     case 0: {
+      if (activeSceneItems === doorwayItems) {
+        showWindowStep(1);
+        break;
+      }
       if (sceneNext.disabled) return;
       const entry = entries.get('smile');
       entry.article.classList.add('turned');
@@ -854,13 +880,13 @@ function advanceWindowScene() {
     }
     case 1:
       showWindowStep(2);
-      render(windowItems.slice(0,2));
-      connectMemory('smile','shadow');
+      render(activeSceneItems.slice(0,2));
+      connectMemory(activeSceneItems[0],activeSceneItems[1]);
       break;
     case 2:
       showWindowStep(3);
-      render(windowItems);
-      connectMemory('shadow','sprout');
+      render(activeSceneItems);
+      connectMemory(activeSceneItems[1],activeSceneItems[2]);
       break;
     case 3:
       showWindowStep(4);
@@ -870,7 +896,8 @@ function advanceWindowScene() {
       readMemory(latestMemory);
       break;
     case 5:
-      location.hash = 'umbrella';
+      if (activeSceneItems === doorwayItems) location.hash = 'umbrella';
+      else startDoorwayScene();
       break;
   }
 }
@@ -879,12 +906,13 @@ function leaveWindowScene() {
   clearTimeout(windowFlipTimer);
   windowStep = undefined;
   delete frame.dataset.windowStep;
+  delete frame.dataset.scene;
   windowScene.hidden = windowSet.hidden = true;
   document.querySelector('#drift').hidden = false;
 }
 
 sceneNext.onclick = advanceWindowScene;
-document.querySelector('#scene-explore').onclick = () => { location.hash = 'smile'; };
+document.querySelector('#scene-explore').onclick = () => { location.hash = activeSceneItems[0]; };
 if (location.hash) {
   route();
 } else {
