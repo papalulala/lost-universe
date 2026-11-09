@@ -176,7 +176,7 @@ const weatherNames = {calm:'薄霧',fog:'起霧',wind:'海風',snow:'微雪',cle
 let weatherScene = '';
 const entries = new Map();
 const visited = new Set();
-const modelModule = import('./scene.js?v=seventy-five').catch(() => null);
+const modelModule = import('./scene.js?v=window-scene').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
@@ -257,6 +257,10 @@ function mount(item,index) {
     if (event.pointerType === 'mouse') article.classList.remove('near');
   });
   button.addEventListener('click',event => {
+    if (windowStep !== undefined && windowStep < 5) {
+      if (item.id === ['smile','smile','shadow','sprout','sprout'][windowStep]) advanceWindowScene();
+      return;
+    }
     reveal(current === entry ? undefined : entry,true);
   });
   article.addEventListener('keydown',event => {
@@ -334,8 +338,10 @@ document.addEventListener('pointerdown',event => {
   if (current && !current.article.contains(event.target) && !event.target.closest('.floating')) reveal();
 });
 function route() {
+  const leavingScene = windowStep !== undefined;
+  if (leavingScene) leaveWindowScene();
   const id = location.hash.slice(1);
-  if (entries.has(id)) reveal(entries.get(id),true);
+  if (!leavingScene && entries.has(id)) reveal(entries.get(id),true);
   else if (id === 'key') render(['key','postcard','film'],'key');
   else if (byId.has(id)) render([id,...trails[id].slice(1)],id);
   else render(['key','postcard','film']);
@@ -754,4 +760,86 @@ archiveButton.onclick = () => {
   archiveDialog.showModal();
 };
 
-route();
+const windowScene = document.querySelector('#window-scene');
+const windowSet = document.querySelector('#window-set');
+const sceneLine = document.querySelector('#scene-line');
+const sceneNext = document.querySelector('#scene-next');
+const windowSteps = [
+  ['拖曳或翻面，看看白瓷背後留下什麼。','翻到背面'],
+  ['快門響了，我才笑出來。那時，牆上還留著我的影子。','看看牆上的影子 →'],
+  ['光沿著牆往下移。影子的手，正伸向窗縫。','看看窗縫裡的小樹芽 →'],
+  ['搬家那天，窗縫裡有兩片剛張開的小葉。妹妹說：「等一下，我幫你拍一張。」','重現那一刻'],
+  ['喀嚓。照片裡有窗、有影子，也有兩片小葉。快門響過之後，我才笑出來。','讀完整往事'],
+  ['點開一件失物，為它上色或留一句話。','前往下一個現場 →']
+];
+let windowStep;
+let windowFlipTimer;
+const windowItems = ['smile','shadow','sprout'];
+
+function showWindowStep(step) {
+  windowStep = step;
+  frame.dataset.windowStep = step;
+  sceneLine.textContent = windowSteps[step][0];
+  sceneNext.textContent = windowSteps[step][1];
+}
+
+function revealSmileClue() {
+  if (windowStep !== 0) return;
+  clearTimeout(windowFlipTimer);
+  sceneNext.disabled = false;
+  showWindowStep(1);
+}
+
+function advanceWindowScene() {
+  switch (windowStep) {
+    case 0: {
+      if (sceneNext.disabled) return;
+      const entry = entries.get('smile');
+      entry.article.classList.add('turned');
+      entry.button.dispatchEvent(new Event('lost:flip'));
+      sceneNext.disabled = true;
+      windowFlipTimer = setTimeout(revealSmileClue, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 580);
+      break;
+    }
+    case 1:
+      showWindowStep(2);
+      render(windowItems.slice(0,2));
+      connectMemory('smile','shadow');
+      break;
+    case 2:
+      showWindowStep(3);
+      render(windowItems);
+      connectMemory('shadow','sprout');
+      break;
+    case 3:
+      showWindowStep(4);
+      break;
+    case 4:
+      showWindowStep(5);
+      readMemory(latestMemory);
+      break;
+    case 5:
+      location.hash = 'umbrella';
+      break;
+  }
+}
+
+function leaveWindowScene() {
+  clearTimeout(windowFlipTimer);
+  windowStep = undefined;
+  delete frame.dataset.windowStep;
+  windowScene.hidden = windowSet.hidden = true;
+  document.querySelector('#drift').hidden = false;
+}
+
+sceneNext.onclick = advanceWindowScene;
+document.querySelector('#scene-explore').onclick = () => { location.hash = 'smile'; };
+if (location.hash) {
+  route();
+} else {
+  windowScene.hidden = windowSet.hidden = false;
+  document.querySelector('#drift').hidden = true;
+  showWindowStep(0);
+  render(['smile']);
+  entries.get('smile').button.addEventListener('lost:back',revealSmileClue);
+}

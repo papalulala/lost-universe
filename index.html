@@ -10,13 +10,12 @@
 <link rel="stylesheet" href="./mist.css?v=enter-only">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
 <link rel="stylesheet" href="./layers.css?v=gray-weather-label">
-<link rel="stylesheet" href="./explore.css?v=lasting-threads">
+<link rel="stylesheet" href="./explore.css?v=window-scene">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=lasting-threads"></script>
-<script type="module" src="./opening.js?v=enter-only"></script>
+<script type="module" src="./app.js?v=window-scene"></script>
 </head>
 <body>
 <div class="opening" hidden>
@@ -39,6 +38,14 @@
     <a class="brand" href="./"><img src="./lost-universe-floating.svg" alt="失物宇宙"></a>
     <div class="title-context"><p class="title-intro"><img src="./geometric-intro.svg" alt="點開一件失物，讀它的故事。循著線索，看看下一件會漂到哪裡。"></p><strong id="weather-label" role="status">薄霧</strong></div>
   </header>
+  <div id="window-set" hidden aria-hidden="true"><div class="window-light"></div></div>
+  <section id="window-scene" hidden aria-label="第一個失物現場">
+    <p class="scene-number">失物現場 01</p>
+    <h1>有個微笑，沒有被拍進照片。</h1>
+    <p id="scene-line" aria-live="polite"></p>
+    <button type="button" id="scene-next"></button>
+    <button type="button" id="scene-explore">自由探索失物</button>
+  </section>
   <svg id="thread-lines" aria-hidden="true"></svg>
   <div id="objects"></div>
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>

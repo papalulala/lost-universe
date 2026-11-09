@@ -122,11 +122,16 @@ export async function floatModel(view, still, id, index, signal) {
   let suppressClick = false;
   let yaw = 0;
   let pitch = 0;
+  let flipTarget;
   const events = {signal};
   button.classList.add('rotatable');
+  button.addEventListener('lost:flip',() => {
+    flipTarget = yaw + Math.PI - Math.atan2(Math.sin(yaw),Math.cos(yaw));
+  },events);
   button.addEventListener('pointerdown',event => {
     if (!event.isPrimary || event.button !== 0) return;
     suppressClick = false;
+    flipTarget = undefined;
     drag = {id:event.pointerId,x:event.clientX,y:event.clientY,moved:false};
   },events);
   button.addEventListener('pointermove',event => {
@@ -142,6 +147,7 @@ export async function floatModel(view, still, id, index, signal) {
     }
     yaw += dx*.012;
     pitch += dy*.012;
+    if (Math.cos(yaw)*Math.cos(pitch) < -.72) button.dispatchEvent(new Event('lost:back'));
     drag.x = event.clientX;
     drag.y = event.clientY;
   },events);
@@ -174,6 +180,11 @@ export async function floatModel(view, still, id, index, signal) {
     renderer.forceContextLoss();
   }, {once:true});
   renderer.setAnimationLoop(time => {
+    if (flipTarget !== undefined) {
+      yaw += (flipTarget-yaw)*(reduced.matches ? 1 : .10);
+      pitch *= reduced.matches ? 0 : .90;
+      if (Math.abs(flipTarget-yaw)<.01) flipTarget = undefined;
+    }
     const phase = reduced.matches ? index : time/1500 + index*2;
     pivot.rotation.set(pitch+.18+.10*Math.cos(phase),yaw+.28*Math.sin(phase),[-.28,.15,-.15][index]);
     pivot.position.y = .13*Math.sin(phase);
