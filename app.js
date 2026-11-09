@@ -132,7 +132,7 @@ const trails = {
   darner:['收拾針線以前','snips','thimble'],
   pedal:['換完踏板，先替前輪打氣','bikepump','bell'],
   measure:['尺寸還沒記下來','foldrule','watch'],
-  yoyo:['還有一截線沒收好','spinningtop','slingshot'],
+  yoyo:['聽聽石板上還有什麼在轉','spinningtop','slingshot'],
   teatin:['最後一撮茶要放進哪裡？','teaball','spoon'],
   padlock:['哪張卡能開下一扇門？','accesscard','key'],
   castanets:["把這一遍留下來","tape","harmonica"],
@@ -140,7 +140,7 @@ const trails = {
   clothesbrush:['大衣掛起來以後','hanger','mitten'],
   hairclip:['耳邊少了什麼？','comb','earbuds'],
   plugfuse:['摸黑時擦亮的第一根火柴','vestacase','matchbox'],
-  slingshot:['還垂著一截，沒來得及收好','yoyo','castanets'],
+  slingshot:['找找還沒收好的那截繩','yoyo','castanets'],
   travelcup:["廣播響起之後","ticket","teaball"],
   bikepump:['工具袋裡少了哪一件？','tyrelever','pedal'],
   shoelast:['腳跟還記得的形狀','shoehorn','darner'],
@@ -155,7 +155,7 @@ const trails = {
   inkbottle:['那個顏色特別深的字','envelope','pencap'],
   torch:['那晚電表下的小木板','plugfuse','matchbox'],
   ticketpunch:['那張票後來塞進哪件外套？','hanger','ticket'],
-  spinningtop:['繩頭還攥在手裡','yoyo','slingshot'],
+  spinningtop:['看看矮牆上擱著什麼','slingshot','yoyo'],
   foldingfan:['戲散了，誰還留在座位旁？','castanets','instantphoto'],
   vestacase:['火熄了，誰照亮樓梯？','torch','matchbox'],
   drawerpull:['手在黑暗裡摸到什麼？','torch','key'],
@@ -360,6 +360,22 @@ document.querySelector('#drift').onclick = () => {
   render(next);
 };
 const memories = [
+  {
+    title:'石板上最後一圈',
+    ids:['yoyo','spinningtop','slingshot'],
+    thread:[],
+    openings:{
+      yoyo:'廟埕快收攤了，我還蹲著解溜溜球的繩結。弟弟把手掌攤在我面前，裡頭是三顆玻璃珠。他說贏了就分我一顆。',
+      spinningtop:'弟弟把陀螺的繩繞錯方向，解了兩遍。我替他重繞，讓他自己把最後那一截攥進手心。',
+      slingshot:'弟弟把木彈弓擱在矮牆上，鬆掉的橡皮筋垂到牆外。他本來等我替他綁，聽見石板上有東西在轉，拉著我就跑。'
+    },
+    scene:'攤主在石板上畫了一圈白粉，說陀螺停在線裡就算贏。弟弟那顆轉到一半，沿著石縫偏了出去。他蹲著看它越轉越慢，小聲說：「我們把圈畫大一點，它就還在裡面。」攤主把粉筆遞給他，蹲下來等他畫完。',
+    endings:{
+      yoyo:'回家才發現，溜溜球還擱在石階上。隔天我去找，弟弟也跟來，往我掌心塞了一顆玻璃珠。我問他又沒贏，為什麼還分我。他說昨天那個圈是我替他扶著手畫的。',
+      spinningtop:'收攤時，弟弟先把粉筆還給攤主。回頭再找，陀螺已經不在那條石縫旁。我想牽他回家，他蹲下把白圈缺的一小段用手指補完。',
+      slingshot:'我們回矮牆找彈弓，牆上只剩橡皮筋磨下的一點粉屑。弟弟踮起腳往牆外看了一眼，然後攤開手，把捏了一路的三顆玻璃珠一顆一顆數給我看。'
+    }
+  },
   {
     title:'窗台上少了一個人',
     ids:['shadow','sprout','smile'],
@@ -590,6 +606,7 @@ const archiveList = archiveDialog.querySelector('ul');
 const collectedMemories = [];
 let latestMemory;
 const memoryExits = {
+  yoyo:['tally','看看替人數數的計數器'],
   shadow:['instantphoto','看看窗前那張拍立得'],
   ticket:['luggage','看看掉下的行李牌'],
   harmonica:['earbuds','循著聲音去找耳機'],
