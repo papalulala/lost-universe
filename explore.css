@@ -14,3 +14,13 @@
 #catalog input{display:block;width:100%;margin-top:6px;padding:8px;font:inherit}
 #catalog ul{list-style:none;padding:0}
 #catalog a{display:block;padding:7px;color:#46574e;border-bottom:1px solid var(--line)}
+#thread-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#thread-lines path{fill:none;stroke:#75837c;stroke-width:1.2;opacity:.72;animation:thread-settle 1.1s ease-out}
+@keyframes thread-settle{0%{opacity:0;transform:translateY(4px)}45%{transform:translateY(-2px)}}
+#theater-controls{flex-wrap:wrap;align-items:center}
+#thread-status{margin:0;font-size:.86rem}
+#thread-story{width:min(30rem,calc(100% - 2rem));max-height:85vh;padding:1.35rem;color:#303b39;background:#fafbf5;border:1px solid #87968c}
+#thread-story::backdrop{background:#27322c66}
+#thread-story form{float:right}
+#thread-story p{line-height:1.8}
+@media(prefers-reduced-motion:reduce){#thread-lines path{animation:none}}

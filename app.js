@@ -174,6 +174,7 @@ const modelModule = import('./scene.js?v=seventy-five').catch(() => null);
 let current;
 let pinned = false;
 let returnToKey;
+let theaterActive = false;
 
 function reveal(entry, lock = false) {
   pinned = Boolean(entry && lock);
@@ -227,7 +228,9 @@ function mount(item,index) {
     button.onclick = handler;
     choices.append(button);
   }
-  if (item.id === 'key') {
+  if (theaterActive) {
+    action('把這件串進往事',() => threadObject(item.id));
+  } else if (item.id === 'key') {
     keyChoices.forEach(choice => action(choice.label,() => chooseKeyTrail(choice)));
   } else {
     action(label,() => followTrail(item.id,neighbors[0]));
@@ -320,6 +323,7 @@ document.addEventListener('pointerdown',event => {
   if (current && !current.article.contains(event.target) && !event.target.closest('.floating')) reveal();
 });
 function route() {
+  if (theaterActive) { closeTheater(); render([]); }
   const id = location.hash.slice(1);
   if (entries.has(id)) reveal(entries.get(id),true);
   else if (id === 'key') render(['key','postcard','film'],'key');
@@ -329,6 +333,7 @@ function route() {
 addEventListener('hashchange',route);
 route();
 document.querySelector('#drift').onclick = () => {
+  if (theaterActive) { closeTheater(); render([]); }
   const pool = [...byId.keys()].filter(id => !visited.has(id));
   const next = [];
   function draw(from) {
@@ -344,51 +349,91 @@ document.querySelector('#drift').onclick = () => {
   }
   render(next);
 };
+const theaterIds = ['hanger','tally','ticketpunch'];
+const theaterDraft = {
+  hanger:[
+    '那晚我先去了衣帽間。她把外套遞給我，袖子在木衣架磨亮的右肩滑了一下。「散場再來拿。」她說。',
+    '我繞進衣帽間，把她那件外套往裡挪了一格。袖子滑過磨亮的木肩，跟以往每個晚上沒兩樣。',
+    '我最後回到衣帽間。她的外套已經取走了。我把空衣架往裡推，木頭碰到隔壁那一支，響得像還有人在排隊。'
+  ],
+  tally:[
+    '母親來看戲院最後一場放映，比說好的時間晚了一點。我在門口替老闆數人，數到她時，拇指停了一下。',
+    '走到門口，老闆把計數器塞進我手裡。我按了一下，數進最後一位來看電影的人。',
+    '散場後，老闆讓我把計數器歸零。我轉過側邊的小輪，看四格一起跳回去。走到街上，拇指還在掌心裡按了一下。'
+  ],
+  ticketpunch:[
+    '最後一場放映前，一個孩子把票遞給我，又縮回手。「能不能留著給我弟看？」我在空中按了一下鉗子，把票還給他。',
+    '門邊有個孩子想留下完整的票。我把鉗口挪開，空按了一下。他聽見那聲喀噠，才放心走進去。',
+    '關門前，那孩子跑回來給我看他的票，票角好好的。我把驗票鉗擱在櫃檯上，忽然想起，明天就沒有人需要在這裡打孔了。'
+  ]
+};
+const thread = [];
+const theaterControls = document.querySelector('#theater-controls');
+const threadStatus = document.querySelector('#thread-status');
+const threadLines = document.querySelector('#thread-lines');
+const readThread = document.querySelector('#read-thread');
+const threadStory = document.querySelector('#thread-story');
 
+function drawThreads() {
+  if (thread.length < 2) return;
+  const area = frame.getBoundingClientRect();
+  for (let i = 1; i < thread.length; i++) {
+    const a = entries.get(thread[i-1]).button.getBoundingClientRect();
+    const b = entries.get(thread[i]).button.getBoundingClientRect();
+    const x = a.left+a.width/2-area.left, y = a.top+a.height/2-area.top;
+    const u = b.left+b.width/2-area.left, v = b.top+b.height/2-area.top;
+    const existing = threadLines.children[i-1];
+    const path = existing ?? document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M ${x} ${y} Q ${(x+u)/2+8} ${(y+v)/2+13} ${u} ${v}`);
+    if (!existing) threadLines.append(path);
+  }
+}
 
+function threadObject(id) {
+  if (!theaterActive || thread.includes(id)) return;
+  thread.push(id);
+  const entry = entries.get(id);
+  const action = entry.info.querySelector('.follow');
+  action.textContent = '已串進往事';
+  action.disabled = true;
+  entry.button.focus({preventScroll:true});
+  reveal();
+  threadStatus.textContent = thread.length === 3 ? '三件失物串成了一段往事。' : `已串起 ${thread.length} 件。再選一件失物。`;
+  readThread.hidden = thread.length < 3;
+  drawThreads();
+}
 
+function closeTheater() {
+  theaterActive = false;
+  thread.length = 0;
+  theaterControls.hidden = true;
+  document.querySelector('#theater-start').hidden = false;
+  threadLines.replaceChildren();
+}
 
+function startTheater() {
+  closeTheater();
+  // Rebuild these entries so their clue buttons use the trial interaction.
+  render([]);
+  theaterActive = true;
+  theaterControls.hidden = false;
+  document.querySelector('#theater-start').hidden = true;
+  threadStatus.textContent = '打開任一件失物，把它串進往事。';
+  readThread.hidden = true;
+  render(theaterIds);
+  entries.get(theaterIds[0]).button.focus({preventScroll:true});
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.querySelector('#theater-start').onclick = startTheater;
+document.querySelector('#thread-reset').onclick = startTheater;
+readThread.onclick = () => {
+  const paragraphs = thread.map((id,index) => {
+    const p = document.createElement('p');
+    p.textContent = theaterDraft[id][index];
+    return p;
+  });
+  threadStory.querySelector('.thread-copy').replaceChildren(...paragraphs);
+  threadStory.showModal();
+};
+new ResizeObserver(drawThreads).observe(objects);
 

@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="./mist.css?v=enter-only">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
 <link rel="stylesheet" href="./layers.css?v=gray-weather-label">
-<link rel="stylesheet" href="./explore.css?v=quiet-objects">
+<link rel="stylesheet" href="./explore.css?v=theater-trial">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=stay-in-place"></script>
+<script type="module" src="./app.js?v=theater-trial"></script>
 <script type="module" src="./opening.js?v=enter-only"></script>
 </head>
 <body>
@@ -39,9 +39,20 @@
     <a class="brand" href="./"><img src="./lost-universe-floating.svg" alt="失物宇宙"></a>
     <div class="title-context"><p class="title-intro"><img src="./geometric-intro.svg" alt="點開一件失物，讀它的故事。循著線索，看看下一件會漂到哪裡。"></p><strong id="weather-label" role="status">薄霧</strong></div>
   </header>
+  <svg id="thread-lines" aria-hidden="true"></svg>
   <div id="objects"></div>
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
-  <div class="frame-controls"><button id="drift">漂去遠方</button></div>
+  <div class="frame-controls"><button id="drift">漂去遠方</button><button id="theater-start">試玩：戲院的往事</button></div>
+  <div id="theater-controls" class="frame-controls" hidden>
+    <p id="thread-status" role="status"></p>
+    <button id="read-thread" hidden>讀這段往事</button>
+    <button id="thread-reset">重新串接</button>
+  </div>
+  <dialog id="thread-story" aria-labelledby="thread-title">
+    <form method="dialog"><button>關閉</button></form>
+    <h2 id="thread-title">你串起的往事</h2>
+    <div class="thread-copy"></div>
+  </dialog>
   <dialog id="echo" aria-labelledby="echo-title">
     <form method="dialog"><button aria-label="關閉失物留言">關閉</button></form>
     <h2 id="echo-title">失物留言</h2>
@@ -56,6 +67,7 @@
 </main>
 </body>
 </html>
+
 
 
 
