@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="echo-endpoint" content="https://lost-universe-echo.papalulala.workers.dev/">
+<meta name="description" content="三件失物在灰白的霧裡漂流。靠近一點，就能讀到它們的故事。">
+<title>失物宇宙｜雨夜版</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./mist.css?v=enter-only">
+<link rel="stylesheet" href="./frame.css?v=quiet-objects">
+<link rel="stylesheet" href="./layers.css?v=gray-weather-label">
+<link rel="stylesheet" href="./explore.css?v=window-scene">
+<script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
+<link rel="stylesheet" href="./echo.css">
+<link rel="stylesheet" href="./ink.css?v=doodle">
+<link rel="stylesheet" href="./weather.css?v=white-wind">
+<script type="module" src="./app.js?v=window-scene"></script>
+<link rel="stylesheet" href="./rain-edition.css?v=1">
+</head>
+<body>
+<main id="frame" aria-label="失物宇宙" data-weather="calm">
+  <div class="daylight" aria-hidden="true"></div>
+  <div class="paper-folds" aria-hidden="true"></div>
+  <div class="weather" aria-hidden="true"><div class="weather-fog"></div><div class="weather-rain"></div><div class="weather-light"></div></div>
+  <div class="weather weather-front" aria-hidden="true"><div class="weather-fog"></div><div class="weather-wind"></div><div class="weather-snow"></div></div>
+  <header class="frame-title">
+    <a class="brand" href="./rain-edition.html">失物宇宙<span>LOST UNIVERSE</span></a>
+    <div class="title-context"><p class="title-intro"><img src="./geometric-intro.svg" alt="點開一件失物，讀它的故事。循著線索，看看下一件會漂到哪裡。"></p><strong id="weather-label" role="status">薄霧</strong></div>
+  </header>
+  <div class="rain-grain" aria-hidden="true"></div>
+  <div id="window-set" hidden aria-hidden="true"><div class="window-light"></div></div>
+  <section id="window-scene" hidden aria-label="第一個失物現場">
+    <p class="scene-number">雨夜檔案 ／ 01</p>
+    <h1>有個微笑，沒有被拍進照片。</h1>
+    <p id="scene-line" aria-live="polite"></p>
+    <button type="button" id="scene-next"></button>
+    <button type="button" id="scene-explore">自由探索失物</button>
+  </section>
+  <svg id="thread-lines" aria-hidden="true"></svg>
+  <div id="objects"></div>
+  <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
+  <div class="frame-controls"><button id="drift">隨機尋找失物</button></div>
+  <div id="theater-controls" class="frame-controls" hidden>
+    <p id="thread-status" role="status"></p>
+    <button type="button" id="read-memory" hidden></button>
+    <button type="button" id="memory-archive-button" hidden></button>
+  </div>
+  <dialog id="memory-archive" aria-labelledby="memory-archive-title">
+    <form method="dialog"><button>關閉</button></form>
+    <h2 id="memory-archive-title">拾得的往事</h2>
+    <ul></ul>
+  </dialog>
+  <dialog id="thread-story" aria-labelledby="thread-title">
+    <form method="dialog"><button>關閉</button></form>
+    <h2 id="thread-title">你串起的往事</h2>
+    <div class="thread-copy"></div>
+  </dialog>
+  <dialog id="echo" aria-labelledby="echo-title">
+    <form method="dialog"><button aria-label="關閉失物留言">關閉</button></form>
+    <h2 id="echo-title">失物留言</h2>
+    <p role="status"></p>
+    <ul aria-label="訪客留言"></ul>
+    <form class="echo-form" hidden>
+      <label>這件失物，讓你想起了什麼？<textarea maxlength="280" rows="4" required></textarea></label>
+      <small>免登入。送出後，這句話會公開顯示。</small>
+      <button type="submit">送出留言</button>
+    </form>
+  </dialog>
+</main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

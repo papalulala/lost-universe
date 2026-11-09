@@ -1,0 +1,30 @@
+:root{color-scheme:dark}
+body{background:#0a0e11;color:#dce5e8;font-family:ui-monospace,"Cascadia Mono","Noto Sans TC",monospace}
+#frame::before{animation:none;background:radial-gradient(ellipse at 50% 58%,#25343c 0%,#141e24 31%,#0a0e11 75%)}
+#frame .daylight,#frame .paper-folds,#frame .weather{display:none}
+#frame .frame-title{align-items:center;justify-content:center;flex-direction:column;padding:clamp(24px,6dvh,62px) 16px 0;text-align:center}
+.frame-title .brand{color:#e4ebed;font-size:clamp(1.35rem,3vw,2rem);letter-spacing:.28em;text-indent:.28em}
+.frame-title .brand span{display:block;margin-top:.35em;color:#aabdc6;font-size:.63rem;letter-spacing:.36em}
+.title-intro img{filter:invert(1)}
+#weather-label,.frame-hint{color:#aabdc6}
+#window-scene{padding:clamp(16px,4dvh,42px) 1.1rem .25rem;color:#c9d7dc}
+#window-scene .scene-number{color:#91a7b0;letter-spacing:.24em}
+#window-scene h1{margin:.45em 0;font:500 clamp(1.22rem,3.4vw,1.9rem)/1.55 ui-monospace,"Noto Sans TC",monospace;letter-spacing:.075em;color:#e3eaee}
+#window-scene #scene-line{max-width:34em;margin:.55em auto 1em;line-height:1.7}
+#frame[data-window-step="1"] #scene-line{background:#17252d;color:#e1e9ec;border:1px solid #46606e}
+#window-scene button,#frame .frame-controls button{border:1px solid #526773;color:#e0eaee;background:#121c22;letter-spacing:.08em}
+#frame[data-window-step] #scene-next{background:#243741;border-color:#8fa5af;color:#f1f6f8}
+#window-scene button:hover,#frame .frame-controls button:hover{background:#344953;color:#fff}
+#frame #window-set::before{border-color:#5c737b;opacity:.36}
+.window-light{opacity:.27;filter:blur(24px);background:linear-gradient(142deg,transparent 19%,#9bb3c4 36%,#7b9baa 52%,transparent 73%)}
+.rain-grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.23;overflow:hidden;mask-image:linear-gradient(#0003,#000 75%,#0006)}
+.rain-grain::before,.rain-grain::after{content:"";position:absolute;inset:-80px 0 0;background-image:repeating-linear-gradient(109deg,transparent 0 28px,#a1bbd321 29px,transparent 30px 50px);animation:rain-edition-fall 1.3s linear infinite}
+.rain-grain::after{background-image:repeating-linear-gradient(112deg,transparent 0 39px,#d0e8ff26 40px,transparent 41px 68px);animation-duration:.85s}
+@keyframes rain-edition-fall{to{transform:translateY(80px)}}
+#thread-lines path{stroke:#a6c2ce}
+#frame .object-info,#frame dialog{color:#dfebef;background:#142128;border-color:#55707b}
+#frame .object-info summary,#frame .object-info .trail-label,#frame .story-link{color:#c0d3db}
+#frame .object-info button{color:#e0eaee;background:#20313b;border-color:#536975}
+#frame .glimpse{color:#d1dfe5}
+#frame :focus-visible{outline-color:#bbd5e1}
+@media(prefers-reduced-motion:reduce){.rain-grain::before,.rain-grain::after{animation:none}}
