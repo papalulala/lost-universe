@@ -18,7 +18,7 @@
 #catalog a{display:block;padding:7px;color:#46574e;border-bottom:1px solid var(--line)}
 #thread-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 #thread-lines path{fill:none;stroke:#75837c;stroke-width:1.2;opacity:.72;animation:thread-settle 1.7s ease-out both}
-@keyframes thread-settle{0%{opacity:0;transform:translateY(4px)}25%{opacity:.72;transform:translateY(-2px)}70%{opacity:.72}100%{opacity:0}}
+@keyframes thread-settle{0%{opacity:0;transform:translateY(4px)}25%{opacity:.72;transform:translateY(-2px)}70%{opacity:.72}100%{opacity:.72;transform:translateY(0)}}
 #theater-controls{flex-wrap:wrap;align-items:center}
 #thread-status{margin:0;font-size:.86rem}
 #thread-story,#memory-archive{width:min(30rem,calc(100% - 2rem));max-height:85vh;padding:1.35rem;color:#303b39;background:#fafbf5;border:1px solid #87968c}

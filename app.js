@@ -295,7 +295,6 @@ function chooseKeyTrail(choice) {
 }
 
 function render(ids, selected, branch = false) {
-  threadLines.replaceChildren();
   memoryStatus.textContent = '';
   reveal();
   if (!branch && selected !== 'key') returnToKey = undefined;
@@ -320,6 +319,7 @@ function render(ids, selected, branch = false) {
   reveal(entries.get(selected),Boolean(selected));
   if (latestMemory && !latestMemory.ids.every(id => ids.includes(id))) latestMemory = undefined;
   updateMemoryControls();
+  syncMemoryLines();
   const sceneKey = [...ids].sort().join(',');
   if (sceneKey !== weatherScene) {
     weatherScene = sceneKey;
@@ -656,24 +656,14 @@ const memoryExits = {
 };
 const threadLines = document.querySelector('#thread-lines');
 const threadStory = document.querySelector('#thread-story');
+const memoryLinks = new Map();
 
 function connectMemory(source,destination) {
   const memory = memories.find(({ids}) => ids.includes(source) && ids.includes(destination));
   if (!memory) return;
-  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-  threadLines.append(path);
-  setTimeout(() => path.remove(),1700);
-  function trace() {
-    if (!path.isConnected) return;
-    const area = frame.getBoundingClientRect();
-    const a = entries.get(source).button.getBoundingClientRect();
-    const b = entries.get(destination).button.getBoundingClientRect();
-    const x = a.left+a.width/2-area.left, y = a.top+a.height/2-area.top;
-    const u = b.left+b.width/2-area.left, v = b.top+b.height/2-area.top;
-    path.setAttribute('d',`M ${x} ${y} Q ${(x+u)/2+8} ${(y+v)/2+13} ${u} ${v}`);
-    requestAnimationFrame(trace);
-  }
-  trace();
+  const key = [source,destination].sort().join(',');
+  if (!memoryLinks.has(key)) memoryLinks.set(key,{source,destination});
+  syncMemoryLines();
 
   if (memory.thread.length === 3) return;
   for (const id of [source,destination]) {
@@ -688,6 +678,32 @@ function connectMemory(source,destination) {
   latestMemory = memory;
   memoryStatus.textContent = `「${memory.title}」可以閱讀了。`;
   updateMemoryControls();
+}
+
+function syncMemoryLines() {
+  for (const link of memoryLinks.values()) {
+    const {source,destination} = link;
+    if (!entries.has(source) || !entries.has(destination)) {
+      link.path?.remove();
+      link.path = undefined;
+      continue;
+    }
+    if (link.path) continue;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    link.path = path;
+    threadLines.append(path);
+    function trace() {
+      if (!path.isConnected) return;
+      const area = frame.getBoundingClientRect();
+      const a = entries.get(source).button.getBoundingClientRect();
+      const b = entries.get(destination).button.getBoundingClientRect();
+      const x = a.left+a.width/2-area.left, y = a.top+a.height/2-area.top;
+      const u = b.left+b.width/2-area.left, v = b.top+b.height/2-area.top;
+      path.setAttribute('d',`M ${x} ${y} Q ${(x+u)/2+8} ${(y+v)/2+13} ${u} ${v}`);
+      requestAnimationFrame(trace);
+    }
+    trace();
+  }
 }
 
 function updateMemoryControls() {
