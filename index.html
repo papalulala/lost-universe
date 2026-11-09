@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="./mist.css?v=enter-only">
 <link rel="stylesheet" href="./frame.css?v=quiet-objects">
 <link rel="stylesheet" href="./layers.css?v=gray-weather-label">
-<link rel="stylesheet" href="./explore.css?v=paper-slot">
+<link rel="stylesheet" href="./explore.css?v=theater-only">
 <script type="importmap">{"imports":{"three":"./three.module.js","three/addons/":"./"}}</script>
 <link rel="stylesheet" href="./echo.css">
 <link rel="stylesheet" href="./ink.css?v=doodle">
 <link rel="stylesheet" href="./weather.css?v=white-wind">
-<script type="module" src="./app.js?v=paper-slot"></script>
+<script type="module" src="./app.js?v=theater-only"></script>
 <script type="module" src="./opening.js?v=enter-only"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@
   <svg id="thread-lines" aria-hidden="true"></svg>
   <div id="objects"></div>
   <p class="frame-hint">拖曳轉動失物，點一下讀它的故事。</p>
-  <div class="frame-controls"><button id="drift">漂去遠方</button><button id="theater-start">試玩：戲院的往事</button><button id="misplace-start">試玩：把失物放錯地方</button></div>
+  <div class="frame-controls"><button id="drift">漂去遠方</button><button id="theater-start">試玩：戲院的往事</button></div>
   <div id="theater-controls" class="frame-controls" hidden>
     <p id="thread-status" role="status"></p>
     <button id="read-thread" hidden>讀這段往事</button>
@@ -52,24 +52,6 @@
     <form method="dialog"><button>關閉</button></form>
     <h2 id="thread-title">你串起的往事</h2>
     <div class="thread-copy"></div>
-  </dialog>
-  <dialog id="misplace" aria-labelledby="misplace-title">
-    <form method="dialog"><button>關閉</button></form>
-    <h2 id="misplace-title">把失物放錯地方</h2>
-    <p class="misplace-setup">戲院散場了。計數器歸了零，衣帽間還掛著一件外套。你把手伸向外套底下，那裡原本是空的。</p>
-    <p id="misplace-hint">把一件失物拖過紙摺。也可以先點選失物，再點右邊的空位。</p>
-    <div class="misplace-stage">
-      <div class="misplace-items" aria-label="可以放入的失物">
-        <button type="button" data-prop="hanger" aria-pressed="false"><img src="./hanger.png" alt="" draggable="false">木衣架</button>
-        <button type="button" data-prop="ticketpunch" aria-pressed="false"><img src="./ticketpunch.png" alt="" draggable="false">驗票鉗</button>
-      </div>
-      <button type="button" id="misplace-slot" aria-label="把選中的失物放入空位" aria-describedby="misplace-hint">
-        <img alt="" hidden draggable="false"><span>外套底下的空位</span>
-      </button>
-    </div>
-    <div id="misplace-result" aria-live="polite"><p>外套垂在原處，沒有人回來。</p></div>
-    <button type="button" id="misplace-reset" hidden>取出失物</button>
-    <img id="misplace-ghost" alt="" hidden draggable="false">
   </dialog>
   <dialog id="echo" aria-labelledby="echo-title">
     <form method="dialog"><button aria-label="關閉失物留言">關閉</button></form>
@@ -85,6 +67,7 @@
 </main>
 </body>
 </html>
+
 
 
 
